@@ -1,0 +1,6 @@
+Date,Description,Account Code,Debit,Credit,Reference
+2026-10-01,Opening balance,0000,50000,0,BBF
+2026-10-02,Demo Stationery - Purchase of office stationery,5100,18000,0,DEMO-001
+2026-10-03,Demo Systems - Annual support arrangement renewal,5200,85000,0,DEMO-002
+2026-10-04,Demo Supplier - Payment against combined invoice,5300,42000,0,DEMO-003
+2026-10-05,Office bank transfer between own accounts,1000,20000,0,DEMO-004
