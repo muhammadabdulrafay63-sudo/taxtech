@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { MAX_LEDGER_BYTES, LEDGER_SIZE_MESSAGE } from "@/lib/upload-limits";
 import { FileDropzone } from "./FileDropzone";
 import { MappingStep } from "./MappingStep";
 import { PreviewStep } from "./PreviewStep";
@@ -57,6 +58,8 @@ export function UploadWizard({ companyId }: UploadWizardProps) {
     setFile(f);
     setIsLoading(true);
     try {
+      if (!f.size || f.size > MAX_LEDGER_BYTES)
+        throw new Error(LEDGER_SIZE_MESSAGE);
       const form = new FormData();
       form.append("file", f);
       const res = await fetch("/api/upload-gl/preview", {

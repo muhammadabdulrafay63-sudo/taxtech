@@ -1,4 +1,5 @@
 import { LedgerHeaderError } from "@/lib/parser";
+import { MAX_LEDGER_BYTES } from "@/lib/upload-limits";
 import { LedgerAmountError } from "@/lib/money";
 import { guardRoute } from "@/lib/route-guard";
 import { createHash } from "node:crypto";
@@ -54,14 +55,14 @@ export async function POST(req: Request) {
       if (
         !(file instanceof File) ||
         !file.name.match(/\.(xlsx|xls|csv)$/i) ||
-        file.size > 20 * 1024 * 1024 ||
+        file.size > MAX_LEDGER_BYTES ||
         !file.size ||
         typeof sheetName !== "string"
       )
         return NextResponse.json(
           {
             error:
-              "Choose a non-empty Excel or CSV file up to 20 MB and a sheet.",
+              "Choose a non-empty Excel or CSV file up to 4 MB and a sheet. Split larger ledgers into smaller files.",
           },
           { status: 400 },
         );

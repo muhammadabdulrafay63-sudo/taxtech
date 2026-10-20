@@ -2,6 +2,7 @@ import { guardRoute } from "@/lib/route-guard";
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { parseGLBuffer, LedgerHeaderError } from "@/lib/parser";
+import { MAX_LEDGER_BYTES, LEDGER_SIZE_MESSAGE } from "@/lib/upload-limits";
 
 export async function POST(req: Request) {
   const denied = await guardRoute(req);
@@ -35,9 +36,9 @@ export async function POST(req: Request) {
       );
     }
 
-    if (file.size > 20 * 1024 * 1024) {
+    if (!file.size || file.size > MAX_LEDGER_BYTES) {
       return NextResponse.json(
-        { error: "File too large (max 20MB)" },
+        { error: LEDGER_SIZE_MESSAGE },
         { status: 400 },
       );
     }

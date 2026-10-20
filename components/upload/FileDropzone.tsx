@@ -65,7 +65,7 @@ export function FileDropzone({ onFile, isLoading }: FileDropzoneProps) {
             <span className="text-primary">browse</span>
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Supports .xlsx, .xls, .csv — exported from your accounting software
+            Supports .xlsx, .xls, .csv — up to 4 MB per file
           </p>
         </div>
         <input

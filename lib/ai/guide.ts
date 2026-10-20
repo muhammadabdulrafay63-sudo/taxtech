@@ -14,7 +14,7 @@ export const guide = [
     title: "Upload ledger",
     suffix: "/upload",
     steps: [
-      "Upload an Excel or CSV ledger (maximum 20 MB).",
+      "Upload an Excel or CSV ledger (maximum 4 MB). Split larger ledgers into smaller files.",
       "Map Date, Description, GL Account Code, Debit and Credit to distinct columns. Dates use day/month/year or YYYY-MM-DD.",
       "Preview amounts, select the correct sheet and confirm the import. Opening balances and invalid dates are skipped. Invalid amounts block the whole import. Use at most two decimal places and store large Excel amounts as text.",
       "Open Review ledger after import. No transaction is approved automatically.",
