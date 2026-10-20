@@ -1,0 +1,12 @@
+import nextEnv from "@next/env";
+import { cp, mkdir } from "node:fs/promises";
+import { pathToFileURL } from "node:url";
+import { resolve } from "node:path";
+nextEnv.loadEnvConfig(process.cwd());
+const portIndex = process.argv.indexOf("-p");
+if (portIndex !== -1) process.env.PORT = process.argv[portIndex + 1];
+process.env.HOSTNAME = process.env.APP_HOST || "127.0.0.1";
+await mkdir(".next/standalone/.next", { recursive: true });
+await cp(".next/static", ".next/standalone/.next/static", { recursive: true });
+await cp("public", ".next/standalone/public", { recursive: true });
+await import(pathToFileURL(resolve(".next/standalone/server.js")).href);
