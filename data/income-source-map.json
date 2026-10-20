@@ -1,0 +1,338 @@
+{
+  "149_salary": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 6,
+    "description": "Salary income",
+    "filer": null,
+    "nonFiler": null
+  },
+  "150_dividend_listed": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 8,
+    "description": "Dividend from listed company",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "150_dividend_money_market": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 9,
+    "description": "Dividend from money market / income fund",
+    "filer": 25,
+    "nonFiler": 25
+  },
+  "150_dividend_stock_fund": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 10,
+    "description": "Dividend from stock fund (where income < capital gains)",
+    "filer": 12.5,
+    "nonFiler": 25
+  },
+  "150_dividend_private": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 11,
+    "description": "Dividend from private company",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "150_bonus_shares": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 12,
+    "description": "Bonus shares issued by listed company",
+    "filer": 10,
+    "nonFiler": 10
+  },
+  "151_nss": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 14,
+    "description": "Profit on National Savings Scheme instruments",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "151_bank_profit": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 15,
+    "description": "Profit on bank account / term deposit",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "151_bonds": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 16,
+    "description": "Profit on bonds, certificates, debentures",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "151_finance_company": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 17,
+    "description": "Profit paid by finance company",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "152_royalty_tech_fee": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 19,
+    "description": "Royalty or technical fee to non-resident",
+    "filer": 15,
+    "nonFiler": 15
+  },
+  "152_insurance_premium": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 20,
+    "description": "Insurance premium to non-resident",
+    "filer": 5,
+    "nonFiler": 5
+  },
+  "152_profit_on_debt_nr": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 21,
+    "description": "Profit on debt to non-resident",
+    "filer": 10,
+    "nonFiler": 10
+  },
+  "152_contract_nr": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 22,
+    "description": "Contract payment to non-resident",
+    "filer": 7,
+    "nonFiler": 7
+  },
+  "152_advertisement_nr": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 23,
+    "description": "Advertisement services to non-resident",
+    "filer": 10,
+    "nonFiler": 10
+  },
+  "152_other_nr": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 24,
+    "description": "Other payments to non-resident",
+    "filer": 20,
+    "nonFiler": 20
+  },
+  "153_goods_company": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 27,
+    "description": "Sale of goods — other goods (listed company)",
+    "filer": 4,
+    "nonFiler": 8
+  },
+  "153_goods_individual": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 28,
+    "description": "Sale of goods — other goods (non-listed / individual)",
+    "filer": 4.5,
+    "nonFiler": 9
+  },
+  "153_services_company": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 30,
+    "description": "Rendering of services — other services (company)",
+    "filer": 8,
+    "nonFiler": 16
+  },
+  "153_services_individual": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 31,
+    "description": "Rendering of services — other services (individual/AOP)",
+    "filer": 10,
+    "nonFiler": 20
+  },
+  "153_services_transport": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 29,
+    "description": "Rendering of services — transport",
+    "filer": 2,
+    "nonFiler": 4
+  },
+  "153_contract_company": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 32,
+    "description": "Execution of contract — companies",
+    "filer": 7,
+    "nonFiler": 14
+  },
+  "153_contract_individual": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 33,
+    "description": "Execution of contract — individual/AOP",
+    "filer": 7.5,
+    "nonFiler": 15
+  },
+  "153_media_advertising": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 34,
+    "description": "Advertisement services to TV/print media",
+    "filer": 1.5,
+    "nonFiler": 1.5
+  },
+  "153_electronic_print_media": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 35,
+    "description": "Payments to electronic / print media",
+    "filer": 1.5,
+    "nonFiler": 1.5
+  },
+  "154_export_goods": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 37,
+    "description": "Proceeds of export of goods",
+    "filer": 1,
+    "nonFiler": 1
+  },
+  "154_it_exports": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 38,
+    "description": "Export of computer software / IT services",
+    "filer": 1,
+    "nonFiler": 1
+  },
+  "155_rent_company_payer": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 45,
+    "description": "Rent paid by company to any person",
+    "filer": 15,
+    "nonFiler": 30
+  },
+  "156_prize_bond": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 47,
+    "description": "Prize on prize bond",
+    "filer": 15,
+    "nonFiler": 25
+  },
+  "156_lottery": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 48,
+    "description": "Winnings from raffle, lottery, quiz",
+    "filer": 20,
+    "nonFiler": 20
+  },
+  "156a_petroleum": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 51,
+    "description": "Sale of petroleum products by petroleum agent/distributor",
+    "filer": 12,
+    "nonFiler": 12
+  },
+  "231a_cash_withdrawal": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 53,
+    "description": "Cash withdrawal from bank — per transaction",
+    "filer": 0.6,
+    "nonFiler": 0.6
+  },
+  "231aa_bank_instrument": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 55,
+    "description": "Purchase of bank instrument (demand draft, pay order etc.)",
+    "filer": 0,
+    "nonFiler": 0.6
+  },
+  "233_commission_advertising": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 57,
+    "description": "Brokerage or commission — advertising agent",
+    "filer": 10,
+    "nonFiler": 15
+  },
+  "233_commission_insurance": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 58,
+    "description": "Brokerage or commission — life insurance agent (< 0.5M/yr)",
+    "filer": 8,
+    "nonFiler": 16
+  },
+  "233_commission_others": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 60,
+    "description": "Brokerage or commission — others",
+    "filer": 12,
+    "nonFiler": 15
+  },
+  "235_electricity": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 64,
+    "description": "Electricity bill — commercial/industrial consumer",
+    "filer": 0,
+    "nonFiler": 12
+  },
+  "236a_auction": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 66,
+    "description": "Auction of any property or goods by government",
+    "filer": 10,
+    "nonFiler": 15
+  },
+  "236c_property_sale": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 68,
+    "description": "Sale / transfer of immovable property",
+    "filer": 3,
+    "nonFiler": 6
+  },
+  "236k_property_purchase": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 70,
+    "description": "Purchase of immovable property — value > PKR 4 million",
+    "filer": 3,
+    "nonFiler": 6
+  },
+  "236g_distributor_standard": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 74,
+    "description": "Sales to distributors — other goods",
+    "filer": 0.5,
+    "nonFiler": 0.5
+  },
+  "236h_retailer_standard": {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sheet": "WHT Rate Master Table",
+    "row": 77,
+    "description": "Sales to retailers — other goods",
+    "filer": 0.5,
+    "nonFiler": 0.5
+  }
+}

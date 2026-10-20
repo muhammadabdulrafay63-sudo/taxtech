@@ -1,0 +1,2686 @@
+[
+  {
+    "file": "TaxTech_WHT_Rate_Database.xlsx",
+    "sha256": "1a42289f81027857a437b8616c3a4801d88772cb33ba093698f6a1e5176e39bf",
+    "sheets": [
+      {
+        "name": "WHT Rate Master Table",
+        "rows": [
+          [
+            "Pakistan WHT Rate Database  |  Income Tax Ordinance 2001 — Finance Act 2024",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "For use in WHT classification engine  •  Update after every Finance Act  •  Last updated: Finance Act 2024",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Section",
+            "Sub-Section",
+            "Nature of Payment",
+            "Recipient Type",
+            "Filer Rate %",
+            "Non-Filer Rate %",
+            "Threshold (PKR)",
+            "Key Notes"
+          ],
+          [
+            "SECTION 149 — SALARY",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "149",
+            "—",
+            "Salary income",
+            "Individual Employee",
+            "Slab Rates",
+            "Slab Rates",
+            "None",
+            "Monthly deduction on gross salary per tax slab. No filer/non-filer distinction."
+          ],
+          [
+            "SECTION 150 — DIVIDENDS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "150",
+            "(1)",
+            "Dividend from listed company",
+            "All",
+            "15%",
+            "30%",
+            "None",
+            "Deducted at source by company paying dividend"
+          ],
+          [
+            "150",
+            "(1A)",
+            "Dividend from money market / income fund",
+            "All",
+            "25%",
+            "25%",
+            "None",
+            "Same rate for filer and non-filer"
+          ],
+          [
+            "150",
+            "(1B)",
+            "Dividend from stock fund (where income < capital gains)",
+            "All",
+            "12.5%",
+            "25%",
+            "None",
+            ""
+          ],
+          [
+            "150",
+            "(2)",
+            "Dividend from private company",
+            "All",
+            "15%",
+            "30%",
+            "None",
+            ""
+          ],
+          [
+            "150",
+            "(3)",
+            "Bonus shares issued by listed company",
+            "All",
+            "10%",
+            "10%",
+            "None",
+            "WHT on face value of bonus shares"
+          ],
+          [
+            "SECTION 151 — PROFIT ON DEBT",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "151",
+            "(1)(a)",
+            "Profit on National Savings Scheme instruments",
+            "Individual",
+            "15%",
+            "30%",
+            "None",
+            ""
+          ],
+          [
+            "151",
+            "(1)(b)",
+            "Profit on bank account / term deposit",
+            "Individual",
+            "15%",
+            "30%",
+            "None",
+            "Deducted by bank"
+          ],
+          [
+            "151",
+            "(1)(c)",
+            "Profit on bonds, certificates, debentures",
+            "All",
+            "15%",
+            "30%",
+            "None",
+            ""
+          ],
+          [
+            "151",
+            "(1)(d)",
+            "Profit paid by finance company",
+            "All",
+            "15%",
+            "30%",
+            "None",
+            ""
+          ],
+          [
+            "SECTION 152 — PAYMENTS TO NON-RESIDENTS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "152",
+            "(1)",
+            "Royalty or technical fee to non-resident",
+            "Non-Resident",
+            "15%",
+            "15%",
+            "None",
+            "Final tax — no further tax liability"
+          ],
+          [
+            "152",
+            "(1A)",
+            "Insurance premium to non-resident",
+            "Non-Resident",
+            "5%",
+            "5%",
+            "None",
+            ""
+          ],
+          [
+            "152",
+            "(1AA)",
+            "Profit on debt to non-resident",
+            "Non-Resident",
+            "10%",
+            "10%",
+            "None",
+            ""
+          ],
+          [
+            "152",
+            "(2)",
+            "Contract payment to non-resident",
+            "Non-Resident",
+            "7%",
+            "7%",
+            "None",
+            ""
+          ],
+          [
+            "152",
+            "(2A)",
+            "Advertisement services to non-resident",
+            "Non-Resident",
+            "10%",
+            "10%",
+            "None",
+            "Digital/media services"
+          ],
+          [
+            "152",
+            "(3)",
+            "Other payments to non-resident",
+            "Non-Resident",
+            "20%",
+            "20%",
+            "None",
+            "Residual category"
+          ],
+          [
+            "SECTION 153 — PAYMENTS FOR GOODS, SERVICES & CONTRACTS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "153",
+            "(1)(a)",
+            "Sale of goods — rice, cotton, edible oil (listed)",
+            "Company",
+            "1.5%",
+            "3%",
+            "None",
+            "Most common section for trading companies"
+          ],
+          [
+            "153",
+            "(1)(a)",
+            "Sale of goods — other goods (listed company)",
+            "Company",
+            "4%",
+            "8%",
+            "None",
+            ""
+          ],
+          [
+            "153",
+            "(1)(a)",
+            "Sale of goods — other goods (non-listed / individual)",
+            "Individual/AOP",
+            "4.5%",
+            "9%",
+            "None",
+            ""
+          ],
+          [
+            "153",
+            "(1)(b)",
+            "Rendering of services — transport",
+            "Company",
+            "2%",
+            "4%",
+            "None",
+            ""
+          ],
+          [
+            "153",
+            "(1)(b)",
+            "Rendering of services — other services (company)",
+            "Company",
+            "8%",
+            "16%",
+            "None",
+            "Most common — applied to all professional services"
+          ],
+          [
+            "153",
+            "(1)(b)",
+            "Rendering of services — other services (individual/AOP)",
+            "Individual/AOP",
+            "10%",
+            "20%",
+            "None",
+            ""
+          ],
+          [
+            "153",
+            "(1)(c)",
+            "Execution of contract — companies",
+            "Company",
+            "7%",
+            "14%",
+            "None",
+            "Construction, engineering contracts"
+          ],
+          [
+            "153",
+            "(1)(c)",
+            "Execution of contract — individual/AOP",
+            "Individual/AOP",
+            "7.5%",
+            "15%",
+            "None",
+            ""
+          ],
+          [
+            "153",
+            "(2)",
+            "Advertisement services to TV/print media",
+            "All",
+            "1.5%",
+            "1.5%",
+            "None",
+            ""
+          ],
+          [
+            "153",
+            "(3)",
+            "Payments to electronic / print media",
+            "All",
+            "1.5%",
+            "1.5%",
+            "None",
+            ""
+          ],
+          [
+            "SECTION 154 — EXPORTS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "154",
+            "(1)",
+            "Proceeds of export of goods",
+            "Exporter",
+            "1%",
+            "1%",
+            "None",
+            "Collected by bank on repatriation of export proceeds"
+          ],
+          [
+            "154",
+            "(3A)",
+            "Export of computer software / IT services",
+            "IT Company",
+            "1%",
+            "1%",
+            "None",
+            "Reduced rate for IT exporters"
+          ],
+          [
+            "154",
+            "(3B)",
+            "Export of services",
+            "All",
+            "1%",
+            "1%",
+            "None",
+            ""
+          ],
+          [
+            "SECTION 155 — INCOME FROM PROPERTY (RENT)",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "155",
+            "—",
+            "Rent of immovable property — up to PKR 300,000/year",
+            "Individual",
+            "0%",
+            "0%",
+            "300,000",
+            "Exempt threshold"
+          ],
+          [
+            "155",
+            "—",
+            "Rent of immovable property — PKR 300,001 to 600,000",
+            "Individual",
+            "5%",
+            "10%",
+            "600,000",
+            "On amount exceeding 300,000"
+          ],
+          [
+            "155",
+            "—",
+            "Rent of immovable property — PKR 600,001 to 2,000,000",
+            "Individual",
+            "10%",
+            "20%",
+            "2,000,000",
+            "On amount exceeding 600,000"
+          ],
+          [
+            "155",
+            "—",
+            "Rent of immovable property — above PKR 2,000,000",
+            "Individual",
+            "25%",
+            "30%",
+            "None",
+            "On amount exceeding 2,000,000"
+          ],
+          [
+            "155",
+            "—",
+            "Rent paid by company to any person",
+            "Company Payer",
+            "15%",
+            "30%",
+            "None",
+            "Company paying rent must deduct WHT"
+          ],
+          [
+            "SECTION 156 — PRIZES AND WINNINGS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "156",
+            "(1)",
+            "Prize on prize bond",
+            "All",
+            "15%",
+            "25%",
+            "None",
+            "Deducted by National Savings"
+          ],
+          [
+            "156",
+            "(2)",
+            "Winnings from raffle, lottery, quiz",
+            "All",
+            "20%",
+            "20%",
+            "None",
+            "Final tax"
+          ],
+          [
+            "156",
+            "(3)",
+            "Prize on cross-word puzzle",
+            "All",
+            "15%",
+            "25%",
+            "None",
+            ""
+          ],
+          [
+            "SECTION 156A — PETROLEUM PRODUCTS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "156A",
+            "—",
+            "Sale of petroleum products by petroleum agent/distributor",
+            "Distributor",
+            "12%",
+            "12%",
+            "None",
+            "Collected by oil marketing company"
+          ],
+          [
+            "SECTION 231A — CASH WITHDRAWAL FROM BANK",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "231A",
+            "—",
+            "Cash withdrawal from bank — per transaction",
+            "Individual/AOP",
+            "0.6%",
+            "0.6%",
+            "50,000",
+            "Collected by bank on withdrawals exceeding PKR 50,000/day"
+          ],
+          [
+            "SECTION 231AA — BANKING INSTRUMENTS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "231AA",
+            "—",
+            "Purchase of bank instrument (demand draft, pay order etc.)",
+            "Non-Filer",
+            "0%",
+            "0.6%",
+            "None",
+            "Only applies to non-filers"
+          ],
+          [
+            "SECTION 233 — BROKERAGE AND COMMISSION",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "233",
+            "(1)(a)",
+            "Brokerage or commission — advertising agent",
+            "All",
+            "10%",
+            "15%",
+            "None",
+            ""
+          ],
+          [
+            "233",
+            "(1)(b)",
+            "Brokerage or commission — life insurance agent (< 0.5M/yr)",
+            "Individual",
+            "8%",
+            "16%",
+            "None",
+            ""
+          ],
+          [
+            "233",
+            "(1)(b)",
+            "Brokerage or commission — life insurance agent (> 0.5M/yr)",
+            "Individual",
+            "12%",
+            "16%",
+            "None",
+            ""
+          ],
+          [
+            "233",
+            "(1)(c)",
+            "Brokerage or commission — others",
+            "All",
+            "12%",
+            "15%",
+            "None",
+            "Stock brokers, commodity brokers, etc."
+          ],
+          [
+            "SECTION 234 — MOTOR VEHICLES (PRIVATE)",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "234",
+            "—",
+            "Tax on private motor vehicles at time of registration",
+            "Individual",
+            "Fixed Amount",
+            "Higher Fixed",
+            "None",
+            "Based on engine capacity — see FBR schedule"
+          ],
+          [
+            "SECTION 235 — ELECTRICITY CONSUMPTION",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "235",
+            "(1)",
+            "Electricity bill — commercial/industrial consumer",
+            "Non-Filer",
+            "0%",
+            "12%",
+            "None",
+            "Only applies to non-filers paying > PKR 30,000/month"
+          ],
+          [
+            "SECTION 236A — AUCTION PROCEEDS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "236A",
+            "—",
+            "Auction of any property or goods by government",
+            "All",
+            "10%",
+            "15%",
+            "None",
+            "Collected by auctioneer"
+          ],
+          [
+            "SECTION 236C — SALE OF IMMOVABLE PROPERTY",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "236C",
+            "—",
+            "Sale / transfer of immovable property",
+            "All",
+            "3%",
+            "6%",
+            "None",
+            "Collected by registrar / sub-registrar"
+          ],
+          [
+            "SECTION 236K — PURCHASE OF IMMOVABLE PROPERTY",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "236K",
+            "—",
+            "Purchase of immovable property — value > PKR 4 million",
+            "All",
+            "3%",
+            "6%",
+            "4,000,000",
+            "Collected at time of registration"
+          ],
+          [
+            "SECTION 236G — SALES TO DISTRIBUTORS / DEALERS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "236G",
+            "—",
+            "Sales to distributors — electronics, sugar, cement, iron",
+            "Manufacturer",
+            "0.1%",
+            "0.1%",
+            "None",
+            "Collected by manufacturer on sales to distributor"
+          ],
+          [
+            "236G",
+            "—",
+            "Sales to distributors — fertilizer",
+            "Manufacturer",
+            "0.7%",
+            "0.7%",
+            "None",
+            ""
+          ],
+          [
+            "236G",
+            "—",
+            "Sales to distributors — other goods",
+            "Manufacturer",
+            "0.5%",
+            "0.5%",
+            "None",
+            ""
+          ],
+          [
+            "SECTION 236H — SALES TO RETAILERS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "236H",
+            "—",
+            "Sales to retailers — electronics, sugar, cement, iron",
+            "Manufacturer/Dist",
+            "1%",
+            "1%",
+            "None",
+            ""
+          ],
+          [
+            "236H",
+            "—",
+            "Sales to retailers — other goods",
+            "Manufacturer/Dist",
+            "0.5%",
+            "0.5%",
+            "None",
+            ""
+          ]
+        ]
+      },
+      {
+        "name": "Quick Reference",
+        "rows": [
+          [
+            "WHT Quick Reference  |  Sections Used by 90% of Pakistani SMEs",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Build your classification engine around these sections first — they cover 90% of SME transactions",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Section",
+            "What It Covers",
+            "Filer Rate",
+            "Non-Filer Rate",
+            "When to Apply"
+          ],
+          [
+            "▸  SALARY & EMPLOYEES",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "149",
+            "Salaries paid to employees",
+            "Slab rates",
+            "Slab rates",
+            "Every payroll run — monthly obligation"
+          ],
+          [
+            "▸  GOODS & SERVICES — Most Common for SMEs",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "153(1)(a)",
+            "Purchase of goods from supplier",
+            "4% (company) / 4.5% (individual)",
+            "8% (company) / 9% (individual)",
+            "Any purchase from vendor — check if goods or service"
+          ],
+          [
+            "153(1)(b)",
+            "Payment for services rendered",
+            "8% (company) / 10% (individual)",
+            "16% (company) / 20% (individual)",
+            "IT services, consultants, lawyers, accountants, etc."
+          ],
+          [
+            "153(1)(c)",
+            "Execution of contracts",
+            "7% (company) / 7.5% (individual)",
+            "14% (company) / 15% (individual)",
+            "Construction, renovation, engineering contracts"
+          ],
+          [
+            "▸  RENT",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "155",
+            "Rent paid for office / warehouse / property",
+            "15% (company payer)",
+            "30% (non-filer landlord)",
+            "Any rent payment by a company — always deduct WHT"
+          ],
+          [
+            "▸  IMPORTS",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "148",
+            "Value of goods imported",
+            "5.5% (industrial) / 6% (commercial)",
+            "9% / 9%",
+            "Collected by customs at import stage"
+          ],
+          [
+            "▸  DIVIDENDS",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "150",
+            "Dividends paid to shareholders",
+            "15%",
+            "30%",
+            "When distributing profits — board declaration triggers this"
+          ],
+          [
+            "▸  COMMISSION & BROKERAGE",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "233",
+            "Commission / brokerage paid to agents",
+            "12%",
+            "15%",
+            "Any agent, broker, or commission-based payment"
+          ],
+          [
+            "▸  PROFIT ON DEBT",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "151",
+            "Interest / profit on loans and deposits",
+            "15%",
+            "30%",
+            "If company pays interest on borrowing from individuals"
+          ]
+        ]
+      },
+      {
+        "name": "Filer vs Non-Filer Logic",
+        "rows": [
+          [
+            "Filer vs Non-Filer Logic  |  ATL Status Determines WHT Rate",
+            null,
+            null,
+            null
+          ],
+          [
+            "This is the single most important logic in your WHT engine — get this right first",
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "▸  WHAT IS ATL?",
+            null,
+            null,
+            null
+          ],
+          [
+            "Term",
+            "Explanation",
+            "Source",
+            null
+          ],
+          [
+            "ATL",
+            "Active Taxpayer List — published by FBR every Monday",
+            "fbr.gov.pk/ATL",
+            null
+          ],
+          [
+            "Filer",
+            "Person/company whose name appears in ATL — filed last year's tax return",
+            "ATL lookup by NTN/CNIC",
+            null
+          ],
+          [
+            "Non-Filer",
+            "Person/company NOT in ATL — did not file last year's return or return under review",
+            "ATL lookup by NTN/CNIC",
+            null
+          ],
+          [
+            "NTN",
+            "National Tax Number — unique ID for companies and registered individuals",
+            "Required for WHT deduction",
+            null
+          ],
+          [
+            "CNIC",
+            "Computerised National Identity Card — used for individual vendors without NTN",
+            "13-digit number",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "▸  HOW TO DETERMINE FILER STATUS IN YOUR APP",
+            null,
+            null,
+            null
+          ],
+          [
+            "Step",
+            "Action",
+            "Notes for Dev",
+            null
+          ],
+          [
+            "Step 1",
+            "When vendor is added, collect their NTN (company) or CNIC (individual)",
+            "Make NTN/CNIC a required field on vendor profile",
+            null
+          ],
+          [
+            "Step 2",
+            "User manually selects Filer / Non-Filer status on vendor profile",
+            "For MVP — manual selection is fine. API lookup comes later.",
+            null
+          ],
+          [
+            "Step 3",
+            "App applies correct rate based on vendor filer status + WHT section",
+            "Core classification logic — filer status × section = rate",
+            null
+          ],
+          [
+            "Step 4",
+            "Add 'Last ATL Check' date field on vendor — remind user to re-check monthly",
+            "ATL updates every Monday — status can change",
+            null
+          ],
+          [
+            "Future v2",
+            "Auto-lookup ATL status via FBR API using NTN/CNIC",
+            "FBR has unofficial API — document it for future sprint",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "▸  RATE DIFFERENTIAL — WHY IT MATTERS",
+            null,
+            null,
+            null
+          ],
+          [
+            "Section",
+            "Filer Rate",
+            "Non-Filer Rate",
+            "Difference"
+          ],
+          [
+            "153(1)(b) Services — Company",
+            "8%",
+            "16%",
+            "2x penalty for non-filers"
+          ],
+          [
+            "153(1)(b) Services — Individual",
+            "10%",
+            "20%",
+            "2x penalty for non-filers"
+          ],
+          [
+            "155 Rent — Company payer",
+            "15%",
+            "30%",
+            "2x penalty for non-filers"
+          ],
+          [
+            "150 Dividends",
+            "15%",
+            "30%",
+            "2x penalty for non-filers"
+          ],
+          [
+            "Key message",
+            "Non-filer vendors cost your client significantly more in WHT",
+            "This is a strong sales argument — show the cost of non-filer vendors",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "▸  EDGE CASES YOUR ENGINE MUST HANDLE",
+            null,
+            null,
+            null
+          ],
+          [
+            "Edge Case",
+            "Correct Handling",
+            "Risk If Ignored",
+            null
+          ],
+          [
+            "Vendor has no NTN / CNIC",
+            "Default to Non-Filer rate — safer assumption",
+            "Under-deduction = client liable for shortfall + penalty",
+            null
+          ],
+          [
+            "Vendor is exempt (e.g. government entity)",
+            "Zero rate — add 'Exempt' flag on vendor profile",
+            "Over-deduction creates refund claim headache",
+            null
+          ],
+          [
+            "Payment is below threshold (e.g. Section 153 < PKR 75,000 aggregate)",
+            "Some sections have annual aggregate thresholds — check per section",
+            "Deducting on small payments may not be required",
+            null
+          ],
+          [
+            "Same vendor has goods AND services in one invoice",
+            "Split invoice — apply 153(1)(a) to goods portion, 153(1)(b) to services",
+            "Blended invoices are common — must handle splits",
+            null
+          ],
+          [
+            "Foreign vendor / non-resident",
+            "Apply Section 152 rates — different from resident rates",
+            "Applying resident rates to non-resident is a common error",
+            null
+          ],
+          [
+            "Vendor is a WHT exempt company (e.g. listed company in certain cases)",
+            "Check exemption certificate — if valid, deduct 0%",
+            "Always ask for exemption certificate — don't assume",
+            null
+          ]
+        ]
+      },
+      {
+        "name": "Monthly Filing Calendar",
+        "rows": [
+          [
+            "WHT Monthly Filing Calendar  |  Every Obligation, Every Deadline",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Build these deadlines into your notification engine — 7 days before and 1 day before each deadline",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Filing Obligation",
+            "Deadline",
+            "Form / Method",
+            "Penalty for Late Filing",
+            "Notes"
+          ],
+          [
+            "▸  MONTHLY OBLIGATIONS",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "WHT Deposit — Salary (Section 149)",
+            "7th of following month",
+            "FBR IRIS — CPR Challan",
+            "Default surcharge 12% p.a. + 0.1% per day after due date",
+            "E.g. March salary WHT due by April 7"
+          ],
+          [
+            "WHT Deposit — Contracts/Services (Section 153)",
+            "7th of following month",
+            "FBR IRIS — CPR Challan",
+            "Default surcharge 12% p.a. + 0.1% per day after due date",
+            "All 153 payments in a month deposited together"
+          ],
+          [
+            "WHT Deposit — All Other Sections",
+            "7th of following month",
+            "FBR IRIS — CPR Challan",
+            "Default surcharge 12% p.a. + 0.1% per day after due date",
+            "Sections 150, 151, 155, 233 etc."
+          ],
+          [
+            "WHT Monthly Statement",
+            "15th of following month",
+            "FBR IRIS — WHT Statement",
+            "PKR 2,500 per day of default",
+            "List all deductions made during the month"
+          ],
+          [
+            "Sales Tax Return (if registered)",
+            "18th of following month",
+            "FBR IRIS — Sales Tax Return",
+            "PKR 10,000 minimum or 5% of tax — whichever higher",
+            "Separate from WHT — only if SRB/FBR registered"
+          ],
+          [
+            "▸  QUARTERLY OBLIGATIONS",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Advance Tax — Companies (Section 147)",
+            "25th of each quarter end month",
+            "FBR IRIS — Advance Tax Challan",
+            "10% additional tax on shortfall",
+            "Due in September, December, March, June"
+          ],
+          [
+            "▸  ANNUAL OBLIGATIONS",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Annual WHT Statement (Section 165)",
+            "31st August (for FY ending June 30)",
+            "FBR IRIS — Annual Statement",
+            "PKR 2,500 per day of default",
+            "Summary of ALL WHT deductions for the year — critical"
+          ],
+          [
+            "Corporate Income Tax Return",
+            "31st December (for FY ending June 30)",
+            "FBR IRIS — Income Tax Return",
+            "PKR 40,000 minimum penalty",
+            "6 months after fiscal year end"
+          ],
+          [
+            "Employer Annual Statement (Section 149)",
+            "31st August",
+            "FBR IRIS",
+            "PKR 2,500 per day",
+            "Annual salary WHT summary for all employees"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "file": "Sales_Tax_WHT_Database.xlsx",
+    "sha256": "457c25cfb89f39656c81ad0611d4793bebf706757b8c4dc3158d31c71cf70ee6",
+    "sheets": [
+      {
+        "name": "FBR Sales Tax Withholding",
+        "rows": [
+          [
+            "Pakistan Sales Tax Withholding Database  |  FBR — Sales Tax Act 1990",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Federal Sales Tax Withholding  •  Applicable on registered persons  •  Finance Act 2024",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Category / SRO",
+            "Nature of Supply / Service",
+            "ST Rate %",
+            "WHT Rate %",
+            "Who Deducts",
+            "Filing Deadline",
+            "Key Notes"
+          ],
+          [
+            "▸  WHO MUST WITHHOLD — Federal Sales Tax",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Federal / Provincial Govt",
+            "All purchases of taxable goods and services",
+            "17%",
+            "100% of ST",
+            "Government departments, autonomous bodies",
+            "15th of following month",
+            "Government entities must withhold full ST on all purchases"
+          ],
+          [
+            "Companies — Listed",
+            "Purchases from ST registered suppliers",
+            "17%",
+            "1/5th of ST (20%)",
+            "Listed companies on PSX",
+            "15th of following month",
+            "Listed companies withhold 1/5th of ST charged by supplier"
+          ],
+          [
+            "Companies — Unlisted",
+            "Purchases from ST registered suppliers",
+            "17%",
+            "1/5th of ST (20%)",
+            "Private limited companies",
+            "15th of following month",
+            "Same rate as listed — 1/5th of ST amount on invoice"
+          ],
+          [
+            "Exporters",
+            "Purchases of raw material, packaging, services",
+            "17% / Zero",
+            "Varies",
+            "Export-oriented units",
+            "15th of following month",
+            "Exporters have special WHT regime — verify with SRO 1125"
+          ],
+          [
+            "▸  GOODS — Sales Tax Withholding Rates",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "SRO 660(I)/2007",
+            "Supply of goods by ST registered person to withholding agent",
+            "17%",
+            "1/5th of ST = 3.4%",
+            "Company / Govt buyer",
+            "15th of following month",
+            "Standard WHT on goods purchase. Supplier charges 17% ST — buyer withholds 1/5th = 3.4% of value"
+          ],
+          [
+            "SRO 660(I)/2007",
+            "Supply of goods by unregistered person",
+            "17%",
+            "Full ST = 17%",
+            "Company / Govt buyer",
+            "15th of following month",
+            "Unregistered supplier — buyer withholds full ST. High risk — avoid unregistered suppliers"
+          ],
+          [
+            "Steel / Iron Products",
+            "Supply of steel products — bars, rods, sheets",
+            "17%",
+            "Full ST withheld",
+            "Company buyer",
+            "15th of following month",
+            "Special regime for steel — full ST deducted at source"
+          ],
+          [
+            "Scrap / Waste",
+            "Supply of scrap metal, waste material",
+            "17%",
+            "Full ST withheld",
+            "Company buyer",
+            "15th of following month",
+            "Full withholding on scrap purchases"
+          ],
+          [
+            "Edible Oil / Ghee",
+            "Supply of cooking oil, ghee, margarine",
+            "17%",
+            "1/5th of ST",
+            "Company buyer",
+            "15th of following month",
+            "Standard 1/5th WHT applies"
+          ],
+          [
+            "Petroleum Products",
+            "Supply by OMC to dealer / distributor",
+            "17%",
+            "Full ST",
+            "OMC / Distributor",
+            "15th of following month",
+            "Oil marketing companies withhold full ST on supply to dealers"
+          ],
+          [
+            "▸  SERVICES — Sales Tax Withholding (Federal — ICT)",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Services — General",
+            "All taxable services in Islamabad Capital Territory",
+            "16%",
+            "Full ST withheld by withholding agent",
+            "Company / Govt buyer in ICT",
+            "15th of following month",
+            "ICT services tax — full withholding by registered withholding agents"
+          ],
+          [
+            "Consulting / Advisory",
+            "Consulting, legal, accounting, IT services in ICT",
+            "16%",
+            "Full ST = 16%",
+            "Company buyer in ICT",
+            "15th of following month",
+            "Professional services in ICT — full ST withheld"
+          ],
+          [
+            "Advertising Services",
+            "Print, electronic, digital advertising in ICT",
+            "16%",
+            "Full ST",
+            "Company buyer in ICT",
+            "15th of following month",
+            "Media buying — full ICT ST withheld"
+          ],
+          [
+            "Construction Services",
+            "Civil works, renovation, fit-out in ICT",
+            "16%",
+            "Full ST",
+            "Company buyer in ICT",
+            "15th of following month",
+            "Construction contracts in ICT — full ST withholding"
+          ],
+          [
+            "Courier / Freight",
+            "Courier, freight, logistics services in ICT",
+            "16%",
+            "Full ST",
+            "Company buyer in ICT",
+            "15th of following month",
+            "Transport services in ICT"
+          ],
+          [
+            "▸  KEY CONCEPTS — Must Know for Classification Engine",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Registered vs Unregistered",
+            "Supplier ST registration status determines WHT rate",
+            "—",
+            "Registered: 1/5th | Unregistered: Full",
+            "Buyer always",
+            "—",
+            "CRITICAL: Check supplier STRN on FBR portal before processing invoice"
+          ],
+          [
+            "STRN Verification",
+            "Sales Tax Registration Number — verify on FBR Active Taxpayer List",
+            "—",
+            "—",
+            "Buyer responsibility",
+            "Before payment",
+            "FBR ATL for Sales Tax: fbr.gov.pk — search by STRN or NIC"
+          ],
+          [
+            "Invoice Requirements",
+            "Valid ST invoice must show: STRN, ST amount separately, buyer NTN",
+            "—",
+            "—",
+            "Supplier responsibility",
+            "At time of supply",
+            "Invalid invoice = cannot claim input tax = full WHT applies"
+          ],
+          [
+            "Input Tax Credit",
+            "Buyer can claim withheld ST as input tax in own ST return",
+            "—",
+            "—",
+            "Buyer",
+            "Monthly ST return",
+            "WHT on purchases becomes input tax — reduces buyer's ST liability"
+          ],
+          [
+            "WHT Certificate",
+            "Must issue to supplier showing ST withheld",
+            "—",
+            "—",
+            "Withholding agent",
+            "Within 30 days",
+            "Same as income WHT — certificate must be issued to supplier"
+          ]
+        ]
+      },
+      {
+        "name": "Provincial ST Withholding",
+        "rows": [
+          [
+            "Provincial Sales Tax Withholding  |  SRB • PRA • KPRA • BRA",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Services Tax only — Provinces have jurisdiction over services  •  Finance Act 2024",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Authority",
+            "Province",
+            "Applicable Services",
+            "ST Rate %",
+            "WHT Rate %",
+            "Filing Portal",
+            "Key Notes"
+          ],
+          [
+            "▸  SRB — SINDH REVENUE BOARD  |  Karachi Based Businesses",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "SRB",
+            "Sindh",
+            "All taxable services rendered in Sindh — consulting, IT, construction, advertising, restaurants, hotels",
+            "13%",
+            "Full ST by withholding agent",
+            "srb.gov.pk",
+            "Sindh has its own ST on services. Companies in Karachi must register with SRB if providing taxable services"
+          ],
+          [
+            "SRB",
+            "Sindh",
+            "Consulting and professional services",
+            "13%",
+            "Full 13% withheld",
+            "srb.gov.pk",
+            "Legal, accounting, IT, management consulting in Sindh — SRB registered withholding agents deduct full ST"
+          ],
+          [
+            "SRB",
+            "Sindh",
+            "Construction and related services",
+            "13%",
+            "Full 13% withheld",
+            "srb.gov.pk",
+            "Civil works, renovation in Sindh — SRB withholding applies"
+          ],
+          [
+            "SRB",
+            "Sindh",
+            "IT and telecom services",
+            "13%",
+            "Full 13% withheld",
+            "srb.gov.pk",
+            "Software development, IT services, telecom in Sindh — SRB registered companies must withhold"
+          ],
+          [
+            "SRB",
+            "Sindh",
+            "Restaurants and catering",
+            "13%",
+            "Full 13% withheld",
+            "srb.gov.pk",
+            "Restaurant bills paid by company — SRB ST withheld if withholding agent"
+          ],
+          [
+            "▸  PRA — PUNJAB REVENUE AUTHORITY  |  Lahore Based Businesses",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "PRA",
+            "Punjab",
+            "All taxable services in Punjab — consulting, IT, construction, advertising, hotels",
+            "16%",
+            "Full ST by withholding agent",
+            "pra.punjab.gov.pk",
+            "Punjab services tax at 16%. Lahore businesses must register with PRA for taxable services"
+          ],
+          [
+            "PRA",
+            "Punjab",
+            "Professional and consulting services",
+            "16%",
+            "Full 16% withheld",
+            "pra.punjab.gov.pk",
+            "CA firms, lawyers, consultants in Lahore — PRA registered withholding agents deduct full ST"
+          ],
+          [
+            "PRA",
+            "Punjab",
+            "Construction services in Punjab",
+            "16%",
+            "Full 16% withheld",
+            "pra.punjab.gov.pk",
+            "Renovation, civil works, fit-out in Lahore — PRA withholding"
+          ],
+          [
+            "PRA",
+            "Punjab",
+            "IT services and software development",
+            "16%",
+            "Full 16% withheld",
+            "pra.punjab.gov.pk",
+            "Tech companies in Lahore — PRA ST on services"
+          ],
+          [
+            "PRA",
+            "Punjab",
+            "Freight and logistics services",
+            "16%",
+            "Full 16% withheld",
+            "pra.punjab.gov.pk",
+            "Transport, courier in Punjab — PRA ST applies"
+          ],
+          [
+            "▸  KPRA — KPK REVENUE AUTHORITY  |  Peshawar Based Businesses",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "KPRA",
+            "KPK",
+            "Taxable services in Khyber Pakhtunkhwa",
+            "15%",
+            "Full ST withheld",
+            "kpra.gov.pk",
+            "KPK services tax at 15%. Less common for most SMEs but applicable for Peshawar businesses"
+          ],
+          [
+            "KPRA",
+            "KPK",
+            "Hotel and restaurant services",
+            "15%",
+            "Full 15% withheld",
+            "kpra.gov.pk",
+            "Hospitality services in KPK"
+          ],
+          [
+            "KPRA",
+            "KPK",
+            "Consulting and professional services",
+            "15%",
+            "Full 15% withheld",
+            "kpra.gov.pk",
+            "Professional services in KPK"
+          ],
+          [
+            "▸  BRA — BALOCHISTAN REVENUE AUTHORITY  |  Quetta Based Businesses",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "BRA",
+            "Balochistan",
+            "Taxable services in Balochistan",
+            "15%",
+            "Full ST withheld",
+            "bra.gov.pk",
+            "BRA services tax — least common. Quetta based businesses only"
+          ],
+          [
+            "BRA",
+            "Balochistan",
+            "Hotel and restaurant services",
+            "15%",
+            "Full 15% withheld",
+            "bra.gov.pk",
+            "Hospitality in Balochistan"
+          ],
+          [
+            "▸  CRITICAL RULES — For Classification Engine",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Jurisdiction Rule",
+            "All provinces",
+            "Jurisdiction determined by WHERE service is rendered — not where company is registered",
+            "—",
+            "—",
+            "—",
+            "A Lahore company paying for services rendered in Karachi — SRB applies, not PRA"
+          ],
+          [
+            "Double Registration",
+            "Multi-province",
+            "Companies operating in multiple provinces must register with each provincial authority separately",
+            "—",
+            "—",
+            "—",
+            "KPMG Islamabad (FBR/ICT) + KPMG Karachi (SRB) + KPMG Lahore (PRA) — three registrations"
+          ],
+          [
+            "FBR vs Provincial",
+            "All",
+            "FBR handles goods ST nationally. Provinces handle services ST. Never mix the two.",
+            "—",
+            "—",
+            "—",
+            "Goods purchase — FBR. Services in Sindh — SRB. Services in Punjab — PRA. This is the most common confusion."
+          ],
+          [
+            "Filing Deadlines",
+            "All provinces",
+            "SRB: 15th of following month. PRA: 15th. KPRA: 15th. BRA: 15th.",
+            "—",
+            "—",
+            "Multiple portals",
+            "Each province has its own filing portal. Withholding agent must file on each relevant portal separately"
+          ]
+        ]
+      },
+      {
+        "name": "ST WHT vs Income WHT",
+        "rows": [
+          [
+            "Sales Tax WHT vs Income Tax WHT — Side by Side",
+            null,
+            null
+          ],
+          [
+            "Critical if both WTH aree applocbale on the same tranSACTION",
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null
+          ],
+          [
+            "Aspect",
+            "Income Tax WHT (Section 153 etc)",
+            "Sales Tax WHT (SRB/FBR/PRA)"
+          ],
+          [
+            "Legal authority",
+            "Income Tax Ordinance 2001",
+            "Sales Tax Act 1990 + Provincial ST Acts"
+          ],
+          [
+            "Tax authority",
+            "FBR — Inland Revenue",
+            "FBR (goods) + SRB/PRA/KPRA/BRA (services)"
+          ],
+          [
+            "What is withheld",
+            "Income tax on payment amount",
+            "Sales tax charged on invoice"
+          ],
+          [
+            "Rate basis",
+            "% of gross payment amount",
+            "% of ST amount on invoice (or full ST)"
+          ],
+          [
+            "Who is liable",
+            "Payer deducts from payment to supplier",
+            "Buyer withholds from ST charged by supplier"
+          ],
+          [
+            "Registration required",
+            "NTN of supplier",
+            "STRN of supplier — separate from NTN"
+          ],
+          [
+            "Filing deadline",
+            "Statement by 15th of following month",
+            "ST return by 15th of following month"
+          ],
+          [
+            "Filing portal",
+            "FBR IRIS",
+            "FBR IRIS (goods) / SRB portal / PRA portal"
+          ],
+          [
+            "Challan deadline",
+            "7th of following month",
+            "15th of following month (with return)"
+          ],
+          [
+            "Certificate to supplier",
+            "WHT certificate required",
+            "WHT certificate required — same obligation"
+          ],
+          [
+            "Annual statement",
+            "Section 165 — 31st August",
+            "Annual ST return — province specific"
+          ],
+          [
+            "Both apply together?",
+            "YES — same transaction has BOTH income WHT and ST WHT",
+            "YES — must calculate and deduct both separately"
+          ],
+          [
+            "Example — audit fee PKR 100,000 + ST",
+            "Income WHT: PKR 100,000 × 8% = PKR 8,000 deducted",
+            "ST WHT: PKR 16,000 ST charged — 1/5th = PKR 3,200 withheld"
+          ],
+          [
+            "Net payment to supplier",
+            "PKR 100,000 - PKR 8,000 (income WHT) - PKR 3,200 (ST WHT) = PKR 88,800 paid",
+            "Supplier receives PKR 88,800. Buyer deposits PKR 8,000 to FBR income + PKR 3,200 to relevant ST authority"
+          ]
+        ]
+      },
+      {
+        "name": "ST WHT Filing Calendar",
+        "rows": [
+          [
+            "Sales Tax WHT Filing Calendar  |  All Authorities",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Build these into your notification engine alongside income WHT deadlines",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Filing Obligation",
+            "Authority",
+            "Deadline",
+            "Portal",
+            "Notes",
+            null
+          ],
+          [
+            "▸  MONTHLY OBLIGATIONS — Sales Tax Withholding",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "ST WHT deposit + return — FBR goods",
+            "FBR",
+            "15th of following month",
+            "IRIS — iris.fbr.gov.pk",
+            "Combined with ST return. No separate challan like income WHT.",
+            null
+          ],
+          [
+            "ST WHT deposit + return — SRB services (Sindh)",
+            "SRB",
+            "15th of following month",
+            "srb.gov.pk",
+            "Sindh companies — separate SRB portal. Different login from IRIS.",
+            null
+          ],
+          [
+            "ST WHT deposit + return — PRA services (Punjab)",
+            "PRA",
+            "15th of following month",
+            "pra.punjab.gov.pk",
+            "Punjab companies — PRA portal. Separate from FBR.",
+            null
+          ],
+          [
+            "ST WHT deposit + return — KPRA services (KPK)",
+            "KPRA",
+            "15th of following month",
+            "kpra.gov.pk",
+            "KPK companies — KPRA portal.",
+            null
+          ],
+          [
+            "ST WHT deposit + return — BRA services (Balochistan)",
+            "BRA",
+            "15th of following month",
+            "bra.gov.pk",
+            "Balochistan companies — BRA portal.",
+            null
+          ],
+          [
+            "Income WHT challan deposit",
+            "FBR",
+            "7th of following month",
+            "IRIS — CPR challan",
+            "Income WHT deposited separately by 7th. ST WHT filed with return by 15th.",
+            null
+          ],
+          [
+            "▸  CRITICAL DIFFERENCE FROM INCOME WHT",
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Income WHT — two step process",
+            "FBR",
+            "Challan by 7th + Statement by 15th",
+            "IRIS",
+            "Two separate actions — deposit money first, file statement separately",
+            null
+          ],
+          [
+            "Sales Tax WHT — one step process",
+            "FBR/SRB/PRA",
+            "Return + payment together by 15th",
+            "Relevant portal",
+            "ST WHT included in monthly ST return — one submission covers both",
+            null
+          ],
+          [
+            "STRN vs NTN",
+            "All",
+            "Always verify STRN separately from NTN",
+            "FBR ATL for ST",
+            "Supplier can have NTN but no STRN — means unregistered for ST — full WHT applies",
+            null
+          ],
+          [
+            "▸  NOTIFICATION ENGINE — WHAT TO BUILD",
+            null,
+            null,
+            null,
+            null,
+            "(Not a current priority)"
+          ],
+          [
+            "Income WHT challan alert",
+            "FBR",
+            "Day 1 and Day 7 of month",
+            "In-app + SMS + email",
+            "Remind: deposit income WHT by 7th",
+            null
+          ],
+          [
+            "ST WHT return alert — all authorities",
+            "FBR/SRB/PRA/KPRA/BRA",
+            "Day 8 and Day 14 of month",
+            "In-app + SMS + email",
+            "Remind: file ST return with WHT by 15th",
+            null
+          ],
+          [
+            "STRN verification reminder",
+            "All",
+            "When new supplier added",
+            "In-app",
+            "Alert: verify supplier STRN before processing first invoice",
+            null
+          ],
+          [
+            "Unregistered supplier flag",
+            "All",
+            "When invoice uploaded",
+            "In-app",
+            "Alert: this supplier has no STRN — full ST WHT applies",
+            null
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "file": "TaxTech_SECP_Compliance_Database.xlsx",
+    "sha256": "657e1cbe4ab16432b88c0781012d5115d30100fa1a105d9039a05867468bf4db",
+    "sheets": [
+      {
+        "name": "SECP Filing Master Table",
+        "rows": [
+          [
+            "Pakistan SECP Compliance Database  |  Companies Act 2017 — Private Limited Companies",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "For use in SECP compliance calendar engine  •  Trigger: incorporation date  •  Update after any Companies Act amendment",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            "Subject to any amendment in Companies Act, 2017",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form / Filing",
+            "Section\n(Companies Act 2017)",
+            "Nature of Filing",
+            "Deadline / Trigger",
+            "Filing Fee (PKR)",
+            "Penalty for Default",
+            "Frequency",
+            "Key Notes",
+            null,
+            null
+          ],
+          [
+            "▸  ANNUAL FILINGS — Every Private Limited Company",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form A",
+            "Section 130",
+            "Annual Return — snapshot of company: directors, shareholders, share capital, registered office, auditors",
+            "Within 30 days of AGM. AGM must be held within 4 months of financial year end.",
+            "Per schedule — based on paid-up capital. Min PKR 1,500",
+            "PKR 1,000/day of default after due date",
+            "Annual",
+            "Most commonly late filed. Triggers Form 28 and AGM as prerequisites. Critical for good standing certificate.",
+            null,
+            null
+          ],
+          [
+            "Audited Accounts",
+            "Section 223, 232",
+            "Filing of annual audited financial statements — balance sheet, P&L, cash flows, notes, auditor report",
+            "Within 30 days of AGM",
+            "Based on paid-up capital. Min PKR 1,500",
+            "PKR 1,000/day of default",
+            "Annual",
+            "Auditor must be ICAP-registered. Accounts must be approved at AGM before filing.",
+            null,
+            null
+          ],
+          [
+            "Form 28",
+            "Section 246",
+            "Notice of appointment, reappointment or change of auditor",
+            "Within 15 days of AGM at which auditor appointed/reappointed",
+            "PKR 200",
+            "PKR 1,000/day of default",
+            "Annual",
+            "Filed every year after AGM. Auditor must consent in writing before appointment.",
+            null,
+            null
+          ],
+          [
+            "AGM Minutes",
+            "Section 134, 147",
+            "Minutes of Annual General Meeting — approval of accounts, dividend declaration, auditor appointment, director elections",
+            "AGM must be held within 4 months of financial year end (Oct 31 for June 30 year end)",
+            "No filing fee — maintain at registered office",
+            "PKR 10,000 per officer if AGM not held",
+            "Annual",
+            "21 days written notice to shareholders required. Minutes must be signed by Chairman within 30 days.",
+            null,
+            null
+          ],
+          [
+            "Beneficial Ownership Register",
+            "Section 452A (FATF Amendment)",
+            "Register of individuals who ultimately own or control 25%+ of shares or voting rights",
+            "Maintain at registered office. Update within 15 days of any change. File with SECP on request.",
+            "No fee",
+            "PKR 50,000 flat penalty for non-maintenance",
+            "Ongoing — update on change",
+            "Most commonly missed filing in Pakistan. SECP has increased inspections post-FATF. Non-compliance is high risk.",
+            null,
+            null
+          ],
+          [
+            "▸  EVENT-BASED FILINGS — Triggered by Company Changes",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form 29",
+            "Section 192, 197, 200, 205",
+            "Notice of change in directors, CEO, CFO, Company Secretary, Chief Executive, or any other officer",
+            "Within 15 days of the change / appointment / resignation / removal",
+            "PKR 200 per form",
+            "PKR 1,000/day of default from day 16",
+            "On every officer change",
+            "Most frequently missed event-based filing. Director resigns on WhatsApp — nobody files Form 29. Penalty stacks fast.",
+            null,
+            null
+          ],
+          [
+            "Form 21",
+            "Section 97",
+            "Notice of change of registered office address",
+            "Within 15 days of change",
+            "PKR 200",
+            "PKR 1,000/day of default",
+            "On address change",
+            "All SECP correspondence goes to registered office. Missing this means missing penalty notices — compounding problem.",
+            null,
+            null
+          ],
+          [
+            "Form 9",
+            "Section 83, 84",
+            "Return of allotment of shares — new shares issued to existing or new shareholders",
+            "Within 30 days of allotment",
+            "Based on amount of new capital allotted",
+            "PKR 1,000/day of default",
+            "On share allotment",
+            "Triggered by investment round, bonus shares, or capitalisation of reserves. Share register must be updated simultaneously.",
+            null,
+            null
+          ],
+          [
+            "Form 7 / SH-4",
+            "Section 77",
+            "Instrument of transfer — share transfer deed for transfer of shares between shareholders",
+            "Board must approve transfer. Form A updated at next annual return.",
+            "Stamp duty 0.5% of transfer value",
+            "Transfer void if not properly executed",
+            "On share transfer",
+            "Physical share transfer deed required. Board resolution approving transfer mandatory. Share register updated same day.",
+            null,
+            null
+          ],
+          [
+            "Special Resolution Filing",
+            "Section 88",
+            "Filing of special resolution passed at EGM or AGM — change of name, objects, capital, articles",
+            "Within 15 days of resolution being passed",
+            "PKR 200",
+            "PKR 1,000/day of default",
+            "On passing of special resolution",
+            "Required for: name change, alteration of MOA/AOA, reduction of capital, voluntary winding up.",
+            null,
+            null
+          ],
+          [
+            "Form 10 — Mortgage/Charge",
+            "Section 100, 101",
+            "Registration of mortgage or charge created on company assets",
+            "Within 30 days of creation of charge",
+            "Based on amount of charge",
+            "Charge void against liquidator and creditors if not registered",
+            "On creation of charge",
+            "Critical — unregistered charge is unenforceable. Banks usually require this as loan condition.",
+            null,
+            null
+          ],
+          [
+            "Form 15 — Satisfaction of Charge",
+            "Section 106",
+            "Memorandum of satisfaction — charge fully repaid and discharged",
+            "Within 30 days of satisfaction",
+            "PKR 200",
+            "Loss of clean title on asset",
+            "On loan repayment",
+            "File to remove charge from SECP records — needed for clean title before asset sale.",
+            null,
+            null
+          ],
+          [
+            "EGM Notice and Minutes",
+            "Section 134, 144",
+            "Extraordinary General Meeting — for matters requiring shareholder approval outside AGM",
+            "21 days notice to shareholders. Minutes within 30 days.",
+            "No filing fee — maintain at registered office",
+            "PKR 10,000 per officer",
+            "On requirement",
+            "Required for: director removal, special resolutions, major transactions requiring shareholder approval.",
+            null,
+            null
+          ],
+          [
+            "▸  INCORPORATION & STRUCTURAL FILINGS",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form 1 — MOA/AOA",
+            "Section 14, 18",
+            "Memorandum and Articles of Association — objects clause, share capital, internal governance rules",
+            "At incorporation",
+            "Based on authorized capital. Min PKR 3,500",
+            "N/A — prerequisite for incorporation",
+            "One-time",
+            "Standard template available on SECP eServices. Objects clause must cover your business activity.",
+            null,
+            null
+          ],
+          [
+            "Name Change Application",
+            "Section 10",
+            "Application for change of company name",
+            "Board resolution + special resolution of shareholders required first",
+            "PKR 1,000",
+            "N/A",
+            "On requirement",
+            "Name must be available on SECP register. Certificate of incorporation reissued with new name.",
+            null,
+            null
+          ],
+          [
+            "Alteration of MOA",
+            "Section 32, 33",
+            "Change to objects clause or authorized share capital",
+            "Special resolution required. File within 15 days of resolution.",
+            "Based on increase in capital if applicable",
+            "PKR 1,000/day of default",
+            "On requirement",
+            "Needed when expanding into new business lines. CA advice recommended before altering objects.",
+            null,
+            null
+          ],
+          [
+            "▸  WINDING UP & STRIKE OFF",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Strike Off Application",
+            "Section 426",
+            "Voluntary strike off — company ceases operations and applies to be removed from register",
+            "Board resolution + shareholder approval. Company must have no liabilities.",
+            "PKR 1,000",
+            "N/A",
+            "On cessation",
+            "All tax returns must be filed, all liabilities cleared before SECP processes strike off. FBR clearance required.",
+            null,
+            null
+          ],
+          [
+            "Voluntary Winding Up",
+            "Section 305",
+            "Formal liquidation — appointing liquidator, realising assets, paying creditors, distributing surplus",
+            "Special resolution required",
+            "Based on complexity",
+            "N/A",
+            "On requirement",
+            "More complex than strike off — used when company has assets/liabilities to wind down formally.",
+            null,
+            null
+          ]
+        ]
+      },
+      {
+        "name": "Calendar Engine Logic",
+        "rows": [
+          [
+            "SECP Calendar Engine Logic  |  How to Auto-Generate Compliance Deadlines",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Input: Company incorporation date + financial year end  →  Output: Full compliance calendar forever",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Filing Obligation",
+            "Input Required",
+            "Deadline Formula",
+            "Reminder Triggers",
+            "Edge Cases"
+          ],
+          [
+            "▸  ANNUAL RECURRING — Auto-generate every year from year end date",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "AGM",
+            "Financial year end date",
+            "AGM must be held by: Year End Date + 4 months\nE.g. June 30 YE → AGM by October 31",
+            "60 days before, 30 days before, 7 days before",
+            "First AGM: within 18 months of incorporation. Subsequent: within 4 months of year end."
+          ],
+          [
+            "Form A — Annual Return",
+            "AGM date (actual)",
+            "AGM date + 30 days\nE.g. AGM on Oct 15 → Form A due Nov 14",
+            "14 days before, 7 days before, 1 day before",
+            "If AGM delayed, Form A deadline shifts. Track actual AGM date, not planned date."
+          ],
+          [
+            "Audited Accounts Filing",
+            "AGM date (actual)",
+            "AGM date + 30 days\n(Same deadline as Form A)",
+            "14 days before, 7 days before, 1 day before",
+            "Accounts must be approved at AGM first. If auditors late, AGM is delayed, which delays Form A too."
+          ],
+          [
+            "Form 28 — Auditor",
+            "AGM date (actual)",
+            "AGM date + 15 days\nE.g. AGM on Oct 15 → Form 28 due Oct 30",
+            "7 days before, 1 day before",
+            "If auditor changed (not just reappointed), new auditor consent letter required before filing."
+          ],
+          [
+            "Beneficial Ownership Review",
+            "Financial year end date",
+            "Review annually at year end. Update within 15 days of any change.",
+            "Annually at year end + on every ownership change",
+            "Any change in shareholding 25%+ triggers immediate 15-day filing window."
+          ],
+          [
+            "▸  EVENT-BASED — Triggered by user input in the app",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form 29 — Officer Change",
+            "Date of change entered by user",
+            "Change date + 15 days\nE.g. Director resigned Jan 5 → Form 29 due Jan 20",
+            "Immediate alert on entry, 7 days before, 1 day before",
+            "Multiple changes in same period can be filed on one Form 29. Track each change date separately."
+          ],
+          [
+            "Form 21 — Office Change",
+            "Date of address change entered by user",
+            "Change date + 15 days",
+            "Immediate alert on entry, 7 days before, 1 day before",
+            "New registered office address must be in same province or requires additional approval."
+          ],
+          [
+            "Form 9 — Share Allotment",
+            "Date of board resolution allotting shares",
+            "Resolution date + 30 days",
+            "Immediate alert on entry, 14 days before, 1 day before",
+            "Stamp duty on allotment must be paid. Share register updated same day as allotment."
+          ],
+          [
+            "Special Resolution Filing",
+            "Date resolution passed at meeting",
+            "Resolution date + 15 days",
+            "Immediate alert on entry, 7 days before, 1 day before",
+            "Copy of resolution must be attached to filing. Must be certified by director or CS."
+          ],
+          [
+            "Form 10 — Charge Registration",
+            "Date charge created (loan/mortgage date)",
+            "Creation date + 30 days",
+            "Immediate alert on entry, 14 days before, 1 day before",
+            "After 30 days charge is void against creditors. Banks usually require this immediately."
+          ],
+          [
+            "▸  PENALTY CALCULATOR LOGIC — Show real-time cost of delay",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form A / Audited Accounts / Form 28",
+            "Due date + current date",
+            "Penalty = (Current Date - Due Date) × PKR 1,000\nMax penalty: check Companies Act for cap",
+            "Show running penalty counter on dashboard",
+            "Penalty accrues from day after due date. Show in red on dashboard."
+          ],
+          [
+            "Form 29 / Form 21 / Special Resolution",
+            "Due date + current date",
+            "Penalty = (Current Date - Due Date) × PKR 1,000",
+            "Show running penalty counter on dashboard",
+            "Same daily rate. Display total accumulated penalty prominently."
+          ],
+          [
+            "Beneficial Ownership",
+            "Inspection date if non-compliant",
+            "Flat PKR 50,000 on detection",
+            "Annual reminder to maintain register",
+            "No daily accrual — flat penalty on detection. Show as high risk flag on dashboard."
+          ],
+          [
+            "AGM Not Held",
+            "AGM deadline passed",
+            "Flat PKR 10,000 per officer\nE.g. 3 directors = PKR 30,000",
+            "Alert when AGM deadline passes without AGM being marked as held",
+            "Per officer — count directors + CEO in penalty calculation."
+          ]
+        ]
+      },
+      {
+        "name": "Quick Reference",
+        "rows": [
+          [
+            "SECP Quick Reference  |  5 Filings That Affect 95% of Pakistani SMEs",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Form",
+            "What It Is",
+            "Deadline",
+            "Penalty",
+            "Why SMEs Miss It"
+          ],
+          [
+            "Form A",
+            "Annual return — full company snapshot filed every year",
+            "AGM date + 30 days\n(Oct–Nov for June YE)",
+            "PKR 1,000/day",
+            "AGM itself is delayed → cascades into late Form A"
+          ],
+          [
+            "Form 29",
+            "Notify SECP of any director / officer change",
+            "15 days from change",
+            "PKR 1,000/day from day 16",
+            "Change happens informally — nobody tracks the 15-day clock"
+          ],
+          [
+            "Audited Accounts",
+            "Annual financial statements filed with SECP",
+            "AGM date + 30 days",
+            "PKR 1,000/day",
+            "Auditors finish late → AGM delayed → accounts filed late"
+          ],
+          [
+            "Beneficial Ownership",
+            "Register of individuals owning 25%+ of company",
+            "Maintain always. Update in 15 days.",
+            "PKR 50,000 flat",
+            "Most companies don't know this obligation exists"
+          ],
+          [
+            "Form 28",
+            "Notify SECP of auditor appointment after AGM",
+            "AGM date + 15 days",
+            "PKR 1,000/day",
+            "Filed correctly for Form A but Form 28 forgotten same week"
+          ]
+        ]
+      },
+      {
+        "name": "Penalty Calculator",
+        "rows": [
+          [
+            "SECP Penalty Calculator Template  |  Show Customers Their Accumulated Penalty",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Filing Obligation",
+            "Due Date",
+            "Days Overdue",
+            "Daily Rate (PKR)",
+            "Total Penalty (PKR)"
+          ],
+          [
+            "Form A — Annual Return",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Audited Accounts",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Form 28 — Auditor Appointment",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Form 29 — Officer Change",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Form 21 — Registered Office Change",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Form 9 — Share Allotment",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Special Resolution Filing",
+            "Enter due date",
+            null,
+            "1,000",
+            null
+          ],
+          [
+            "Beneficial Ownership (flat)",
+            "N/A",
+            "N/A",
+            "50,000 flat",
+            "50,000"
+          ],
+          [
+            "AGM Not Held (per officer)",
+            "Enter AGM deadline",
+            null,
+            "10,000 flat/officer",
+            "Enter no. of officers × 10,000"
+          ],
+          [
+            "TOTAL ACCUMULATED PENALTY",
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            "Note:- This Value error would be removed once figures are punched in the coloum B!!",
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      }
+    ]
+  }
+]
