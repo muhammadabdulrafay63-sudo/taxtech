@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaxTech
 
-## Getting Started
+A ledger review workspace for accountants working on Pakistan withholding-tax workflows. Upload Excel/CSV, review unclear entries with NVIDIA Nemotron, approve the tax treatment, and calculate an income or sales-tax draft batch. An in-app assistant explains the current page and next steps.
 
-First, run the development server:
+## Start locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Requires Node.js 22+, npm, a Neon PostgreSQL database and (for AI) a Nebius Token Factory API key.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. `npm ci`
+2. Copy `.env.example` to `.env.local`. Configure `DATABASE_URL`, `AUTH_URL=http://localhost:3000` and a random `AUTH_SECRET` (generate with `openssl rand -base64 32`). Never commit this file.
+3. **New empty database only:** `npm run db:push` creates the full schema. **Existing TaxTech database:** `npm run db:review-migrate` adds the review, import-receipt, quota and write-lease fields/tables without deleting records. Existing transactions become pending and require review.
+4. For a new database, `npm run db:seed` and `npm run db:seed-st` load the illustrative historical schedules. The seed scripts insert missing categories and preserve existing rules and financial history. They never truncate tables.
+5. Set `ADMIN_EMAIL`, a unique `ADMIN_PASSWORD` (12+ characters), and optional `ADMIN_NAME` / `COMPANY_NAME` in `.env.local`. Run `npm run db:create-admin`. Existing accounts are left unchanged. Legacy short passwords are restricted to Settings until the user changes them; password rotation revokes all earlier sessions. Remove `ADMIN_PASSWORD` from the environment after provisioning.
+6. Set `NEBIUS_API_KEY` and optionally `NEBIUS_MODEL`. The default is `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`; use a currently available NVIDIA model from your Token Factory catalog. AI requests go to `https://api.tokenfactory.nebius.com/v1/chat/completions` on the server.
+7. `npm run dev` and open http://localhost:3000. Sign in with your configured account. Production: `npm run build` then `npm start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Try the complete workflow
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Download **synthetic sample ledger** from Upload, or use `public/sample-ledger.csv`.
+2. Upload, select a sheet, verify distinct column mappings, preview and import. ISO and day/month/year dates are supported. Files are limited to 20 MB / 5,000 valid entries. Opening balances, zero and invalid-date rows are skipped; the response reports how many. Re-importing the same sheet with the same mappings is rejected.
+3. Open **Review ledger**, choose the month and request AI review for unclear rows. Each request covers up to 10 entries on the current page. Account mappings and remembered vendor preferences provide other suggestions; every row still needs a human decision.
+4. Read each explanation and missing-information question, verify the evidence, choose **both** income and sales-tax treatment, write a note, and approve or exclude. "Not applicable" is an explicit treatment, not a missing approval. Optional vendor memory applies only after approval.
+5. Attach a missing supplier from the review entry (or create one from evidence). Vendor assignment reopens review and clears old AI advice. In Vendors, explicitly confirm recipient type; filer status alone does not establish it.
+6. Generate an income draft from the review screen; sales-tax drafts are generated from Sales Tax WHT. All entries in that month must be reviewed. Excluded entries do not participate. Non-positive amounts are not treated as positive expenses. Salary records have a separate module; numeric salary tax is unavailable because the supplied reference files do not include its slabs. Tiered rent is blocked by the flat-rate batch engine rather than calculated with a fabricated flat rate.
+7. Inspect draft lines. Resolve unknown vendor status in Vendors and recalculate before approval. Approved periods are immutable. Generate internal PDF challan summaries from an approved income batch. Recording a CPR marks a payment that happened externally; the app never pays or files taxes.
+8. Use **Ask TaxTech** from any dashboard page. Local page guidance works without AI. Upload/calculation errors and invalid form fields surface a help cue; nothing is sent to AI until the user asks.
 
-## Learn More
+## AI, privacy and cost controls
 
-To learn more about Next.js, take a look at the following resources:
+- Both features make real runtime calls to NVIDIA Nemotron through **Nebius Token Factory**. No GPU deployment, fine-tuning, vector database or additional AI provider is required.
+- Ledger review sends descriptions (up to 1,200 characters), account codes and the configured rule catalog. It does not send the raw ledger, tax IDs, amounts or vendor records. Descriptions can still contain private information: use synthetic data for a public demo and only submit authorized data.
+- Suggestions are schema-validated, checked against the supplied row IDs and active rule keys, persisted with model and time, and never change approved categories. Confidence is model-reported, not measured accuracy. Audit records capture human decisions.
+- The assistant sends the question, current page, optional generic error cue, six recent chat messages and aggregate company counts. It returns only allowlisted internal navigation links. It cannot run actions. Chat stays in component memory and resets on navigation.
+- Keys stay server-side. Daily company quota defaults to 100 AI requests and a separate per-user/per-feature limit of 5/minute. Each request has a 45-second timeout and 6,000-token output ceiling (thinking disabled for the default Nano model). Quotas count attempts. These limits reduce spend; they are not a guaranteed dollar billing cap. Configure provider-side controls and monitor credit usage as well.
+- Company ownership and viewer permissions are enforced before data access. Database-backed leases serialize company writes; transactional batch replacement preserves the old draft on failure. AI failures leave financial decisions unchanged and manual review available.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Guided app tour
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A six-step tour opens once per signed-in account, after any required password change. Use **App tour** in the top bar to replay it. First display is saved server-side across sessions/devices. It supports Next, Back, Skip and page shortcuts, and uses read-only guidance for viewers. See [feature verification](docs/app-tour-2026-10-20.md); interactive browser checks remain unavailable in this session.
 
-## Deploy on Vercel
+## Verification
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm test`: parser, access/review policy, AI response validation and provider failure contracts.
+- `npm run lint`, `npm run typecheck`, `npm run build`.
+- `npm run test:workflow`: opt-in integration test against a running local app. Creates a separate synthetic company and random temporary account in the configured database; it performs live Nebius calls and consumes a small amount of credits. No existing company records are modified. See the script for scope. Do not use a production database.
+- `npx tsx tests/boundaries.integration.ts`: additional access, concurrency, stale-review and approved-period checks using that synthetic fixture. Run after the workflow test.
+- See `docs/verification.md` for the checks completed locally and remaining release work.
+- Latest release assessment: [final local readiness audit](docs/final-readiness-audit-2026-10-20.md), with passing local suites and explicit outstanding production conditions. Latest fix: [duplicate-column repair](docs/audit-round-7-fixes-2026-10-20.md), with shared preview/import rejection of ambiguous headings. Previous fixes: [exact-money repair and verification](docs/audit-round-6-fixes-2026-10-20.md), covering both import defects and related calculations, summaries and exports. Previous fixes and verification: [fifth-audit approval fix](docs/audit-round-5-fixes-2026-10-20.md), covering income/sales approval and global rule edits. Previous import fixes and verification: `docs/audit-round-4-fixes-2026-10-20.md`. Previous fixes and supported periods: `docs/audit-round-3-fixes-2026-10-20.md` and `docs/re-audit-fixes-2026-10-20.md`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Release preparation
+
+See `docs/final-readiness-audit-2026-10-20.md` for the latest release decision, `docs/audit-round-7-fixes-2026-10-20.md` for the mapping repair, `docs/audit-round-6-fixes-2026-10-20.md` for the precision repair, `docs/audit-round-5-fixes-2026-10-20.md` for the approval fix and `docs/release-hardening.md` for private backups and the later deployment checklist. Calculations and final batch approval support July 2024 through June 2025 only; other periods need reviewed source schedules. Missing recipient evidence blocks approval. Reconciliation includes partial payments and separates drafts from approved liability. Build secrets are unnecessary. `npm start` runs the standalone server bound to localhost; use `APP_HOST` only when an intentional external listener is needed. A non-root Docker runtime and CI checks are provided; publishing/deployment were deferred by the owner.
+
+Money in API calculation totals is returned as exact decimal strings. Imports reject invalid amounts without partial saves; large Excel amounts must be text.
+
+## Important scope
+
+This application supports human-reviewed historical tax preparation; it is not certified filing software. Existing seeded schedules derive from Finance Act 2024 and are not verified for the current tax year. Numeric salary slabs are absent from the supplied references, so salary tax stays unavailable. The app does not query live FBR/ATL status, submit returns or generate an official payment instrument. Accountants must verify applicability and source evidence. AI interprets descriptions; arithmetic uses stored deterministic rules. A company's data remains isolated even for its administrator.
+
+## Hackathon
+
+Intended track: **Best Apps and Agents**. See `docs/hackathon-submission.md` for the project description, substantive changes, demo script and remaining external submission steps. License: MIT. Dependencies retain their own licenses; review `docs/third-party-notices.md` before publication.
