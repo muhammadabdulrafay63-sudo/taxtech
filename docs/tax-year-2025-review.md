@@ -1,21 +1,23 @@
 # Agreed release scope: 2024–25 (Tax Year 2025)
 
+**Implementation follow-up:** the corrected catalog, invoice assessments, salary estimates and scoped cases are documented in [TY2025 configuration](ty2025-configuration.md). The findings below preserve the initial audit evidence; they are not a statement that the corrected catalog still contains these values. Coverage remains conditional and limited, not universal TY2025 certification.
+
 Owner decision, 21 October 2026: the release may support only 1 July 2024 through 30 June 2025. Current-year/TY2027 support is outside this release. The existing period gate already enforces this window for calculation and approval.
 
-## Review result: historical tax accuracy is not yet cleared
+## Initial review result: historical tax accuracy was not cleared
 
 Restricting the period does not validate the supplied workbooks. The following differences were checked against the official FBR TY2025 rate card, linked from its [historical rate-card index](https://www.fbr.gov.pk/withholding-taxes-rate-card/174298/174301). The official [PDF](https://download1.fbr.gov.pk/Docs/20248211184455183WithholdingTaxRegimeRatesCard2024.pdf) was downloaded and pages 7, 8 and 10 visually inspected on 21 October 2026. The card itself states that the statute prevails over the card.
 
-| Category | Existing seed: ATL / not ATL | Official TY2025 card | Evidence |
-| --- | --- | --- | --- |
-| Ordinary goods, company recipient (not toll manufacturing or the special goods categories) | 4% / 8% | 5% / 10% | PDF page 7 |
-| Ordinary goods, other recipient | 4.5% / 9% | 5.5% / 11% | PDF page 8 |
-| Other services, company recipient | 8% / 16% | 9% / 18% | PDF page 8; specified services have separate treatment |
-| Other services, other recipient | 10% / 20% | 11% / 22% | PDF page 8; specified services have separate treatment |
-| Electronic/print media advertising | 1.5% / 1.5% | 1.5% / 3% | PDF page 8 |
-| Prize bonds | 15% / 25% | 15% / 30% | PDF page 10 |
-| Lottery/raffle/quiz winnings | 20% / 20% | 20% / 40% | PDF page 10 |
-| Section 156A petroleum-agent commission | 12% / 12% | 12% / 24% | PDF page 10 |
+| Category                                                                                   | Existing seed: ATL / not ATL | Official TY2025 card | Evidence                                               |
+| ------------------------------------------------------------------------------------------ | ---------------------------- | -------------------- | ------------------------------------------------------ |
+| Ordinary goods, company recipient (not toll manufacturing or the special goods categories) | 4% / 8%                      | 5% / 10%             | PDF page 7                                             |
+| Ordinary goods, other recipient                                                            | 4.5% / 9%                    | 5.5% / 11%           | PDF page 8                                             |
+| Other services, company recipient                                                          | 8% / 16%                     | 9% / 18%             | PDF page 8; specified services have separate treatment |
+| Other services, other recipient                                                            | 10% / 20%                    | 11% / 22%            | PDF page 8; specified services have separate treatment |
+| Electronic/print media advertising                                                         | 1.5% / 1.5%                  | 1.5% / 3%            | PDF page 8                                             |
+| Prize bonds                                                                                | 15% / 25%                    | 15% / 30%            | PDF page 10                                            |
+| Lottery/raffle/quiz winnings                                                               | 20% / 20%                    | 20% / 40%            | PDF page 10                                            |
+| Section 156A petroleum-agent commission                                                    | 12% / 12%                    | 12% / 24%            | PDF page 10                                            |
 
 These comparisons concern committed seed data and its supplied-workbook snapshot. The deployed database was not queried in this scope review, so these values must not be presented as a fresh inspection of live rule rows.
 
