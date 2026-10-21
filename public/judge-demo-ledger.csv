@@ -1,0 +1,4 @@
+Date,Description,Account Code,Debit,Credit,Reference
+2025-05-07,Demo Stationery - Payment against office supplies invoice,DEMO-GOODS,100000.00,0.00,JUDGE-GOODS-MAY
+2025-05-08,Demo Assurance - Annual professional engagement renewal,DEMO-SERVICES,100000.00,0.00,JUDGE-SERVICES-MAY
+2025-05-09,Internal transfer between own bank accounts,DEMO-TRANSFER,25000.00,0.00,JUDGE-TRANSFER-MAY

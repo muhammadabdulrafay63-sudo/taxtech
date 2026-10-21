@@ -24,6 +24,16 @@ const health = await response.json();
 assert.equal(health.status, "ready", "Database readiness check failed");
 assert.equal(health.ai_configured, true, "AI configuration missing");
 assert.equal(
+  health.judge_demo?.available,
+  true,
+  "Judge account changed or unavailable; check its dedicated access details",
+);
+assert.equal(
+  health.judge_demo?.prepared_ready,
+  true,
+  "Prepared judge example is missing or changed",
+);
+assert.equal(
   health.server_errors,
   0,
   "Server exceptions recorded in last 20 minutes",

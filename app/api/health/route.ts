@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { sql } from "drizzle-orm";
 import { validMonitorToken } from "@/lib/monitor-auth";
 import { NextResponse } from "next/server";
+import { judgeDemoHealth } from "@/lib/judge-demo";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -54,6 +55,7 @@ export async function GET(req: Request) {
           ),
         ),
         ai_configured: !!process.env.NEBIUS_API_KEY,
+        judge_demo: await judgeDemoHealth(),
       },
       { headers },
     );

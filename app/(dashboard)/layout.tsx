@@ -10,6 +10,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { db } from "@/db";
 import { companies, auditLogs } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
+import Link from "next/link";
+import { judgeFixture } from "@/lib/judge-fixture";
 
 export default async function DashboardLayout({
   children,
@@ -67,10 +69,24 @@ export default async function DashboardLayout({
         />
         <main className="min-w-0 flex-1 overflow-y-auto bg-muted/30 p-4 pb-24 sm:p-6 sm:pb-24">
           <p className="mb-4 rounded-md border bg-background px-3 py-2 text-xs text-muted-foreground">
-            Reference basis: supplied Finance Act 2024 schedules. Calculations
+            Reference basis: reviewed TY2025 historical cases. Calculations
             support July 2024–June 2025 only; other periods require reviewed
             schedules. No automatic filing or payments.
           </p>
+          {companyId === judgeFixture.companyId &&
+            session.user.id === judgeFixture.userId && (
+              <p className="mb-4 rounded-md border bg-background p-3 text-sm">
+                <strong>Synthetic judge workspace.</strong> Start with the{" "}
+                <Link
+                  className="underline"
+                  href={`/company/${companyId}/judge`}
+                >
+                  judge testing guide
+                </Link>{" "}
+                for the completed example, practice ledger and reset. Use
+                invented data only.
+              </p>
+            )}
           {children}
         </main>
       </div>
