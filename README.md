@@ -1,6 +1,6 @@
 # TaxTech
 
-[Open the live app](https://taxtech-zeta.vercel.app) · [Hosted release verification](docs/production-release-2026-10-21.md)
+[Open the live app](https://taxtech-zeta.vercel.app) · [Hosted release verification](docs/production-release-2026-10-21.md) · [Client readiness](docs/client-readiness-2026-10-21.md)
 
 A ledger review workspace for accountants working on Pakistan withholding-tax workflows. Upload Excel/CSV, review unclear entries with NVIDIA Nemotron, approve the tax treatment, and calculate an income or sales-tax draft batch. An in-app assistant explains the current page and next steps.
 

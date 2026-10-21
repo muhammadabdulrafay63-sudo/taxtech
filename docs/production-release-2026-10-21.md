@@ -1,5 +1,7 @@
 # Hosted release — October 21, 2026
 
+**Later operational setup:** see [client readiness follow-up](client-readiness-2026-10-21.md) for scheduled encrypted backups, tested alerts, the separate Preview database and the current-year tax gap. The original verification below records the initial hosted release.
+
 TaxTech is published at **https://taxtech-zeta.vercel.app**. Source: [muhammadabdulrafay63-sudo/taxtech](https://github.com/muhammadabdulrafay63-sudo/taxtech). GitHub, Vercel and Neon account ownership was verified as Abdul Rafay before publishing.
 
 ## Release configuration

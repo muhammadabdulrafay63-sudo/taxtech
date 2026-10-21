@@ -13,5 +13,64 @@
       "url": "https://download1.fbr.gov.pk/Docs/2026811148258398WithholdingTaxRatesCard2027.xlsx",
       "sha256": "2c1a3e449fe331ab4edfd9fdb5bd7a3bdef72721ddfde2bed6e0e089065d4f85"
     }
-  ]
+  ],
+  "requestedAuthorities": ["FBR", "SRB", "PRA", "KPRA", "BRA"],
+  "legislativeSources": [
+    {
+      "authority": "FBR",
+      "url": "https://download1.fbr.gov.pk/Docs/20266291261044366FinanceAct2026.pdf",
+      "sha256": "49ad283594c4d1cb015fe224d3a5a126b0742bb1e416cf11089aef01df5cb124"
+    },
+    {
+      "authority": "FBR",
+      "url": "https://download1.fbr.gov.pk/Docs/2026724177725705IncomeTaxOrdinanace2001.pdf",
+      "sha256": "1b611d31c667107a65d3d47a97e163df2ee8ba403952930f527db11d40b32c8b"
+    },
+    {
+      "authority": "FBR",
+      "url": "https://download1.fbr.gov.pk/Docs/20267171373418951SalesTaxAct1990updatedupto30.06.2026.pdf",
+      "sha256": "97cfb09a7034b8a503987036526676ecc3133bc8aad7a106b91a327ae1dfd129"
+    },
+    {
+      "authority": "SRB",
+      "url": "https://www.srb.gos.pk/srb/wp-content/uploads/2026/08/SSTOS_Act2011.pdf",
+      "sha256": "7494d543d2699f5cfca835f06148d6980117780ce1cd817e5f859cafd7e801df"
+    },
+    {
+      "authority": "SRB",
+      "url": "https://www.srb.gos.pk/srb/wp-content/uploads/2026/08/SSTOS_withholdingrules2014.pdf",
+      "sha256": "36a24357317537d6595b7e9755a136110a5a55ca49ce8470a6875997e4cc7324"
+    },
+    {
+      "authority": "PRA",
+      "url": "https://pra.punjab.gov.pk/Downloads/THE-PUNJAB-SALES-TAX-ON-SERVICES-ACT-2012-17th-Edition-2026-2027.pdf",
+      "sha256": "51c99e12561b40245858b08f2995f51a7b1da1540fb10bca2c6c18242648918a"
+    },
+    {
+      "authority": "PRA",
+      "url": "https://pra.punjab.gov.pk/Downloads/Updated-2nd-Schedule-of-PSTS-Act-2012.pdf",
+      "sha256": "4a5368cf18811de046bbafb986c3e27a7a998f649c83d1617347a43b92f88270"
+    },
+    {
+      "authority": "KPRA",
+      "url": "https://kpra.gov.pk/wp-content/uploads/2025/01/KP-withholding-regulations-2024.pdf",
+      "sha256": "040a6934f093d6256c5e57dacb9b9c525a04f6bd007a4a167ee157b4967301df"
+    },
+    {
+      "authority": "BRA",
+      "url": "https://ebra.com.pk/public/storage/uploads/downloads/1784709123.pdf",
+      "sha256": "0afea120787841f9bdd8ba7c1c5a8d0bc953884b8d7326942ef23f989df6d177"
+    },
+    {
+      "authority": "BRA",
+      "url": "https://ebra.com.pk/public/storage/uploads/downloads/1772518454.pdf",
+      "sha256": "3d98f1b52a083dc05813dd574c4b8bbffaa2384599921f4e43b6d6630c7a5355"
+    },
+    {
+      "authority": "BRA",
+      "url": "https://bra.gob.pk/NewsDirectory/Downloads/FW__BRA_BST_Rules_and_Withholding_Rules_have_been_updated%2C_upload_the_new_files._Please/Balochistan_ST_Special_Procedure_%28WH%29_Rules_2018.pdf",
+      "sha256": "a79b8da95047b299ee0a5a74bb15727230180b4c24e78c007e80b4c1b769dac9"
+    }
+  ],
+  "implementationStatus": "All five authorities remain blocked for current-period calculations; legislative differences require an effective-dated policy implementation, not a global rate overwrite."
 }
