@@ -13,6 +13,13 @@ const credentialsSchema = z.object({
 });
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  // Use the configured canonical origin (or Vercel's managed proxy). Explicit
+  // detection avoids empty optional platform variables masking host trust.
+  trustHost: Boolean(
+    process.env.AUTH_URL ||
+      process.env.NEXTAUTH_URL ||
+      process.env.VERCEL === "1",
+  ),
   session: { strategy: "jwt", maxAge: 8 * 60 * 60 },
   pages: {
     signIn: "/login",
