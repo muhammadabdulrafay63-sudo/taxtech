@@ -4,7 +4,11 @@ import { requestAllowed } from "@/lib/request-access";
 
 export default auth(async (req) => {
   const { pathname } = req.nextUrl;
-  if (pathname === "/login" || pathname.startsWith("/api/auth/"))
+  if (
+    pathname === "/login" ||
+    pathname === "/api/health" ||
+    pathname.startsWith("/api/auth/")
+  )
     return NextResponse.next();
   const api = pathname.startsWith("/api/");
   if (!req.auth?.user?.id) {

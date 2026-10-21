@@ -29,4 +29,17 @@ export async function claimAIRequest(
       "This company's daily AI allowance is used. Manual review remains available.",
       429,
     );
+  const globalBucket = `global:daily:${new Date().toISOString().slice(0, 10)}`;
+  const globalLimit = Math.max(
+    1,
+    Math.min(10000, Number(process.env.AI_GLOBAL_DAILY_REQUEST_LIMIT) || 500),
+  );
+  const global =
+    await db.execute(sql`INSERT INTO ai_request_limits (bucket, used) VALUES (${globalBucket}, 1)
+    ON CONFLICT (bucket) DO UPDATE SET used = ai_request_limits.used + 1 WHERE ai_request_limits.used < ${globalLimit} RETURNING used`);
+  if (!global.rows.length)
+    throw new AIError(
+      "The application's daily AI allowance is used. Manual review remains available.",
+      429,
+    );
 }

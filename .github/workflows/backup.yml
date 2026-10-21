@@ -1,0 +1,45 @@
+name: Encrypted database backup
+on:
+  schedule:
+    - cron: "43 */6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: production-backup
+  cancel-in-progress: false
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    environment: production-operations
+    timeout-minutes: 20
+    services:
+      restore:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: runner-only-restore-check
+          POSTGRES_DB: restore_check
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install standard age encryption
+        run: sudo apt-get update -qq && sudo apt-get install -y age
+      - name: Dump, verify restore and encrypt
+        run: node scripts/backup-offsite.mjs
+        env:
+          BACKUP_DATABASE_URL: ${{ secrets.BACKUP_DATABASE_URL }}
+          BACKUP_RECIPIENT: ${{ vars.BACKUP_RECIPIENT }}
+          RESTORE_PASSWORD: runner-only-restore-check
+          BACKUP_OUTPUT_DIR: ${{ runner.temp }}/encrypted-backup
+      - uses: actions/upload-artifact@v4
+        with:
+          name: encrypted-database-${{ github.run_id }}
+          path: ${{ runner.temp }}/encrypted-backup/
+          retention-days: 90
+          if-no-files-found: error

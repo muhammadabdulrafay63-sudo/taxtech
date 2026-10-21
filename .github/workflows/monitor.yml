@@ -1,0 +1,31 @@
+name: Production health and usage
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+    - cron: "13 5 * * *"
+  workflow_dispatch:
+    inputs:
+      alert_test:
+        description: Send an intentional failure notification without affecting the app
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    environment: production-operations
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test alert delivery (only when explicitly requested)
+        if: inputs.alert_test == true
+        run: echo 'Intentional notification test; the production app is unaffected.' && exit 1
+      - run: node scripts/monitor.mjs
+        env:
+          APP_URL: https://taxtech-zeta.vercel.app
+          MONITOR_TOKEN: ${{ secrets.MONITOR_TOKEN }}
+          CHECK_AI: ${{ github.event.schedule == '13 5 * * *' || github.event_name == 'workflow_dispatch' }}

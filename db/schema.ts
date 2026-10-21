@@ -17,6 +17,16 @@ import type { AISuggestion } from "../lib/review-policy";
 
 // ─── Auth (NextAuth v5 required tables) ──────────────────────────────────────
 
+export const operationalCounters = pgTable(
+  "operational_counters",
+  {
+    minute: timestamp("minute", { withTimezone: true }).notNull(),
+    kind: text("kind").notNull(),
+    count: integer("count").notNull().default(1),
+  },
+  (t) => [unique().on(t.minute, t.kind)],
+);
+
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name"),

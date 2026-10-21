@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { recordOperationalEvent } from "../operations";
 
 export const DEFAULT_MODEL = "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B";
 export class AIError extends Error {
@@ -55,25 +56,30 @@ export async function completeJSON<T>(
       },
     );
   } catch {
+    await recordOperationalEvent("ai_error");
     throw new AIError(
       "The AI service timed out or could not connect. Try again or continue manually.",
     );
   }
-  if (!response.ok)
+  if (!response.ok) {
+    await recordOperationalEvent("ai_error");
     throw new AIError(
       response.status === 429
         ? "AI request limit reached. Please try again later."
         : "The AI service is unavailable. Your records have not been changed.",
       response.status === 429 ? 429 : 503,
     );
+  }
   try {
     const data = await response.json();
     if (data.choices?.[0]?.finish_reason === "length")
       throw new Error("Truncated output");
     const content = data.choices?.[0]?.message?.content;
     const result = schema.parse(JSON.parse(content));
+    await recordOperationalEvent("ai_success");
     return { result, model, usage: data.usage ?? null };
   } catch {
+    await recordOperationalEvent("ai_error");
     throw new AIError(
       "AI returned an incomplete response. No suggestion was saved; you can retry.",
     );
