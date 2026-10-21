@@ -1,5 +1,7 @@
 # TaxTech
 
+[Open the live app](https://taxtech-zeta.vercel.app) · [Hosted release verification](docs/production-release-2026-10-21.md)
+
 A ledger review workspace for accountants working on Pakistan withholding-tax workflows. Upload Excel/CSV, review unclear entries with NVIDIA Nemotron, approve the tax treatment, and calculate an income or sales-tax draft batch. An in-app assistant explains the current page and next steps.
 
 ## Start locally
@@ -36,7 +38,7 @@ Requires Node.js 22+, npm, a Neon PostgreSQL database and (for AI) a Nebius Toke
 
 ## Guided app tour
 
-A six-step tour opens once per signed-in account, after any required password change. Use **App tour** in the top bar to replay it. First display is saved server-side across sessions/devices. It supports Next, Back, Skip and page shortcuts, and uses read-only guidance for viewers. See [feature verification](docs/app-tour-2026-10-20.md); interactive browser checks remain unavailable in this session.
+A six-step tour opens once per signed-in account, after any required password change. Use **App tour** in the top bar to replay it. First display is saved server-side across sessions/devices. It supports Next, Back, Skip and page shortcuts, and uses read-only guidance for viewers. See [feature verification](docs/app-tour-2026-10-20.md) and [the hosted browser checks](docs/production-release-2026-10-21.md).
 
 ## Verification
 
@@ -45,11 +47,11 @@ A six-step tour opens once per signed-in account, after any required password ch
 - `npm run test:workflow`: opt-in integration test against a running local app. Creates a separate synthetic company and random temporary account in the configured database; it performs live Nebius calls and consumes a small amount of credits. No existing company records are modified. See the script for scope. Do not use a production database.
 - `npx tsx tests/boundaries.integration.ts`: additional access, concurrency, stale-review and approved-period checks using that synthetic fixture. Run after the workflow test.
 - See `docs/verification.md` for the checks completed locally and remaining release work.
-- Latest release assessment: [final local readiness audit](docs/final-readiness-audit-2026-10-20.md), with passing local suites and explicit outstanding production conditions. Latest fix: [duplicate-column repair](docs/audit-round-7-fixes-2026-10-20.md), with shared preview/import rejection of ambiguous headings. Previous fixes: [exact-money repair and verification](docs/audit-round-6-fixes-2026-10-20.md), covering both import defects and related calculations, summaries and exports. Previous fixes and verification: [fifth-audit approval fix](docs/audit-round-5-fixes-2026-10-20.md), covering income/sales approval and global rule edits. Previous import fixes and verification: `docs/audit-round-4-fixes-2026-10-20.md`. Previous fixes and supported periods: `docs/audit-round-3-fixes-2026-10-20.md` and `docs/re-audit-fixes-2026-10-20.md`.
+- Latest release assessment: [hosted production release](docs/production-release-2026-10-21.md), with live AI/workflow checks, browser verification and explicit supported scope. Earlier assessment: [final local readiness audit](docs/final-readiness-audit-2026-10-20.md). Latest fix: [duplicate-column repair](docs/audit-round-7-fixes-2026-10-20.md), with shared preview/import rejection of ambiguous headings. Previous fixes: [exact-money repair and verification](docs/audit-round-6-fixes-2026-10-20.md), covering both import defects and related calculations, summaries and exports. Previous fixes and verification: [fifth-audit approval fix](docs/audit-round-5-fixes-2026-10-20.md), covering income/sales approval and global rule edits. Previous import fixes and verification: `docs/audit-round-4-fixes-2026-10-20.md`. Previous fixes and supported periods: `docs/audit-round-3-fixes-2026-10-20.md` and `docs/re-audit-fixes-2026-10-20.md`.
 
 ## Release preparation
 
-See `docs/final-readiness-audit-2026-10-20.md` for the latest release decision, `docs/audit-round-7-fixes-2026-10-20.md` for the mapping repair, `docs/audit-round-6-fixes-2026-10-20.md` for the precision repair, `docs/audit-round-5-fixes-2026-10-20.md` for the approval fix and `docs/release-hardening.md` for private backups and the later deployment checklist. Calculations and final batch approval support July 2024 through June 2025 only; other periods need reviewed source schedules. Missing recipient evidence blocks approval. Reconciliation includes partial payments and separates drafts from approved liability. Build secrets are unnecessary. `npm start` runs the standalone server bound to localhost; use `APP_HOST` only when an intentional external listener is needed. A non-root Docker runtime and CI checks are provided; publishing/deployment are now authorized and pending account access and hosted verification. See [Vercel deployment](docs/vercel-deployment.md).
+See [the hosted release report](docs/production-release-2026-10-21.md) for the current deployment and verification, `docs/audit-round-7-fixes-2026-10-20.md` for the mapping repair, `docs/audit-round-6-fixes-2026-10-20.md` for the precision repair, `docs/audit-round-5-fixes-2026-10-20.md` for the approval fix and `docs/release-hardening.md` for private backups and the later deployment checklist. Calculations and final batch approval support July 2024 through June 2025 only; other periods need reviewed source schedules. Missing recipient evidence blocks approval. Reconciliation includes partial payments and separates drafts from approved liability. Build secrets are unnecessary. `npm start` runs the standalone server bound to localhost; use `APP_HOST` only when an intentional external listener is needed. A non-root Docker runtime and CI checks are provided; the application is published on GitHub and Vercel under Abdul Rafay’s accounts. See [Vercel deployment](docs/vercel-deployment.md).
 
 Money in API calculation totals is returned as exact decimal strings. Imports reject invalid amounts without partial saves; large Excel amounts must be text.
 

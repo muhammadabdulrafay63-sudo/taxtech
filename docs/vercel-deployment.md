@@ -1,6 +1,6 @@
 # Vercel deployment
 
-Publication is authorized. No public repository or deployment has yet been created by this release pass. The signed-in browser must be accessible to confirm the owner's accounts before creating resources. Existing command-line sessions belong to other people and must not be used for publication.
+Published on October 21, 2026: [live application](https://taxtech-zeta.vercel.app) and [public source repository](https://github.com/muhammadabdulrafay63-sudo/taxtech). GitHub, Vercel and Neon ownership were confirmed as Abdul Rafay. See [hosted release verification](production-release-2026-10-21.md). The steps below document the deployment procedure for future releases.
 
 ## Account and source setup
 
