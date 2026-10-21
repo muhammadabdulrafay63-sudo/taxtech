@@ -6,7 +6,7 @@ Dedicated judge credentials are supplied in the organizer-designated testing ins
 
 ## Completed example: March 2025
 
-Inspect the prepared, approved income batch and internal PDF summary. The income batch is PKR 16,250 on PKR 233,000 gross payments. Separate sales-tax batches contain PKR 3,600 for FBR and PKR 3,000 for SRB. The saved AI suggestions came from an actual NVIDIA Nemotron call to Nebius Token Factory; the recorded decisions were made separately by a human reviewer.
+Inspect the prepared, approved income batch and internal PDF summary. The income batch is PKR 16,250 on PKR 233,000 gross payments. Separate sales-tax batches contain PKR 3,600 for FBR and PKR 3,000 for SRB. The saved AI suggestions came from an actual NVIDIA Nemotron call to Nebius Token Factory; the recorded reviewer approvals were applied separately from the model suggestions using the invented invoice facts.
 
 Every vendor, status and invoice is invented. The status timestamps are synthetic evidence for the demonstration, not actual historical ATL verification. No real taxpayer records, filings, payments or official FBR payment slips are involved.
 

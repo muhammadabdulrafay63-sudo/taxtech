@@ -4,12 +4,14 @@
 
 - Public MIT repository and hosted app verified: https://github.com/muhammadabdulrafay63-sudo/taxtech and https://taxtech-zeta.vercel.app. GitHub identifies MIT in repository metadata.
 - Dedicated accountant account in an isolated synthetic judge company. The account is not a global administrator. The existing owner company is unchanged. Credentials are saved privately on the owner's computer and excluded from Git; the public testing guide contains none.
-- Completed March 2025 example: real NVIDIA/Nebius suggestions, recorded human decisions, approved income batch of PKR 16,250, FBR sales withholding of PKR 3,600, SRB of PKR 3,000, and an internal PDF summary.
+- Completed March 2025 example: real NVIDIA/Nebius suggestions, separate reviewer approvals, approved income batch of PKR 16,250, FBR sales withholding of PKR 3,600, SRB of PKR 3,000, and an internal PDF summary.
 - April 2025 practice: three pending entries, invented supporting invoice facts and a self-service reset restricted to the dedicated judge identity/company. Resetting approved practice was tested twice. It preserved March and the owner's records. Anonymous, unconfirmed and cross-company attempts were rejected.
 - Optional synthetic CSV upload, duplicate protection, login, judge-guide rendering, owner isolation and global-admin rejection tested on the deployed app. Temporary upload-test entries and receipt were removed. April is left pending with no saved AI suggestions so judges can run real inference themselves.
 - Protected health monitoring checks the judge credential fingerprint and completed example, along with existing app/database/AI error checks. It also checks daily judge/global AI allowance headroom. A daily synthetic inference probes whether the provider key is usable. No new paid service or provider account was purchased.
 - Public judge instructions and technical Devpost copy, including track, architecture, actual model/provider, significant improvements with commit links, observed technical feedback and explicit limitations.
 - Thirty-five unit tests, lint, type checking and the production build passed. The first judge-feature GitHub run passed: https://github.com/muhammadabdulrafay63-sudo/taxtech/actions/runs/39578513764.
+
+- Final integration CI passed: https://github.com/muhammadabdulrafay63-sudo/taxtech/actions/runs/39579449072. The deployed production monitor (including judge access/readiness and live AI) passed: https://github.com/muhammadabdulrafay63-sudo/taxtech/actions/runs/39579641344. A fresh encrypted off-site backup with restore verification passed: https://github.com/muhammadabdulrafay63-sudo/taxtech/actions/runs/39579645835.
 
 ## Owner actions still required
 

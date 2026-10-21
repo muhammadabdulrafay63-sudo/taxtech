@@ -55,7 +55,7 @@ We still need application-side validation and a human decision when invoice desc
 
 ## Validation and limitations
 
-The hosted workflow has been tested with synthetic data: login, upload/duplicate rejection, live model review and assistance, separate human decisions, invoice validation, calculation/approval, internal PDF generation, isolation and write restrictions. The TY2025 regression checks eight sales-tax cases across all five supported authorities. The synthetic judge account's owner isolation and global-admin rejection were tested.
+The hosted workflow has been tested with synthetic data: login, upload/duplicate rejection, live model review and assistance, a separate reviewer-approval workflow, invoice validation, calculation/approval, internal PDF generation, isolation and write restrictions. The TY2025 regression checks eight sales-tax cases across all five supported authorities. The synthetic judge account's owner isolation and global-admin rejection were tested.
 
 The release covers specific historical TY2025 cases, not every tax situation or current-year law. Annual individual/AOP rent, non-resident/treaty and other unmodeled cases remain blocked for specialist treatment. Salary figures are estimates rather than payroll true-ups. The app does not query live ATL registries, file returns or make payments. We have not measured an accuracy score or percentage time saving and do not claim either. All judge sample data and tax-status assumptions are invented.
 
