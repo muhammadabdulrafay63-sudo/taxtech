@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { glTransactions, auditLogs, stWhtRules } from "@/db/schema";
@@ -23,10 +23,10 @@ export async function PATCH(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -35,7 +35,7 @@ export async function PATCH(
       const { id } = await params;
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       const [txn] = await db
         .select({
@@ -46,7 +46,7 @@ export async function PATCH(
         .where(eq(glTransactions.id, id))
         .limit(1);
       if (!txn)
-        return NextResponse.json({ error: "Not found" }, { status: 404 });
+        return apiJSON({ error: "Not found" }, { status: 404 });
 
       try {
         await assertPeriodEditable(
@@ -55,7 +55,7 @@ export async function PATCH(
           Number(txn.txnDate.slice(5, 7)),
         );
       } catch {
-        return NextResponse.json(
+        return apiJSON(
           { error: "This period is approved and locked." },
           { status: 409 },
         );
@@ -75,7 +75,7 @@ export async function PATCH(
             .limit(1)
         ).length
       )
-        return NextResponse.json(
+        return apiJSON(
           { error: "Invalid sales-tax rule." },
           { status: 400 },
         );
@@ -100,10 +100,10 @@ export async function PATCH(
         }),
       ]);
 
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import { db } from "@/db";
 import { glTransactions, whtBatches } from "@/db/schema";
 import { and, eq, sql } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { z } from "zod";
 import { completeJSON, AIError } from "@/lib/ai/nebius";
 import { claimAIRequest } from "@/lib/ai/limit";
@@ -36,10 +36,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user?.id)
-    return NextResponse.json({ error: "Please sign in." }, { status: 401 });
+    return apiJSON({ error: "Please sign in." }, { status: 401 });
   const companyId = (session.user as { companyId?: string }).companyId;
   if (!companyId)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -90,13 +90,13 @@ export async function POST(req: Request) {
           ]
         : [];
     });
-    return NextResponse.json({
+    return apiJSON({
       answer: response.result.answer,
       links,
       model: response.model,
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof AIError

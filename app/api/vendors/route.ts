@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { vendors, auditLogs } from "@/db/schema";
@@ -27,10 +27,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     return await withCompanyWrite(writeCompany, async () => {
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       const id = crypto.randomUUID();
       const [created] = await db.batch([
@@ -67,10 +67,10 @@ export async function POST(req: Request) {
           entityId: id,
         }),
       ]);
-      return NextResponse.json(created[0], { status: 201 });
+      return apiJSON(created[0], { status: 201 });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

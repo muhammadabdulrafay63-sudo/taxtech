@@ -1,5 +1,5 @@
 import { guardRoute } from "@/lib/route-guard";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import {
@@ -39,7 +39,7 @@ export async function GET(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
 
   const { challanId } = await params;
 
@@ -49,7 +49,7 @@ export async function GET(
     .where(eq(challanRecords.id, challanId))
     .limit(1);
   if (!challan)
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    return apiJSON({ error: "Not found" }, { status: 404 });
 
   const [batch] = await db
     .select()

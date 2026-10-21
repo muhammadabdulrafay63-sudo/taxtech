@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { glTransactions, vendors, auditLogs, whtRules } from "@/db/schema";
@@ -25,10 +25,10 @@ export async function PATCH(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -37,7 +37,7 @@ export async function PATCH(
       const { id: txnId } = await params;
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       const { ruleKey, updateVendorMemory } = parsed.data;
 
@@ -55,7 +55,7 @@ export async function PATCH(
         .limit(1);
 
       if (!txn)
-        return NextResponse.json(
+        return apiJSON(
           { error: "Transaction not found" },
           { status: 404 },
         );
@@ -67,7 +67,7 @@ export async function PATCH(
           Number(txn.txnDate.slice(5, 7)),
         );
       } catch {
-        return NextResponse.json(
+        return apiJSON(
           { error: "This period is approved and locked." },
           { status: 409 },
         );
@@ -84,7 +84,7 @@ export async function PATCH(
             .limit(1)
         ).length
       )
-        return NextResponse.json({ error: "Invalid rule." }, { status: 400 });
+        return apiJSON({ error: "Invalid rule." }, { status: 400 });
 
       // Re-derive ST WHT tag when income tag changes (unless ST tag was manually set)
       let newStWhtTag = txn.stWhtTag; // keep existing by default
@@ -148,10 +148,10 @@ export async function PATCH(
         }),
       ]);
 
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

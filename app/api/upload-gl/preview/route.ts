@@ -1,5 +1,5 @@
 import { guardRoute } from "@/lib/route-guard";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { parseGLBuffer, LedgerHeaderError } from "@/lib/parser";
 import { MAX_LEDGER_BYTES, LEDGER_SIZE_MESSAGE } from "@/lib/upload-limits";
@@ -9,10 +9,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
     if (!file)
-      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+      return apiJSON({ error: "No file provided" }, { status: 400 });
 
     // Validate type
     const validTypes = [
@@ -30,14 +30,14 @@ export async function POST(req: Request) {
     ];
     const isValidExt = file.name.match(/\.(xlsx|xls|csv)$/i);
     if (!validTypes.includes(file.type) && !isValidExt) {
-      return NextResponse.json(
+      return apiJSON(
         { error: "Invalid file type. Upload a .xlsx, .xls, or .csv file." },
         { status: 400 },
       );
     }
 
     if (!file.size || file.size > MAX_LEDGER_BYTES) {
-      return NextResponse.json(
+      return apiJSON(
         { error: LEDGER_SIZE_MESSAGE },
         { status: 400 },
       );
@@ -46,9 +46,9 @@ export async function POST(req: Request) {
     const buffer = await file.arrayBuffer();
     const result = parseGLBuffer(buffer, file.name);
 
-    return NextResponse.json(result);
+    return apiJSON(result);
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof LedgerHeaderError

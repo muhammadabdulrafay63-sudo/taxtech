@@ -11,7 +11,7 @@ import {
   generateAnnualObligations,
 } from "@/lib/secp";
 import { withCompanyWrite, WorkflowError } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 const body = z.discriminatedUnion("kind", [
   z.object({
     kind: z.literal("event"),
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
   const companyId = (session!.user as { companyId: string }).companyId;
   const parsed = body.safeParse(await req.json());
   if (!parsed.success)
-    return NextResponse.json(
+    return apiJSON(
       { error: "Check the event and dates." },
       { status: 400 },
     );
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
         .where(eq(secpCompanies.companyId, companyId))
         .limit(1);
       if (!profile)
-        return NextResponse.json(
+        return apiJSON(
           { error: "Set up the SECP profile first." },
           { status: 409 },
         );
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
             .limit(1)
         ).length
       )
-        return NextResponse.json(
+        return apiJSON(
           { error: "This fiscal year's calendar already exists." },
           { status: 409 },
         );
@@ -114,7 +114,7 @@ export async function POST(req: Request) {
                 },
               ];
       if (!rows.length)
-        return NextResponse.json(
+        return apiJSON(
           { error: "This year precedes incorporation." },
           { status: 400 },
         );
@@ -130,10 +130,10 @@ export async function POST(req: Request) {
             payload: input,
           }),
       ]);
-      return NextResponse.json({ ok: true, created: rows.length });
+      return apiJSON({ ok: true, created: rows.length });
     });
   } catch (e) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           e instanceof WorkflowError

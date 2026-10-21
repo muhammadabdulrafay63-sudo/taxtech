@@ -4,7 +4,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import {
@@ -26,10 +26,10 @@ export async function POST(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -43,9 +43,9 @@ export async function POST(
         .where(eq(whtBatches.id, batchId))
         .limit(1);
       if (!batch)
-        return NextResponse.json({ error: "Batch not found" }, { status: 404 });
+        return apiJSON({ error: "Batch not found" }, { status: 404 });
       if (batch.status !== "draft")
-        return NextResponse.json(
+        return apiJSON(
           { error: "Only draft batches can be approved" },
           { status: 400 },
         );
@@ -60,7 +60,7 @@ export async function POST(
           "income",
         );
       } catch (error) {
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               error instanceof Error
@@ -82,7 +82,7 @@ export async function POST(
         )
         .limit(1);
       if (unresolved.length)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Verify vendor tax status and recipient type, then recalculate before approving.",
@@ -120,7 +120,7 @@ export async function POST(
             ),
         )
       )
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Verify supplier recipient type and filer status, then recalculate this draft.",
@@ -133,7 +133,7 @@ export async function POST(
         "income",
       );
       if (!approved)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Calculation inputs changed. Recalculate this draft before approval.",
@@ -141,10 +141,10 @@ export async function POST(
           { status: 409 },
         );
 
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

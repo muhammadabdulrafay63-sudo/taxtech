@@ -4,7 +4,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { glTransactions, whtRules, auditLogs, vendors } from "@/db/schema";
@@ -28,10 +28,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user?.id)
-    return NextResponse.json({ error: "Please sign in." }, { status: 401 });
+    return apiJSON({ error: "Please sign in." }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -42,7 +42,7 @@ export async function POST(req: Request) {
         if (
           !canAccessCompany(session.user as { companyId?: string }, companyId)
         )
-          return NextResponse.json(
+          return apiJSON(
             { error: "Access denied." },
             { status: 403 },
           );
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
           entries.length !== new Set(ids).size ||
           entries.some((t) => !needsAIReview(t))
         )
-          return NextResponse.json(
+          return apiJSON(
             {
               error: "Select only pending, unclear entries from this company.",
             },
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
           .from(whtRules)
           .where(eq(whtRules.active, true));
         if (!rules.length)
-          return NextResponse.json(
+          return apiJSON(
             { error: "Set up active tax rules before requesting suggestions." },
             { status: 409 },
           );
@@ -145,12 +145,12 @@ export async function POST(req: Request) {
           }),
           ...updates,
         ]);
-        return NextResponse.json({
+        return apiJSON({
           reviewed: suggestions.length,
           model: response.model,
         });
       } catch (error) {
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               error instanceof AIError
@@ -164,7 +164,7 @@ export async function POST(req: Request) {
       }
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

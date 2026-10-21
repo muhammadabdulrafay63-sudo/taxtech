@@ -3,7 +3,7 @@ import { MAX_LEDGER_BYTES } from "@/lib/upload-limits";
 import { LedgerAmountError } from "@/lib/money";
 import { guardRoute } from "@/lib/route-guard";
 import { createHash } from "node:crypto";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { parseSheet } from "@/lib/parser";
 import { tagBatch } from "@/lib/tagger";
@@ -38,10 +38,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user?.id)
-    return NextResponse.json({ error: "Please sign in." }, { status: 401 });
+    return apiJSON({ error: "Please sign in." }, { status: 401 });
   const companyId = (session.user as { companyId?: string }).companyId;
   if (!companyId)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
       const file = data.get("file");
       const sheetName = data.get("sheetName");
       if (data.get("companyId") !== companyId)
-        return NextResponse.json({ error: "Access denied." }, { status: 403 });
+        return apiJSON({ error: "Access denied." }, { status: 403 });
       if (
         !(file instanceof File) ||
         !file.name.match(/\.(xlsx|xls|csv)$/i) ||
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
         !file.size ||
         typeof sheetName !== "string"
       )
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Choose a non-empty Excel or CSV file up to 4 MB and a sheet. Split larger ledgers into smaller files.",
@@ -71,7 +71,7 @@ export async function POST(req: Request) {
       );
       const mapped = Object.values(mapping).filter(Boolean);
       if (new Set(mapped).size !== mapped.length)
-        return NextResponse.json(
+        return apiJSON(
           { error: "Map each field to a different column." },
           { status: 400 },
         );
@@ -94,7 +94,7 @@ export async function POST(req: Request) {
             .limit(1)
         ).length
       )
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "This sheet has already been imported with these mappings. Open Review ledger instead.",
@@ -103,7 +103,7 @@ export async function POST(req: Request) {
         );
       const { rows, skipped } = parseSheet(buffer, sheetName, mapping);
       if (!rows.length || rows.length > 5000)
-        return NextResponse.json(
+        return apiJSON(
           {
             error: rows.length
               ? "Split the ledger into files of at most 5,000 valid entries."
@@ -180,7 +180,7 @@ export async function POST(req: Request) {
           payload: { fingerprint, imported: values.length, skipped },
         }),
       ]);
-      return NextResponse.json<ImportResult>({
+      return apiJSON<ImportResult>({
         imported: values.length,
         skipped,
         tagged: tagged.filter((t) => !!t.tag.ruleKey).length,
@@ -188,7 +188,7 @@ export async function POST(req: Request) {
       });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WorkflowError ||

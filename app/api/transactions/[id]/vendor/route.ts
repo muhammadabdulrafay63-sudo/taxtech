@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { glTransactions, vendors, auditLogs } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import {
   withCompanyWrite,
   assertPeriodEditable,
@@ -24,7 +24,7 @@ export async function PATCH(
   const companyId = (session!.user as { companyId: string }).companyId;
   const input = body.safeParse(await req.json());
   if (!input.success)
-    return NextResponse.json(
+    return apiJSON(
       { error: "Select a vendor and explain the change." },
       { status: 400 },
     );
@@ -42,7 +42,7 @@ export async function PATCH(
         )
         .limit(1);
       if (!txn)
-        return NextResponse.json(
+        return apiJSON(
           { error: "Entry not found." },
           { status: 404 },
         );
@@ -66,7 +66,7 @@ export async function PATCH(
             .limit(1)
         ).length
       )
-        return NextResponse.json(
+        return apiJSON(
           { error: "Choose a vendor from this company." },
           { status: 403 },
         );
@@ -93,10 +93,10 @@ export async function PATCH(
             payload: { previousVendorId: txn.vendorId, ...input.data },
           }),
       ]);
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WorkflowError

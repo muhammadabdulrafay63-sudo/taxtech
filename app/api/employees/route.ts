@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { employees } from "@/db/schema";
@@ -16,10 +16,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     return await withCompanyWrite(writeCompany, async () => {
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Enter nonnegative salary amounts and Tax Year 2025, matching the supplied schedules.",
@@ -59,10 +59,10 @@ export async function POST(req: Request) {
         })
         .returning();
 
-      return NextResponse.json(emp, { status: 201 });
+      return apiJSON(emp, { status: 201 });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

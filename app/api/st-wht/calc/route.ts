@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { calculateSTWHT } from "@/lib/stWHTEngine";
 import { z } from "zod";
@@ -19,10 +19,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     return await withCompanyWrite(writeCompany, async () => {
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       try {
         const result = await calculateSTWHT(
@@ -38,9 +38,9 @@ export async function POST(req: Request) {
           parsed.data.year,
           parsed.data.month,
         );
-        return NextResponse.json(result);
+        return apiJSON(result);
       } catch (error) {
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               error instanceof Error ? error.message : "Calculation failed.",
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
       }
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

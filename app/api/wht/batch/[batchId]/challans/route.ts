@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import {
@@ -28,13 +28,13 @@ export async function GET(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const { batchId } = await params;
   const rows = await db
     .select()
     .from(challanRecords)
     .where(eq(challanRecords.batchId, batchId));
-  return NextResponse.json(rows);
+  return apiJSON(rows);
 }
 
 // POST — generate challan PDFs for an approved batch (one per section)
@@ -46,10 +46,10 @@ export async function POST(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -63,9 +63,9 @@ export async function POST(
         .where(eq(whtBatches.id, batchId))
         .limit(1);
       if (!batch)
-        return NextResponse.json({ error: "Batch not found" }, { status: 404 });
+        return apiJSON({ error: "Batch not found" }, { status: 404 });
       if (batch.status === "draft")
-        return NextResponse.json(
+        return apiJSON(
           { error: "Approve the batch first" },
           { status: 400 },
         );
@@ -107,7 +107,7 @@ export async function POST(
         !expected.length ||
         existing.some((c) => !expected.includes(c.section))
       )
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "This batch has inconsistent section records. Ask the responsible accountant to reconcile it.",
@@ -143,14 +143,14 @@ export async function POST(
         ]);
       }
 
-      return NextResponse.json({
+      return apiJSON({
         created: expected.length,
         added: missing.length,
         sections: Object.keys(bySection),
       });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

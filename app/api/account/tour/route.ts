@@ -2,7 +2,7 @@ import { guardRoute } from "@/lib/route-guard";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { sql } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { TOUR_SEEN_ACTION } from "@/lib/app-tour";
 
 // A preference for the signed-in account only; request bodies cannot select another user.
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user?.id)
-    return NextResponse.json({ error: "Please sign in." }, { status: 401 });
+    return apiJSON({ error: "Please sign in." }, { status: 401 });
   const userId = session.user.id;
   const companyId = (session.user as { companyId?: string }).companyId;
   try {
@@ -25,9 +25,9 @@ export async function POST(req: Request) {
         SELECT ${companyId}::uuid,${userId}::uuid,${TOUR_SEEN_ACTION},'user',${userId}
         WHERE NOT EXISTS (SELECT 1 FROM audit_logs WHERE actor_id=${userId}::uuid AND action=${TOUR_SEEN_ACTION})`),
     ]);
-    return NextResponse.json({ ok: true });
+    return apiJSON({ ok: true });
   } catch {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           "Could not save your tour preference. You can keep using the app.",

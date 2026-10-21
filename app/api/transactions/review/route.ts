@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import {
@@ -30,10 +30,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Please sign in." }, { status: 401 });
+    return apiJSON({ error: "Please sign in." }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
         const input = schema.parse(await req.json());
         const companyId = (session.user as { companyId?: string }).companyId;
         if (!companyId)
-          return NextResponse.json(
+          return apiJSON(
             { error: "No company assigned." },
             { status: 403 },
           );
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
           )
           .limit(1);
         if (!txn)
-          return NextResponse.json(
+          return apiJSON(
             { error: "Transaction not found." },
             { status: 404 },
           );
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
         );
         if (input.decision === "pending") {
           if (txn.reviewStatus === "pending")
-            return NextResponse.json(
+            return apiJSON(
               { error: "This entry is already pending." },
               { status: 409 },
             );
@@ -92,10 +92,10 @@ export async function POST(req: Request) {
               payload: { decision: "pending", note: input.note },
             }),
           ]);
-          return NextResponse.json({ ok: true });
+          return apiJSON({ ok: true });
         }
         if (txn.reviewStatus !== "pending")
-          return NextResponse.json(
+          return apiJSON(
             {
               error: "This entry has already been reviewed. Refresh the page.",
             },
@@ -105,7 +105,7 @@ export async function POST(req: Request) {
           input.expectedSuggestionAt !== undefined &&
           (txn.aiSuggestion?.generatedAt ?? null) !== input.expectedSuggestionAt
         )
-          return NextResponse.json(
+          return apiJSON(
             { error: "The suggestion changed. Refresh and review it again." },
             { status: 409 },
           );
@@ -124,7 +124,7 @@ export async function POST(req: Request) {
                   .limit(1)
               ).length
             )
-              return NextResponse.json(
+              return apiJSON(
                 { error: "Choose an active rule." },
                 { status: 400 },
               );
@@ -185,13 +185,13 @@ export async function POST(req: Request) {
           ...memoryUpdates,
         ]);
         if (!result[0].length)
-          return NextResponse.json(
+          return apiJSON(
             { error: "Entry was reviewed in another session. Refresh." },
             { status: 409 },
           );
-        return NextResponse.json({ ok: true });
+        return apiJSON({ ok: true });
       } catch (error) {
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               error instanceof z.ZodError
@@ -205,7 +205,7 @@ export async function POST(req: Request) {
       }
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

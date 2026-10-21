@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import {
@@ -33,10 +33,10 @@ export async function POST(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -45,7 +45,7 @@ export async function POST(
       const { challanId } = await params;
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       const [challan] = await db
         .select()
@@ -53,9 +53,9 @@ export async function POST(
         .where(eq(challanRecords.id, challanId))
         .limit(1);
       if (!challan)
-        return NextResponse.json({ error: "Not found" }, { status: 404 });
+        return apiJSON({ error: "Not found" }, { status: 404 });
       if (challan.cprNumber)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "This payment is already recorded. Its CPR history cannot be overwritten.",
@@ -68,7 +68,7 @@ export async function POST(
         .where(eq(whtBatches.id, challan.batchId))
         .limit(1);
       if (!batch || !["approved", "paid"].includes(batch.status))
-        return NextResponse.json(
+        return apiJSON(
           { error: "Only an approved batch can record an external payment." },
           { status: 409 },
         );
@@ -102,7 +102,7 @@ export async function POST(
         expected.length !== sections.length ||
         expected.some((e) => !sections.some((s) => s.section === e.section))
       )
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Generate the complete challan set before recording payments. Existing payments will be preserved.",
@@ -133,10 +133,10 @@ export async function POST(
         }),
       ]);
 
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

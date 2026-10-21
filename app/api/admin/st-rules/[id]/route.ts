@@ -3,7 +3,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { stWhtRules, auditLogs } from "@/db/schema";
@@ -31,11 +31,11 @@ export async function PATCH(
     !session?.user ||
     (session.user as { role?: string }).role !== "superadmin"
   ) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    return apiJSON({ error: "Forbidden" }, { status: 403 });
   }
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -44,7 +44,7 @@ export async function PATCH(
       const { id } = await params;
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid" }, { status: 400 });
+        return apiJSON({ error: "Invalid" }, { status: 400 });
 
       await db.batch([
         db
@@ -65,10 +65,10 @@ export async function PATCH(
         }),
       ]);
 
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

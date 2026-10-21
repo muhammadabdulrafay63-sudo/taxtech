@@ -5,7 +5,7 @@ import { users, auditLogs } from "@/db/schema";
 import { and, eq, sql } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 const schema = z.object({
   currentPassword: z.string().min(1).max(200),
   newPassword: z
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   const session = await auth();
   const input = schema.safeParse(await req.json());
   if (!input.success)
-    return NextResponse.json(
+    return apiJSON(
       { error: "Use a unique password of 12–72 characters." },
       { status: 400 },
     );
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     sql`INSERT INTO ai_request_limits(bucket,used) VALUES (${bucket},1) ON CONFLICT(bucket) DO UPDATE SET used=ai_request_limits.used+1 WHERE ai_request_limits.used<5 RETURNING used`,
   );
   if (!limit.rows.length)
-    return NextResponse.json(
+    return apiJSON(
       { error: "Please wait before trying again." },
       { status: 429 },
     );
@@ -40,12 +40,12 @@ export async function POST(req: Request) {
     !user?.passwordHash ||
     !(await bcrypt.compare(input.data.currentPassword, user.passwordHash))
   )
-    return NextResponse.json(
+    return apiJSON(
       { error: "Current password is incorrect." },
       { status: 400 },
     );
   if (input.data.currentPassword === input.data.newPassword)
-    return NextResponse.json(
+    return apiJSON(
       { error: "Choose a different password." },
       { status: 400 },
     );
@@ -67,5 +67,5 @@ export async function POST(req: Request) {
         entityId: id,
       }),
   ]);
-  return NextResponse.json({ ok: true, signInRequired: true });
+  return apiJSON({ ok: true, signInRequired: true });
 }

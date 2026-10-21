@@ -4,7 +4,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { stWhtBatches, stWhtLines, stWhtBatchItems } from "@/db/schema";
@@ -19,10 +19,10 @@ export async function POST(
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -36,9 +36,9 @@ export async function POST(
         .where(eq(stWhtBatches.id, batchId))
         .limit(1);
       if (!batch)
-        return NextResponse.json({ error: "Batch not found" }, { status: 404 });
+        return apiJSON({ error: "Batch not found" }, { status: 404 });
       if (batch.status !== "draft")
-        return NextResponse.json(
+        return apiJSON(
           { error: "Already approved" },
           { status: 400 },
         );
@@ -53,7 +53,7 @@ export async function POST(
           "sales",
         );
       } catch (error) {
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               error instanceof Error
@@ -75,7 +75,7 @@ export async function POST(
         )
         .limit(1);
       if (unresolved.length)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Resolve unknown vendor tax status and recalculate before approving.",
@@ -88,7 +88,7 @@ export async function POST(
         "sales",
       );
       if (!approved)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "Calculation inputs changed. Recalculate this draft before approval.",
@@ -96,10 +96,10 @@ export async function POST(
           { status: 409 },
         );
 
-      return NextResponse.json({ ok: true });
+      return apiJSON({ ok: true });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

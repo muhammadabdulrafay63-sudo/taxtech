@@ -4,7 +4,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { secpCompanies, secpObligations, auditLogs } from "@/db/schema";
@@ -29,10 +29,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     return await withCompanyWrite(writeCompany, async () => {
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       const {
         companyId,
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         .where(eq(secpCompanies.companyId, companyId))
         .limit(1);
       if (existing)
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               "A compliance calendar already exists. Update its individual obligations; setup cannot replace filing history.",
@@ -98,13 +98,13 @@ export async function POST(req: Request) {
         ),
       ]);
 
-      return NextResponse.json({
+      return apiJSON({
         secpCompanyId: secpCo.id,
         obligations: allObligations.length,
       });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict
@@ -123,7 +123,7 @@ export async function PATCH(req: Request) {
   const companyId = (session!.user as { companyId: string }).companyId;
   const input = body.safeParse(await req.json());
   if (!input.success)
-    return NextResponse.json(
+    return apiJSON(
       { error: "Check profile dates and amounts." },
       { status: 400 },
     );
@@ -135,7 +135,7 @@ export async function PATCH(req: Request) {
         .where(eq(secpCompanies.companyId, companyId))
         .limit(1);
       if (!profile)
-        return NextResponse.json(
+        return apiJSON(
           { error: "Set up a profile first." },
           { status: 404 },
         );
@@ -221,10 +221,10 @@ export async function PATCH(req: Request) {
             payload: { previous: profile, updated: input.data },
           }),
       ]);
-      return NextResponse.json({ ok: true, obligations: existing.length });
+      return apiJSON({ ok: true, obligations: existing.length });
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict

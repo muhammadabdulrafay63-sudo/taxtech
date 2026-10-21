@@ -13,6 +13,10 @@ async function main() {
     errors.push("Set AUTH_URL to the final HTTPS origin for deployment.");
   if (!process.env.NEBIUS_API_KEY)
     errors.push("Configure the server-side Nebius key for the AI workflow.");
+  if (!process.env.MONITOR_TOKEN || process.env.MONITOR_TOKEN.length < 32)
+    errors.push(
+      "Configure a monitoring token of at least 32 random characters.",
+    );
   const audit = JSON.parse(
     execFileSync("npm", ["audit", "--omit=dev", "--json"], {
       encoding: "utf8",
@@ -38,6 +42,10 @@ async function main() {
     await db`SELECT count(*)::int n FROM information_schema.columns WHERE table_schema='public' AND ((table_name='users' AND column_name='session_version') OR (table_name='secp_obligations' AND column_name IN ('period_year','provisional','origin')))`;
   if (schema.n !== 4)
     errors.push("Apply the additive review/release database migration.");
+  const [operations] =
+    await db`SELECT to_regclass('public.operational_counters') IS NOT NULL AS ready`;
+  if (!operations.ready)
+    errors.push("Apply scripts/migrate-operations.ts before deployment.");
   console.log(
     JSON.stringify(
       {

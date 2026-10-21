@@ -4,7 +4,7 @@ import {
   withCompanyWrite,
   WorkflowError as WriteConflict,
 } from "@/lib/workflow";
-import { NextResponse } from "next/server";
+import { apiJSON } from "@/lib/api-response";
 import { auth } from "@/auth";
 import { calculateWHT } from "@/lib/whtEngine";
 import { WorkflowError } from "@/lib/workflow";
@@ -21,10 +21,10 @@ export async function POST(req: Request) {
   if (denied) return denied;
   const session = await auth();
   if (!session?.user)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return apiJSON({ error: "Unauthorized" }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return NextResponse.json(
+    return apiJSON(
       { error: "No company assigned." },
       { status: 403 },
     );
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     return await withCompanyWrite(writeCompany, async () => {
       const parsed = body.safeParse(await req.json());
       if (!parsed.success)
-        return NextResponse.json({ error: "Invalid body" }, { status: 400 });
+        return apiJSON({ error: "Invalid body" }, { status: 400 });
 
       try {
         const result = await calculateWHT(
@@ -40,9 +40,9 @@ export async function POST(req: Request) {
           parsed.data.year,
           parsed.data.month,
         );
-        return NextResponse.json(result);
+        return apiJSON(result);
       } catch (err) {
-        return NextResponse.json(
+        return apiJSON(
           {
             error:
               err instanceof WorkflowError || err instanceof LedgerAmountError
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       }
     });
   } catch (error) {
-    return NextResponse.json(
+    return apiJSON(
       {
         error:
           error instanceof WriteConflict
