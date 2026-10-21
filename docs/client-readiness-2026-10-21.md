@@ -13,7 +13,7 @@
 
 ## Not complete
 
-**Current-year tax support is not ready.** The owner requested all five authorities. Official-source verification found material differences in FBR, SRB, PRA, KPRA and BRA treatment; see `current-tax-reference-review.md` and its source manifest. The active historical period gate was preserved. No current rate was silently substituted into an old global rule or historical batch. A versioned policy/eligibility implementation and full review of the relevant amendments remain outstanding.
+**Historical tax accuracy is not yet cleared.** The owner subsequently accepted a release restricted to 1 July 2024–30 June 2025 (Tax Year 2025), across the five requested authorities. TY2027 is outside this release. The historical period gate remains appropriate, but a fresh historical-source review found material differences even within TY2025: see `tax-year-2025-review.md`. Matching the supplied workbooks and passing workflow tests do not establish tax accuracy. Rule reconciliation, applicability checks and end-to-end verification against authoritative historical sources remain required before client tax calculations are described as ready. The earlier `current-tax-reference-review.md` remains future-scope research, not the acceptance standard for this release.
 
 The owner confirmed saving a second recovery-key copy outside this Mac. The local key remains at `.backups/backup-recovery-key.txt`, excluded from Git and protected locally.
 
