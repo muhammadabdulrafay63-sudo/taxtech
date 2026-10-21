@@ -18,9 +18,9 @@ Requires Node.js 22+, npm, a Neon PostgreSQL database and (for AI) a Nebius Toke
 
 ## Try the complete workflow
 
-1. Download **synthetic sample ledger** from Upload, or use `public/sample-ledger.csv`.
+1. Download **synthetic sample ledger** from Upload, or use `public/sample-ledger.csv`. Its dates are June 2025, within the supported schedule window.
 2. Upload, select a sheet, verify distinct column mappings, preview and import. ISO and day/month/year dates are supported. Files are limited to 4 MB / 5,000 valid entries. Opening balances, zero and invalid-date rows are skipped; the response reports how many. Re-importing the same sheet with the same mappings is rejected.
-3. Open **Review ledger**, choose the month and request AI review for unclear rows. Each request covers up to 10 entries on the current page. Account mappings and remembered vendor preferences provide other suggestions; every row still needs a human decision.
+3. Open **Review ledger**, choose June 2025 for the sample (or your ledger’s supported month) and request AI review for unclear rows. Each request covers up to 10 entries on the current page. Account mappings and remembered vendor preferences provide other suggestions; every row still needs a human decision.
 4. Read each explanation and missing-information question, verify the evidence, choose **both** income and sales-tax treatment, write a note, and approve or exclude. "Not applicable" is an explicit treatment, not a missing approval. Optional vendor memory applies only after approval.
 5. Attach a missing supplier from the review entry (or create one from evidence). Vendor assignment reopens review and clears old AI advice. In Vendors, explicitly confirm recipient type; filer status alone does not establish it.
 6. Generate an income draft from the review screen; sales-tax drafts are generated from Sales Tax WHT. All entries in that month must be reviewed. Excluded entries do not participate. Non-positive amounts are not treated as positive expenses. Salary records have a separate module; numeric salary tax is unavailable because the supplied reference files do not include its slabs. Tiered rent is blocked by the flat-rate batch engine rather than calculated with a fabricated flat rate.
