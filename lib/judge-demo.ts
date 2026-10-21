@@ -7,7 +7,9 @@ export async function resetJudgePractice() {
   const [identity] = await db
     .execute<{
       ready: boolean;
-    }>(sql`SELECT EXISTS(SELECT 1 FROM companies c JOIN users u ON u.company_id=c.id WHERE c.id=${c}::uuid AND c.name=${judgeFixture.companyName} AND u.id=${judgeFixture.userId}::uuid AND u.role='accountant') AS ready`)
+    }>(
+      sql`SELECT EXISTS(SELECT 1 FROM companies c JOIN users u ON u.company_id=c.id WHERE c.id=${c}::uuid AND c.name=${judgeFixture.companyName} AND u.id=${judgeFixture.userId}::uuid AND u.role='accountant') AS ready`,
+    )
     .then((r) => r.rows);
   if (!identity?.ready)
     throw new Error("The synthetic judge workspace could not be verified.");
@@ -41,10 +43,18 @@ export async function judgeDemoHealth() {
   const result = await db.execute<{
     available: boolean;
     prepared_ready: boolean;
+    ai_requests: number;
   }>(sql`SELECT
     EXISTS(SELECT 1 FROM users u JOIN companies c ON c.id=u.company_id
       WHERE u.id=${judgeFixture.userId}::uuid AND c.id=${judgeFixture.companyId}::uuid AND c.name=${judgeFixture.companyName} AND u.role='accountant'
       AND EXISTS(SELECT 1 FROM audit_logs a WHERE a.entity_id=u.id::text AND a.action='PROVISION_JUDGE_DEMO' AND a.payload->>'credentialFingerprint'=encode(sha256(convert_to(u.password_hash,'UTF8')),'hex'))) AS available,
-    EXISTS(SELECT 1 FROM wht_batches WHERE company_id=${judgeFixture.companyId}::uuid AND year=2025 AND month=3 AND status IN ('approved','paid') AND total_wht=16250) AS prepared_ready`);
-  return result.rows[0];
+    EXISTS(SELECT 1 FROM wht_batches WHERE company_id=${judgeFixture.companyId}::uuid AND year=2025 AND month=3 AND status IN ('approved','paid') AND total_wht=16250) AS prepared_ready,
+    (SELECT coalesce(max(used),0)::int FROM ai_request_limits WHERE bucket=${judgeFixture.companyId + ":daily:"} || to_char(now() AT TIME ZONE 'UTC','YYYY-MM-DD')) AS ai_requests`);
+  return {
+    ...result.rows[0],
+    ai_daily_limit: Math.max(
+      1,
+      Math.min(1000, Number(process.env.AI_DAILY_REQUEST_LIMIT) || 100),
+    ),
+  };
 }

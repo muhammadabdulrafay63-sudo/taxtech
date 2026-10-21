@@ -16,6 +16,10 @@ Requires Node.js 22+, npm, a Neon PostgreSQL database and (for AI) a Nebius Toke
 6. Set `NEBIUS_API_KEY` and optionally `NEBIUS_MODEL`. The default is `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`; use a currently available NVIDIA model from your Token Factory catalog. AI requests go to `https://api.tokenfactory.nebius.com/v1/chat/completions` on the server.
 7. `npm run dev` and open http://localhost:3000. Sign in with your configured account. Production: `npm run build` then `npm start`.
 
+## Hackathon judge demo
+
+The dedicated judge account has a completed synthetic example, repeatable practice and in-app instructions. Credentials are supplied separately to judges and are never committed. See [judge testing](docs/judge-testing.md) and [technical submission copy](docs/devpost-submission-copy.md). `scripts/provision-judge-demo.ts` is an explicit synthetic-only operator tool, not an automatic production seed.
+
 ## Try the complete workflow
 
 1. Download **synthetic sample ledger** from Upload, or use `public/sample-ledger.csv`. Its dates are June 2025, within the supported schedule window.

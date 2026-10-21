@@ -38,14 +38,10 @@ Record real application footage; do not use simulated results as live evidence. 
 
 Record actual observations about Token Factory response quality, latency, structured-output support, onboarding, model selection, credit redemption and failure handling. Include concrete examples, their impact and a proposed improvement. No fabricated feedback or performance claims.
 
-## External steps still required
+## Developer package and remaining owner steps
 
-- Register/join and finalize the Devpost form with track, description, developer feedback and prior-project changes.
-- Confirm entrant eligibility, team representative (if any), ownership and third-party permissions.
-- Publish a public repository with the MIT license detectable by GitHub/GitLab/Bitbucket. No repository URL is confirmed here.
-- Deploy and test the hosted demo. Provide a dedicated judge account privately in testing instructions. Hosting URL and credentials are not provided by this document.
-- Keep judge access free and available through December 15, 2026, according to the supplied rules; ensure sufficient provider credit.
-- Upload a publicly visible English YouTube demo under three minutes and add its link. No video URL is confirmed here.
-- Submit by the deadline in the current official rules. The supplied deadline is October 30, 2026, 10:00 AM Pacific.
+The live app is published at https://taxtech-zeta.vercel.app and the public MIT repository is https://github.com/muhammadabdulrafay63-sudo/taxtech. A dedicated accountant account and synthetic company now provide a completed March 2025 example and April practice. Credentials remain in a private local note and are excluded from Git. See [judge testing instructions](judge-testing.md) and [technical Devpost copy](devpost-submission-copy.md).
 
-Code preparation alone does not complete these external steps or guarantee eligibility or a prize.
+The owner still needs to record/upload the public English YouTube video, review/paste the submission materials and private judge login into the correct Devpost fields, verify entrant/team/ownership declarations, and complete submission before the current official deadline. Provider credit balance and expiry must be checked separately to cover judging. Current inference success is not proof of future credits. The remaining-actions PDF gives the concrete sequence.
+
+Code preparation and a public deployment do not themselves complete a contest submission or guarantee eligibility or a prize.

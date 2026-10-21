@@ -33,6 +33,10 @@ assert.equal(
   true,
   "Prepared judge example is missing or changed",
 );
+assert.ok(
+  health.judge_demo.ai_requests < health.judge_demo.ai_daily_limit * 0.8,
+  "Judge AI allowance reached 80%; check capacity before it interrupts testing",
+);
 assert.equal(
   health.server_errors,
   0,
