@@ -1,9 +1,15 @@
 import configured from "../data/salary-schedule.json";
 import { z } from "zod";
-import { percentageTax, sumMoney } from "./money";
+import { percentageTax, sumMoney, compareMoney } from "./money";
 const schema = z.object({
   taxYear: z.literal(2025),
   source: z.string().trim().min(1),
+  surcharge: z
+    .object({
+      threshold: z.number().finite().nonnegative(),
+      rate: z.number().finite().min(0).max(100),
+    })
+    .optional(),
   bands: z
     .array(
       z.object({
@@ -37,6 +43,17 @@ export function calcSalaryWithSchedule(
       throw new Error(
         "Salary bands must be contiguous, ordered and non-overlapping.",
       );
+    const expectedBase = previous
+      ? sumMoney([
+          previous.baseTax.toFixed(2),
+          percentageTax(
+            (b.lower - previous.lower).toFixed(2),
+            previous.rate.toFixed(3),
+          ),
+        ])
+      : "0";
+    if (compareMoney(b.baseTax.toFixed(2), expectedBase) !== 0)
+      throw new Error("Salary base tax must agree with the preceding bands.");
   }
   if (schedule.bands.at(-1)?.upper !== null)
     throw new Error("Salary bands must include an open-ended final band.");
@@ -45,7 +62,7 @@ export function calcSalaryWithSchedule(
       annualTaxableIncome >= b.lower &&
       (b.upper === null || annualTaxableIncome <= b.upper),
   )!;
-  const annualTax = Number(
+  const baseTax = Number(
     sumMoney([
       band.baseTax.toFixed(2),
       percentageTax(
@@ -54,7 +71,18 @@ export function calcSalaryWithSchedule(
       ),
     ]),
   );
+  const surcharge =
+    schedule.surcharge && annualTaxableIncome > schedule.surcharge.threshold
+      ? Number(
+          percentageTax(baseTax.toFixed(2), schedule.surcharge.rate.toFixed(3)),
+        )
+      : 0;
+  const annualTax = Number(
+    sumMoney([baseTax.toFixed(2), surcharge.toFixed(2)]),
+  );
   return {
+    baseTax,
+    surcharge,
     annualTax,
     monthlyTax: Math.round((annualTax / 12) * 100) / 100,
     effectiveRate: annualTaxableIncome
@@ -64,10 +92,13 @@ export function calcSalaryWithSchedule(
   };
 }
 export const salaryScheduleAvailable = schema.safeParse(configured).success;
+export const MAX_SALARY_ESTIMATE = 150000000;
 export function calcAnnualSalaryWHT(annualTaxableIncome: number) {
   if (!salaryScheduleAvailable)
+    throw new Error("A verified numeric salary schedule is required.");
+  if (annualTaxableIncome > MAX_SALARY_ESTIMATE)
     throw new Error(
-      "The supplied references do not contain numeric salary slabs. Add a verified source schedule before calculating salary withholding.",
+      "Income above PKR 150 million requires a separate super-tax assessment.",
     );
   return calcSalaryWithSchedule(annualTaxableIncome, configured);
 }

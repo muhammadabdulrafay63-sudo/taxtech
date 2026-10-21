@@ -1,5 +1,6 @@
 /** Opt-in: run against a local development server and non-production database. */
 import dotenv from "dotenv";
+import { TAX_POLICY_VERSION } from "../lib/ty2025";
 import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
 import { randomUUID, randomBytes } from "node:crypto";
@@ -150,12 +151,44 @@ async function main() {
     "PATCH",
   );
   assert.equal(update.status, 200, JSON.stringify(update.data));
+  const employee = await post("/api/employees", {
+    companyId,
+    name: "Synthetic salary estimate",
+    monthlyGross: 100000,
+    annualProjected: 1200000,
+    taxYear: 2025,
+  });
+  assert.equal(employee.status, 201, JSON.stringify(employee.data));
+  const salaryPage = await fetch(`${base}/company/${companyId}/wht/salary`, {
+    headers: { cookie },
+  });
+  assert.equal(salaryPage.status, 200);
+  assert.match(await salaryPage.text(), /2500.00/);
   for (const txn of transactions) {
+    if (txn.account_code === "GOODS") {
+      const missingAssessment = await post("/api/transactions/review", {
+        id: txn.id,
+        decision: "approved",
+        ruleKey: rule.rule_key,
+        stRuleKey: null,
+        note: "Synthetic evidence without invoice assessment",
+      });
+      assert.equal(
+        missingAssessment.status,
+        400,
+        "Legacy review payload cannot approve without invoice evidence",
+      );
+    }
     const review = await post("/api/transactions/review", {
       id: txn.id,
       decision: txn.account_code === "GOODS" ? "approved" : "excluded",
       ruleKey: txn.account_code === "GOODS" ? rule.rule_key : null,
       stRuleKey: null,
+      taxAssessment: {
+        version: TAX_POLICY_VERSION,
+        eligibilityConfirmed: true,
+        incomeGross: "100000.00",
+      },
       note:
         txn.account_code === "GOODS"
           ? "Synthetic invoice verified as goods; filer status confirmed."

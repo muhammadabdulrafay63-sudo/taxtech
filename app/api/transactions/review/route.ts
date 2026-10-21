@@ -16,6 +16,7 @@ import {
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import { assertPeriodEditable } from "@/lib/workflow";
+import { validateTaxAssessment } from "@/lib/tax-assessment";
 const schema = z.object({
   id: z.string().uuid(),
   decision: z.enum(["approved", "excluded", "pending"]),
@@ -24,6 +25,7 @@ const schema = z.object({
   note: z.string().trim().min(3).max(1200),
   rememberVendor: z.boolean().default(false),
   expectedSuggestionAt: z.string().nullable().optional(),
+  taxAssessment: z.unknown().optional(),
 });
 export async function POST(req: Request) {
   const denied = await guardRoute(req);
@@ -33,20 +35,14 @@ export async function POST(req: Request) {
     return apiJSON({ error: "Please sign in." }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return apiJSON(
-      { error: "No company assigned." },
-      { status: 403 },
-    );
+    return apiJSON({ error: "No company assigned." }, { status: 403 });
   try {
     return await withCompanyWrite(writeCompany, async () => {
       try {
         const input = schema.parse(await req.json());
         const companyId = (session.user as { companyId?: string }).companyId;
         if (!companyId)
-          return apiJSON(
-            { error: "No company assigned." },
-            { status: 403 },
-          );
+          return apiJSON({ error: "No company assigned." }, { status: 403 });
         const [txn] = await db
           .select()
           .from(glTransactions)
@@ -58,10 +54,7 @@ export async function POST(req: Request) {
           )
           .limit(1);
         if (!txn)
-          return apiJSON(
-            { error: "Transaction not found." },
-            { status: 404 },
-          );
+          return apiJSON({ error: "Transaction not found." }, { status: 404 });
         await assertPeriodEditable(
           companyId,
           Number(txn.txnDate.slice(0, 4)),
@@ -81,6 +74,7 @@ export async function POST(req: Request) {
                 reviewNote: null,
                 reviewedAt: null,
                 reviewedBy: null,
+                taxAssessment: null,
               })
               .where(eq(glTransactions.id, txn.id)),
             db.insert(auditLogs).values({
@@ -130,6 +124,28 @@ export async function POST(req: Request) {
               );
           }
         }
+        let assessment;
+        try {
+          assessment =
+            input.decision === "approved"
+              ? validateTaxAssessment(
+                  input.taxAssessment,
+                  input.ruleKey,
+                  input.stRuleKey,
+                  txn.txnDate,
+                )
+              : null;
+        } catch (error) {
+          return apiJSON(
+            {
+              error:
+                error instanceof Error
+                  ? error.message
+                  : "Invalid tax assessment.",
+            },
+            { status: 400 },
+          );
+        }
         const ruleKey = input.decision === "excluded" ? null : input.ruleKey;
         const stRuleKey =
           input.decision === "excluded" ? null : input.stRuleKey;
@@ -154,6 +170,7 @@ export async function POST(req: Request) {
               autoTag: ruleKey,
               stWhtTag: stRuleKey,
               reviewStatus: input.decision,
+              taxAssessment: assessment,
               reviewNote: input.note,
               reviewedBy: session.user!.id!,
               reviewedAt: new Date(),

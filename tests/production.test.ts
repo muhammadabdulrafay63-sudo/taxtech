@@ -108,11 +108,8 @@ test("SECP calendar follows source month-end, first AGM and actual-date formulas
     19000,
   );
 });
-test("salary engine supports reviewed schedules and refuses absent source bands", () => {
-  assert.throws(
-    () => calcAnnualSalaryWHT(100000),
-    /do not contain numeric salary slabs/,
-  );
+test("salary engine supports reviewed schedules and rejects invalid bands", () => {
+  assert.equal(calcAnnualSalaryWHT(100000).annualTax, 0);
   const source = {
     taxYear: 2025,
     source: "Synthetic unit-test schedule, not tax law",
@@ -155,5 +152,8 @@ test("ledger rejects partially numeric text and normalized invalid timestamp dat
   assert.equal(result.rows.length, 1);
   assert.equal(result.rows[0].amount, "-1000.00");
   for (const debit of ["1000oops", "1,23"])
-    assert.throws(() => mapRows([{...base,debit}],mapping), /valid numbers/);
+    assert.throws(
+      () => mapRows([{ ...base, debit }], mapping),
+      /valid numbers/,
+    );
 });

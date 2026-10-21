@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import { neon } from "@neondatabase/serverless";
 import bcrypt from "bcryptjs";
 import { execFileSync } from "node:child_process";
+import { incomePolicies, salesPolicies } from "../lib/ty2025";
 dotenv.config({ path: ".env.local", quiet: true });
 async function main() {
   const errors: string[] = [];
@@ -46,6 +47,41 @@ async function main() {
     await db`SELECT to_regclass('public.operational_counters') IS NOT NULL AS ready`;
   if (!operations.ready)
     errors.push("Apply scripts/migrate-operations.ts before deployment.");
+  const [assessment] =
+    await db`SELECT count(*)::int n FROM information_schema.columns WHERE table_schema='public' AND table_name='gl_transactions' AND column_name='tax_assessment'`;
+  if (assessment.n !== 1)
+    errors.push("Apply the TY2025 configuration migration before deployment.");
+  const income =
+    await db`SELECT rule_key,rate_filer::text,rate_non_filer::text,recipient_type FROM wht_rules WHERE active=true`;
+  const sales =
+    await db`SELECT rule_key,st_rate::text,wht_factor::text,authority FROM st_wht_rules WHERE active=true`;
+  if (
+    income.length !== Object.keys(incomePolicies).length ||
+    income.some(
+      (r) =>
+        !incomePolicies[r.rule_key] ||
+        Number(r.rate_filer) !== Number(incomePolicies[r.rule_key].rateFiler) ||
+        Number(r.rate_non_filer) !==
+          Number(incomePolicies[r.rule_key].rateNonFiler) ||
+        r.recipient_type !== incomePolicies[r.rule_key].recipientType,
+    )
+  )
+    errors.push(
+      "Active income configuration differs from reviewed TY2025 cases.",
+    );
+  if (
+    sales.length !== Object.keys(salesPolicies).length ||
+    sales.some(
+      (r) =>
+        !salesPolicies[r.rule_key] ||
+        Number(r.st_rate) !== Number(salesPolicies[r.rule_key].stRate) ||
+        Number(r.wht_factor) !== Number(salesPolicies[r.rule_key].whtFactor) ||
+        r.authority !== salesPolicies[r.rule_key].authority,
+    )
+  )
+    errors.push(
+      "Active sales-tax configuration differs from reviewed TY2025 cases.",
+    );
   console.log(
     JSON.stringify(
       {

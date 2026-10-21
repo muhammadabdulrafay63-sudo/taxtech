@@ -1,24 +1,7 @@
-/**
- * Sales Tax WHT Engine
- *
- * Calculates ST WHT for a given company + period.
- *
- * Formula per transaction:
- *   st_amount  = gross_amount × (st_rate / 100)
- *   wht_amount = st_amount    × wht_factor
- *
- * wht_factor:
- *   0.2  (1/5th) — registered supplier buying goods (FBR SRO 660)
- *   1.0  (full)  — unregistered, special goods (steel/scrap/petroleum), all services
- *
- * Key differences from Income WHT:
- *   - One batch per AUTHORITY (FBR / SRB / PRA / KPRA / BRA) per month
- *   - Filed with ST return by 15th (not 7th challan like Income WHT)
- *   - Only transactions where stWhtTag is set are processed
- */
-
+/** Calculates only reviewed TY2025 invoice-based cases. Eligibility and invoice
+ * amounts are recorded by the reviewer; no generic provincial or registration fallback.
+ * Due dates and actual filing remain a separate compliance process. */
 import {
-  percentageTax,
   fractionOfTax,
   sumMoney,
   compareMoney,
@@ -44,6 +27,9 @@ import {
   vendors,
 } from "@/db/schema";
 import { and, eq, inArray, sql } from "drizzle-orm";
+import { assertSalesPolicy } from "./ty2025";
+import { validateTaxAssessment } from "./tax-assessment";
+import { hasRecipientEvidence } from "./tax-policy";
 
 export async function calculateSTWHT(
   companyId: string,
@@ -66,6 +52,9 @@ export async function calculateSTWHT(
       amount: glTransactions.amount,
       vendorId: glTransactions.vendorId,
       stWhtTag: glTransactions.stWhtTag,
+      autoTag: glTransactions.autoTag,
+      txnDate: glTransactions.txnDate,
+      taxAssessment: glTransactions.taxAssessment,
     })
     .from(glTransactions)
     .where(
@@ -132,7 +121,12 @@ export async function calculateSTWHT(
   const vendorData =
     vendorIds.length > 0
       ? await db
-          .select({ id: vendors.id, isStRegistered: vendors.isStRegistered })
+          .select({
+            id: vendors.id,
+            isStRegistered: vendors.isStRegistered,
+            recipientType: vendors.recipientType,
+            recipientTypeVerifiedAt: vendors.recipientTypeVerifiedAt,
+          })
           .from(vendors)
           .where(inArray(vendors.id, vendorIds))
       : [];
@@ -169,18 +163,36 @@ export async function calculateSTWHT(
           ? "unregistered"
           : "unknown";
 
-    // Determine effective whtFactor based on registration status
-    // If rule applies_to = "registered" but vendor is unregistered → use full rate
-    let whtFactor = parseFloat(rule.whtFactor);
-    if (
-      rule.appliesTo === "registered" &&
-      stRegisteredStatus === "unregistered"
-    ) {
-      whtFactor = 1.0; // bump to full WHT for unregistered
-    }
-
     if (compareMoney(txn.amount, "0") <= 0) continue;
+    let assessment;
+    try {
+      assertSalesPolicy(rule, txn.txnDate);
+      assessment = validateTaxAssessment(
+        txn.taxAssessment,
+        txn.autoTag,
+        rule.ruleKey,
+        txn.txnDate,
+      );
+    } catch (error) {
+      throw new WorkflowError((error as Error).message);
+    }
+    if (stRegisteredStatus !== "registered")
+      throw new WorkflowError(
+        "These invoice-based sales-tax cases require a verified registered supplier. Unregistered or unknown status requires separate specialist treatment.",
+      );
+    const requiredRecipient =
+      rule.ruleKey === "ty25_pra_registered_noncompany"
+        ? "individual_aop"
+        : rule.ruleKey === "ty25_pra_active_company"
+          ? "company"
+          : "all";
+    if (!hasRecipientEvidence(requiredRecipient, vendor))
+      throw new WorkflowError(
+        "The verified provider type does not match this PRA case. Check whether the provider is a company or individual/AOP before calculating.",
+      );
+    const whtFactor = Number(rule.whtFactor);
     if (
+      !Number.isFinite(Number(rule.stRate)) ||
       Number(rule.stRate) < 0 ||
       Number(rule.stRate) > 100 ||
       !Number.isFinite(whtFactor) ||
@@ -190,7 +202,7 @@ export async function calculateSTWHT(
       throw new WorkflowError(
         "A configured sales-tax rate or factor is invalid.",
       );
-    const stAmount = percentageTax(txn.amount, rule.stRate);
+    const stAmount = assessment!.salesTax!;
     const whtAmount = fractionOfTax(stAmount, whtFactor.toFixed(4));
 
     newLines.push({
@@ -201,14 +213,14 @@ export async function calculateSTWHT(
       ruleId: rule.id,
       periodYear: year,
       periodMonth: month,
-      grossAmount: txn.amount,
+      grossAmount: assessment!.salesBase!,
       stRate: rule.stRate,
       stAmount,
       whtFactor: whtFactor.toFixed(4),
       whtAmount,
       authority: rule.authority,
       stRegisteredStatus,
-      needsReview: stRegisteredStatus === "unknown",
+      needsReview: false,
     });
   }
 

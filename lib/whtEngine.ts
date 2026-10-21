@@ -9,7 +9,8 @@ import {
   recordCalculationInputs,
 } from "./calculation-inputs";
 import { hasRecipientEvidence } from "./tax-policy";
-import sourceMap from "../data/income-source-map.json";
+import { assertIncomePolicy } from "./ty2025";
+import { validateTaxAssessment } from "./tax-assessment";
 import { randomUUID } from "node:crypto";
 import {
   assertCalculationEditable,
@@ -62,8 +63,10 @@ export async function calculateWHT(
       id: glTransactions.id,
       amount: glTransactions.amount,
       autoTag: glTransactions.autoTag,
+      stWhtTag: glTransactions.stWhtTag,
       vendorId: glTransactions.vendorId,
       txnDate: glTransactions.txnDate,
+      taxAssessment: glTransactions.taxAssessment,
     })
     .from(glTransactions)
     .where(
@@ -95,6 +98,7 @@ export async function calculateWHT(
           .select({
             id: vendors.id,
             isFiler: vendors.isFiler,
+            isNonResident: vendors.isNonResident,
             isExempt: vendors.isExempt,
             exemptionCertExpiry: vendors.exemptionCertExpiry,
             recipientType: vendors.recipientType,
@@ -139,36 +143,30 @@ export async function calculateWHT(
       throw new WorkflowError(
         `An approved entry uses an inactive or missing rule: ${txn.autoTag}. Correct its category before calculating.`,
       );
-    if (!rule.isTiered && !rule.usesSlabRates && !(rule.ruleKey in sourceMap))
-      throw new WorkflowError(
-        "This category has no supporting rate in the supplied reference files. Obtain a source schedule before calculating it.",
-      );
-    if (rule.isTiered)
-      throw new WorkflowError(
-        "Tiered rent calculations require specialist handling. This rule is not supported by the flat-rate batch engine.",
-      );
-
-    // Salary handled separately
-    if (rule.usesSlabRates) {
-      linesSkipped++;
-      warnings.push(
-        "Salary entries are excluded. The supplied references lack numeric salary slabs; obtain a verified salary schedule before calculating their tax.",
-      );
-      continue;
+    try {
+      assertIncomePolicy(rule);
+    } catch (error) {
+      throw new WorkflowError((error as Error).message);
     }
-
-    // Threshold check
-    const threshold = rule.thresholdAmount ?? "0";
-    if (
-      compareMoney(threshold, "0") > 0 &&
-      compareMoney(txn.amount, threshold) < 0
-    ) {
-      linesSkipped++;
-      continue;
+    let assessment;
+    try {
+      assessment = validateTaxAssessment(
+        txn.taxAssessment,
+        rule.ruleKey,
+        txn.stWhtTag,
+        txn.txnDate,
+      );
+    } catch (error) {
+      throw new WorkflowError((error as Error).message);
     }
+    const taxableGross = assessment!.incomeGross!;
 
     // Vendor exemption check
     const vendor = txn.vendorId ? vendorMap.get(txn.vendorId) : undefined;
+    if (vendor?.isNonResident || vendor?.recipientType === "non_resident")
+      throw new WorkflowError(
+        "Resident withholding cases cannot be used for a non-resident recipient. Obtain specialist treaty/permanent-establishment treatment.",
+      );
     if (
       vendor &&
       rule.recipientType !== "all" &&
@@ -178,6 +176,10 @@ export async function calculateWHT(
         "An approved category does not match its vendor recipient type. Correct the category or verified vendor details.",
       );
     if (vendor?.isExempt) {
+      if (!vendor.exemptionCertExpiry)
+        throw new WorkflowError(
+          "An exemption has no certificate expiry date. Verify its validity and scope before calculating.",
+        );
       if (
         vendor.exemptionCertExpiry &&
         new Date(vendor.exemptionCertExpiry) < new Date(txn.txnDate!)
@@ -210,10 +212,10 @@ export async function calculateWHT(
         "A configured tax rate is invalid. Ask an administrator to correct it.",
       );
     const whtAmount = percentageTax(
-      txn.amount,
+      taxableGross,
       taxStatus === "filer" ? rule.rateFiler : rule.rateNonFiler,
     );
-    grossValues.push(txn.amount);
+    grossValues.push(taxableGross);
     taxValues.push(whtAmount);
     const unresolved =
       taxStatus === "unknown" ||
@@ -228,7 +230,7 @@ export async function calculateWHT(
       ruleId: rule.id,
       periodYear: year,
       periodMonth: month,
-      grossAmount: txn.amount,
+      grossAmount: taxableGross,
       whtRate: rate.toString(),
       whtAmount,
       taxStatus,

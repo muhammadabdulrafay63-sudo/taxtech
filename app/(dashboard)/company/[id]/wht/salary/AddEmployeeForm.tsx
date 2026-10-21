@@ -79,8 +79,8 @@ export function AddEmployeeForm({ companyId }: { companyId: string }) {
         </DialogHeader>
         <form onSubmit={save} className="space-y-4">
           <p className="text-xs text-muted-foreground">
-            Tax Year 2025 — Finance Act 2024 schedules supplied for this
-            release.
+            Tax Year 2025 salary-only estimate. Enter projected taxable salary
+            after checking taxable benefits and exemptions.
           </p>
           <div>
             <Label>Full Name *</Label>
@@ -124,11 +124,13 @@ export function AddEmployeeForm({ companyId }: { companyId: string }) {
               />
             </div>
             <div>
-              <Label>Annual Projected (optional)</Label>
+              <Label>Projected annual taxable salary (PKR) *</Label>
               <Input
+                required
                 type="number"
                 min="0"
-                placeholder="Override if bonus etc."
+                step="0.01"
+                placeholder="Include taxable bonuses and benefits"
                 value={form.annualProjected}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, annualProjected: e.target.value }))

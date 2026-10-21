@@ -1,4 +1,4 @@
-import sourceMap from "@/data/income-source-map.json";
+import { incomePolicies } from "@/lib/ty2025";
 import { guardRoute } from "@/lib/route-guard";
 import {
   withCompanyWrite,
@@ -31,10 +31,7 @@ export async function POST(req: Request) {
     return apiJSON({ error: "Please sign in." }, { status: 401 });
   const writeCompany = (session!.user as { companyId?: string }).companyId;
   if (!writeCompany)
-    return apiJSON(
-      { error: "No company assigned." },
-      { status: 403 },
-    );
+    return apiJSON({ error: "No company assigned." }, { status: 403 });
   try {
     return await withCompanyWrite(writeCompany, async () => {
       try {
@@ -42,10 +39,7 @@ export async function POST(req: Request) {
         if (
           !canAccessCompany(session.user as { companyId?: string }, companyId)
         )
-          return apiJSON(
-            { error: "Access denied." },
-            { status: 403 },
-          );
+          return apiJSON({ error: "Access denied." }, { status: 403 });
         const entries = await db
           .select()
           .from(glTransactions)
@@ -104,7 +98,7 @@ export async function POST(req: Request) {
             recipientType:
               evidence.find((e) => e.id === t.id)?.recipientType ?? null,
           })),
-          rules.filter((r) => r.ruleKey in sourceMap),
+          rules.filter((r) => r.ruleKey in incomePolicies),
         );
         const suggestions = enforceRecipientEvidence(
           validateSuggestions(

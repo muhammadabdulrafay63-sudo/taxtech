@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { db } from "@/db";
 import { auditLogs } from "@/db/schema";
 import { sql, and, eq, desc } from "drizzle-orm";
+import { TAX_POLICY_VERSION } from "./ty2025";
 
 /** Shared SQL keeps application and commit-time fingerprints identical. */
 export function calculationInputsQuery(
@@ -17,6 +18,7 @@ export function calculationInputsQuery(
       : `${year}-${String(month + 1).padStart(2, "0")}-01`;
   const rules = kind === "income" ? sql`wht_rules` : sql`st_wht_rules`;
   return sql`SELECT jsonb_build_object(
+    'policy', ${TAX_POLICY_VERSION}::text,
     'transactions', (SELECT coalesce(jsonb_agg(to_jsonb(t) ORDER BY t.id),'[]'::jsonb) FROM gl_transactions t WHERE t.company_id=${companyId}::uuid AND t.txn_date >= ${start}::date AND t.txn_date < ${end}::date),
     'vendors', (SELECT coalesce(jsonb_agg(to_jsonb(v) ORDER BY v.id),'[]'::jsonb) FROM vendors v WHERE v.company_id=${companyId}::uuid AND EXISTS(SELECT 1 FROM gl_transactions t WHERE t.company_id=${companyId}::uuid AND t.vendor_id=v.id AND t.txn_date >= ${start}::date AND t.txn_date < ${end}::date)),
     'rules', (SELECT coalesce(jsonb_agg(to_jsonb(r) ORDER BY r.id),'[]'::jsonb) FROM ${rules} r)

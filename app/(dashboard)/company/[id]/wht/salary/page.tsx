@@ -2,7 +2,11 @@ import { requireCompany } from "@/lib/page-access";
 import { db } from "@/db";
 import { employees } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { salaryScheduleAvailable, calcAnnualSalaryWHT } from "@/lib/salaryWHT";
+import {
+  salaryScheduleAvailable,
+  calcAnnualSalaryWHT,
+  MAX_SALARY_ESTIMATE,
+} from "@/lib/salaryWHT";
 import { AddEmployeeForm } from "./AddEmployeeForm";
 export default async function SalaryWHTPage({
   params,
@@ -23,39 +27,41 @@ export default async function SalaryWHTPage({
           salaryScheduleAvailable &&
           e.taxYear === 2025 &&
           e.isActive &&
-          Number(e.annualProjected ?? e.monthlyGross ?? 0) >= 0,
+          e.annualProjected !== null &&
+          Number(e.annualProjected) >= 0 &&
+          Number(e.annualProjected) <= MAX_SALARY_ESTIMATE,
       )
-      .map((e) => [
-        e.id,
-        calcAnnualSalaryWHT(
-          e.annualProjected != null
-            ? Number(e.annualProjected)
-            : Number(e.monthlyGross ?? 0) * 12,
-        ),
-      ]),
+      .map((e) => [e.id, calcAnnualSalaryWHT(Number(e.annualProjected))]),
   );
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">
-            Salary records — Section 149
+            Salary estimates - Tax Year 2025
           </h1>
           <p className="text-sm text-muted-foreground">
-            Tax Year 2025 reference basis
+            Verified TY2025 salary bands, including the 10% tax surcharge above
+            PKR 10 million.
           </p>
         </div>
         <AddEmployeeForm companyId={id} />
       </div>
+      <p className="rounded-lg border bg-background p-4 text-sm">
+        These are estimates for salary-only taxable income. Enter projected
+        taxable salary after checking taxable benefits and exemptions. Monthly
+        estimates divide annual tax by 12; actual payroll needs adjustment for
+        tax already deducted, remaining pay periods, tax credits and other
+        income. Income above PKR 150 million needs a separate super-tax
+        assessment. Salary entries are not part of the vendor withholding batch.
+      </p>
       {!salaryScheduleAvailable && (
         <p
           role="status"
           className="rounded-lg border bg-background p-4 text-sm"
         >
-          Your supplied income-tax workbook refers to slab rates but contains no
-          numeric salary bands. Employee records can be saved; salary
-          withholding totals remain unavailable until a verified numeric
-          schedule is supplied. Unverified legacy calculations are not used.
+          The source schedule failed validation. Estimates are unavailable until
+          the verified TY2025 salary schedule is restored.
         </p>
       )}
       <div className="overflow-x-auto rounded-lg border bg-background">
@@ -67,7 +73,7 @@ export default async function SalaryWHTPage({
               <th className="p-3 text-right">Projected annual</th>
               <th className="p-3">Tax year</th>
               <th className="p-3">Status</th>
-              <th className="p-3">Withholding</th>
+              <th className="p-3">Monthly estimate</th>
             </tr>
           </thead>
           <tbody>
@@ -90,7 +96,7 @@ export default async function SalaryWHTPage({
                   {calculations.has(e.id)
                     ? `PKR ${calculations.get(e.id)!.monthlyTax.toFixed(2)} / month`
                     : salaryScheduleAvailable
-                      ? "Unsupported year or inactive"
+                      ? "Missing input, inactive, unsupported year or specialist assessment required"
                       : "Source schedule required"}
                 </td>
               </tr>

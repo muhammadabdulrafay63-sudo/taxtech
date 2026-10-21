@@ -14,6 +14,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { needsAIReview, type AISuggestion } from "@/lib/review-policy";
 import { VendorAssignment, type VendorOption } from "./VendorAssignment";
+import {
+  TAX_POLICY_VERSION,
+  incomePolicies,
+  salesPolicies,
+} from "@/lib/ty2025";
+import type { TaxAssessment } from "@/lib/tax-assessment";
 type Entry = {
   id: string;
   txnDate: string;
@@ -28,6 +34,7 @@ type Entry = {
   reviewedAt: string | null;
   aiSuggestion: AISuggestion | null;
   vendorId: string | null;
+  taxAssessment: TaxAssessment | null;
 };
 type Rule = { ruleKey: string; description: string };
 export function LedgerReview({
@@ -139,6 +146,12 @@ export function LedgerReview({
           Upload ledger
         </Link>
       </div>
+      <p className="rounded-lg border p-3 text-sm text-muted-foreground">
+        Only the listed TY2025 cases are supported. If no case matches a taxable
+        payment, leave it pending and obtain specialist treatment. Do not use
+        Not applicable or exclusion to bypass an unsupported case. Enter invoice
+        amounts and identify the evidence in your review note.
+      </p>
       {periods.length === 0 ? (
         <div className="rounded-xl border bg-background p-10 text-center">
           <h2 className="font-medium">Start with a ledger</h2>
@@ -313,9 +326,21 @@ function ReviewEntry({
 }) {
   const router = useRouter();
   const [income, setIncome] = useState(
-    row.aiSuggestion?.ruleKey ?? row.autoTag ?? "",
+    rules.some((r) => r.ruleKey === (row.aiSuggestion?.ruleKey ?? row.autoTag))
+      ? (row.aiSuggestion?.ruleKey ?? row.autoTag ?? "")
+      : "",
   );
-  const [sales, setSales] = useState(row.stWhtTag ?? "");
+  const [sales, setSales] = useState(
+    stRules.some((r) => r.ruleKey === row.stWhtTag) ? row.stWhtTag! : "",
+  );
+  const [incomeGross, setIncomeGross] = useState(
+    row.taxAssessment?.incomeGross ?? row.amount,
+  );
+  const [salesBase, setSalesBase] = useState(
+    row.taxAssessment?.salesBase ?? row.amount,
+  );
+  const [salesTax, setSalesTax] = useState(row.taxAssessment?.salesTax ?? "");
+  const [eligibility, setEligibility] = useState(false);
   const [note, setNote] = useState("");
   const [remember, setRemember] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -339,6 +364,12 @@ function ReviewEntry({
               : note,
           rememberVendor: remember,
           expectedSuggestionAt: row.aiSuggestion?.generatedAt ?? null,
+          taxAssessment: {
+            version: TAX_POLICY_VERSION,
+            eligibilityConfirmed: eligibility,
+            ...(income ? { incomeGross } : {}),
+            ...(sales ? { salesBase, salesTax } : {}),
+          },
         }),
       });
       const data = await res.json();
@@ -424,7 +455,10 @@ function ReviewEntry({
                 aria-label={`Income treatment for ${row.description}`}
                 className="block min-w-0 max-w-full w-full rounded-md border bg-background p-2 text-sm"
                 value={income}
-                onChange={(e) => setIncome(e.target.value)}
+                onChange={(e) => {
+                  setIncome(e.target.value);
+                  setEligibility(false);
+                }}
                 disabled={busy || disabled}
               >
                 <option value="">Not applicable</option>
@@ -441,7 +475,10 @@ function ReviewEntry({
                 aria-label={`Sales tax treatment for ${row.description}`}
                 className="block min-w-0 max-w-full w-full rounded-md border bg-background p-2 text-sm"
                 value={sales}
-                onChange={(e) => setSales(e.target.value)}
+                onChange={(e) => {
+                  setSales(e.target.value);
+                  setEligibility(false);
+                }}
                 disabled={busy || disabled}
               >
                 <option value="">Not applicable</option>
@@ -453,6 +490,87 @@ function ReviewEntry({
               </select>
             </label>
           </div>
+          {(income || sales) && (
+            <fieldset className="space-y-3 rounded-lg border p-3">
+              <legend className="px-1 text-sm font-medium">
+                Invoice and eligibility check - TY2025
+              </legend>
+              {income && (
+                <>
+                  <p className="text-xs text-muted-foreground">
+                    {incomePolicies[income]?.notes}
+                  </p>
+                  <label className="block text-xs font-medium">
+                    Income-tax gross payment (include sales tax for section 153)
+                    <input
+                      aria-label={`Income gross for ${row.description}`}
+                      type="number"
+                      min="0.01"
+                      step="0.01"
+                      required
+                      value={incomeGross}
+                      onChange={(e) => {
+                        setIncomeGross(e.target.value);
+                        setEligibility(false);
+                      }}
+                      className="mt-1 block w-full rounded-md border p-2"
+                    />
+                  </label>
+                </>
+              )}
+              {sales && (
+                <>
+                  <p className="text-xs text-muted-foreground">
+                    {salesPolicies[sales]?.notes}
+                  </p>
+                  <label className="block text-xs font-medium">
+                    Sales-tax value excluding tax
+                    <input
+                      aria-label={`Sales base for ${row.description}`}
+                      type="number"
+                      min="0.01"
+                      step="0.01"
+                      required
+                      value={salesBase}
+                      onChange={(e) => {
+                        setSalesBase(e.target.value);
+                        setEligibility(false);
+                      }}
+                      className="mt-1 block w-full rounded-md border p-2"
+                    />
+                  </label>
+                  <label className="block text-xs font-medium">
+                    Sales tax shown separately on invoice
+                    <input
+                      aria-label={`Invoice sales tax for ${row.description}`}
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      required
+                      value={salesTax}
+                      onChange={(e) => {
+                        setSalesTax(e.target.value);
+                        setEligibility(false);
+                      }}
+                      className="mt-1 block w-full rounded-md border p-2"
+                    />
+                  </label>
+                </>
+              )}
+              <label className="flex items-start gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  checked={eligibility}
+                  required
+                  onChange={(e) => setEligibility(e.target.checked)}
+                />
+                I checked payment-date tax status, withholding-agent
+                eligibility, annual aggregate thresholds, jurisdiction and
+                exclusions. The invoice supports these amounts and the selected
+                category. My review note identifies the evidence.
+              </label>
+            </fieldset>
+          )}
           <label className="block space-y-1 text-xs font-medium">
             Review note
             <textarea
@@ -485,7 +603,12 @@ function ReviewEntry({
           <div className="flex flex-wrap gap-2">
             <Button
               type="submit"
-              disabled={busy || disabled || note.trim().length < 3}
+              disabled={
+                busy ||
+                disabled ||
+                note.trim().length < 3 ||
+                (!!(income || sales) && !eligibility)
+              }
             >
               {busy ? (
                 <Loader2 className="size-4 animate-spin" />

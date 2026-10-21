@@ -15,75 +15,19 @@ function normalise(s: string): string {
     .trim();
 }
 
-// ─── ST WHT auto-tag derivation ───────────────────────────────────────────────
-//
-// Income WHT tag + vendor province → ST WHT rule key
-//
-// Goods (FBR national):
-//   153_goods_*  → fbr_goods_registered   (engine adjusts to full WHT if STRN unknown at calc time)
-//
-// Services (provincial — jurisdiction = where service is rendered):
-//   153_services_* / 153_contracts_* / 236_advertising_* →
-//     Sindh   → srb_services_general
-//     Punjab  → pra_services_general
-//     ICT     → fbr_ict_services_general
-//     KPK     → kpra_services_general
-//     Baloch  → bra_services_general
-//     unknown → null  (wrong authority = compliance risk, leave for manual tagging)
-//
-// No ST WHT:
-//   155_* (rent), 149_* (salary), 233_* (bank), 234_* (transport), 231_* (indenting), 232_*
-//
-
-const PROVINCE_TO_SERVICES_RULE: Record<string, string> = {
-  sindh: "srb_services_general",
-  karachi: "srb_services_general",
-  punjab: "pra_services_general",
-  lahore: "pra_services_general",
-  ict: "fbr_ict_services_general",
-  islamabad: "fbr_ict_services_general",
-  kpk: "kpra_services_general",
-  "khyber pakhtunkhwa": "kpra_services_general",
-  peshawar: "kpra_services_general",
-  balochistan: "bra_services_general",
-  quetta: "bra_services_general",
-};
-
-// Sections that attract ST WHT for services/contracts
-const SERVICES_SECTIONS = [
-  "153_services_",
-  "153_contracts_",
-  "236_advertising_",
-];
-
-// Sections that never attract ST WHT
-const NO_ST_PREFIXES = ["149_", "155_", "233_", "234_", "231_", "232_", "149"];
-
+// Sales-tax applicability cannot be inferred from vendor province or income category.
+// Reuse only a reviewed case; every entry still requires a fresh invoice assessment.
+import { salesPolicies } from "./ty2025";
 export function deriveStWhtTag(
   incomeTag: string | null,
-  vendorProvince: string | null,
+  _vendorProvince: string | null,
   vendorPreferredStRule: string | null,
 ): string | null {
-  if (!incomeTag) return null;
-
-  // ── Vendor memory wins ───────────────────────────────────────────────────
-  if (vendorPreferredStRule) return vendorPreferredStRule;
-
-  // ── No ST WHT sections ───────────────────────────────────────────────────
-  if (NO_ST_PREFIXES.some((p) => incomeTag.startsWith(p))) return null;
-
-  // ── Goods → always FBR national ─────────────────────────────────────────
-  if (incomeTag.startsWith("153_goods_")) return "fbr_goods_registered";
-
-  // ── Services / contracts / advertising → provincial ──────────────────────
-  const isServices = SERVICES_SECTIONS.some((p) => incomeTag.startsWith(p));
-  if (isServices) {
-    if (!vendorProvince) return null; // unknown province — leave for manual tagging
-    const stRule = PROVINCE_TO_SERVICES_RULE[normalise(vendorProvince)];
-    return stRule ?? null;
-  }
-
-  return null;
+  return incomeTag &&
+    vendorPreferredStRule &&
+    vendorPreferredStRule in salesPolicies
+    ? vendorPreferredStRule
+    : null;
 }
 
 // ─── Three-layer tagging engine ───────────────────────────────────────────────

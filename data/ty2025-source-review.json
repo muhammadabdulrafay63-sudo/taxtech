@@ -1,0 +1,64 @@
+{
+  "policyVersion": "TY2025-2026-10-21.1",
+  "reviewedOn": "2026-10-21",
+  "period": {
+    "start": "2024-07-01",
+    "end": "2025-06-30"
+  },
+  "sourceWorkbooks": [
+    {
+      "file": "TaxTech_WHT_Rate_Database.xlsx",
+      "sha256": "1a42289f81027857a437b8616c3a4801d88772cb33ba093698f6a1e5176e39bf"
+    },
+    {
+      "file": "Sales_Tax_WHT_Database.xlsx",
+      "sha256": "457c25cfb89f39656c81ad0611d4793bebf706757b8c4dc3158d31c71cf70ee6"
+    },
+    {
+      "file": "GL- Sample Sheet.xlsx",
+      "sha256": "d22b626cc109d8a74428364bc73a871fb45184ee812056a44443e76d576a861e"
+    },
+    {
+      "file": "TaxTech_SECP_Compliance_Database.xlsx",
+      "sha256": "657e1cbe4ab16432b88c0781012d5115d30100fa1a105d9039a05867468bf4db"
+    }
+  ],
+  "officialSources": [
+    {
+      "id": "income-ordinance",
+      "url": "https://download1.fbr.gov.pk/Docs/2024751675120641IncomeTaxOrdinance,2001-amended-upto30.06.2024.pdf",
+      "sha256": "75fc818aa2d61cf8a39655056e182df6406e8a6ac4f30942553cd4706ce3849b",
+      "scope": "Sections 4AB, 153, 155, 156, 156A; First Schedule Part I Division I and Part III Divisions III, V, VI, VIA; Tenth Schedule."
+    },
+    {
+      "id": "fbr-sales-act",
+      "url": "https://download1.fbr.gov.pk/Docs/20247231874252122SalesTaxAct,1990updatedbyFinanceAct,2024upto30.06.2024--12.07.2024.pdf",
+      "sha256": "de94f62b2d1941e5937b7321589f8462951601f07be877b9201b9549c3945841",
+      "scope": "Section 3 and Eleventh Schedule, including 2024 exclusion (viii)."
+    },
+    {
+      "id": "srb-withholding",
+      "url": "https://www.srb.gos.pk/srb/wp-content/uploads/2024/09/Sindh-Sales-Tax-Special-Procedure-Withholding-Rules-2014-Updated-upto-1st-July-2024-EOE-4.pdf",
+      "sha256": "858b93c6a9f9cd079a848a4179dc32cea86b7a019de2b96bb2be023f16b5d97d",
+      "scope": "Rule 3(3) and 3(4A), ordinary separately-taxed invoice cases only. Scanned PDF visually reviewed. File includes later July 2024 notes; transport is excluded from enabled cases."
+    },
+    {
+      "id": "pra-withholding",
+      "url": "https://pra.punjab.gov.pk/Downloads/THE-PUNJAB-SALES-TAX-ON-SERVICES-ACT-2012-17th-Edition-2026-2027.pdf",
+      "sha256": "51c99e12561b40245858b08f2995f51a7b1da1540fb10bca2c6c18242648918a",
+      "scope": "Historical rules 2015, rules 3 and 5, PDF 405-409. Later compilation used only for historical text/dated footnotes. Rule 5A dated 10 July 2025 is not applied to TY2025."
+    },
+    {
+      "id": "kpra-withholding",
+      "url": "https://kpra.gov.pk/wp-content/uploads/2025/01/KP-withholding-regulations-2024.pdf",
+      "sha256": "040a6934f093d6256c5e57dacb9b9c525a04f6bd007a4a167ee157b4967301df",
+      "scope": "Paragraphs 4-6. Only residual ordinary standard-rate case; conservatively available from gazette publication 3 January 2025. Earlier dates unsupported."
+    },
+    {
+      "id": "bra-withholding",
+      "url": "https://bra.gob.pk/NewsDirectory/Downloads/FW__BRA_BST_Rules_and_Withholding_Rules_have_been_updated%2C_upload_the_new_files._Please/Balochistan_ST_Special_Procedure_%28WH%29_Rules_2018.pdf",
+      "sha256": "a79b8da95047b299ee0a5a74bb15727230180b4c24e78c007e80b4c1b769dac9",
+      "scope": "Rule 3(3), ordinary registered filer invoice case; excludes all rule 3(1), (4), (5), (5A) and special service/rate cases."
+    }
+  ]
+}

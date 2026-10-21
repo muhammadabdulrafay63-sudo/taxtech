@@ -1,4 +1,4 @@
-import sourceMap from "@/data/income-source-map.json";
+import { incomePolicies, salesPolicies } from "@/lib/ty2025";
 import { requireCompany } from "@/lib/page-access";
 import { db } from "@/db";
 import {
@@ -117,8 +117,8 @@ export default async function ReviewPage({
         reviewedAt: t.reviewedAt?.toISOString() ?? null,
         createdAt: undefined,
       }))}
-      rules={rules.filter((r) => r.ruleKey in sourceMap)}
-      stRules={stRules}
+      rules={rules.filter((r) => r.ruleKey in incomePolicies)}
+      stRules={stRules.filter((r) => r.ruleKey in salesPolicies)}
       batch={batches[0] ?? null}
       aiAvailable={!!process.env.NEBIUS_API_KEY}
     />

@@ -14,6 +14,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 import type { AISuggestion } from "../lib/review-policy";
+import type { TaxAssessment } from "../lib/tax-assessment";
 
 // ─── Auth (NextAuth v5 required tables) ──────────────────────────────────────
 
@@ -148,6 +149,7 @@ export const glTransactions = pgTable(
     stWhtTag: text("st_wht_tag"), // ST WHT rule_key (null = not subject to ST WHT)
     reviewStatus: text("review_status").notNull().default("pending"),
     reviewNote: text("review_note"),
+    taxAssessment: jsonb("tax_assessment").$type<TaxAssessment>(),
     reviewedBy: uuid("reviewed_by").references(() => users.id),
     reviewedAt: timestamp("reviewed_at", { mode: "date" }),
     aiSuggestion: jsonb("ai_suggestion").$type<AISuggestion>(),

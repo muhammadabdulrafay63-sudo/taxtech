@@ -1,1 +1,14 @@
-{"taxYear":2025,"source":null,"bands":[],"status":"Numeric bands not provided in the supplied reference workbooks."}
+{
+  "taxYear": 2025,
+  "source": "Income Tax Ordinance 2001 amended up to 30 June 2024, First Schedule Part I Division I(2), PDF pages 504-505; section 4AB surcharge. https://download1.fbr.gov.pk/Docs/2024751675120641IncomeTaxOrdinance,2001-amended-upto30.06.2024.pdf",
+  "surcharge": { "threshold": 10000000, "rate": 10 },
+  "bands": [
+    { "lower": 0, "upper": 600000, "rate": 0, "baseTax": 0 },
+    { "lower": 600000, "upper": 1200000, "rate": 5, "baseTax": 0 },
+    { "lower": 1200000, "upper": 2200000, "rate": 15, "baseTax": 30000 },
+    { "lower": 2200000, "upper": 3200000, "rate": 25, "baseTax": 180000 },
+    { "lower": 3200000, "upper": 4100000, "rate": 30, "baseTax": 430000 },
+    { "lower": 4100000, "upper": null, "rate": 35, "baseTax": 700000 }
+  ],
+  "scope": "Salary-only projected taxable income estimate. Monthly value is annual tax / 12, not a payroll true-up or filing amount. Credits, other income, previous withholding, marginal relief and super tax require separate assessment."
+}
