@@ -1,5 +1,7 @@
 # Client operations
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 ## Backup and recovery
 
 `Encrypted database backup` runs on GitHub Actions every six hours, at minute 43. Each run uses a dedicated SELECT-only Neon role, takes a PostgreSQL 18 custom-format snapshot, and restores it into disposable PostgreSQL 18 before encrypting it with age. Only ciphertext and its checksum manifest are uploaded. Artifacts expire after 90 days. GitHub scheduling is best effort; six hours is the target interval, not an SLA. Public-repository schedules can be disabled after 60 days without repository activity: review workflow activity weekly and before onboarding.
@@ -32,4 +34,4 @@ Before promoting a release, run lint/type checking/unit tests/build and the synt
 
 Vercel Hobby is restricted to personal, non-commercial use. Upgrade to an appropriate commercial plan before serving paid/client business usage; no upgrade or paid subscription is authorized by this setup.
 
-The active calculation window remains July 2024–June 2025. Official current-year reference discovery is documented separately. Discovery of a new rate card does not make the existing unversioned rule master suitable for another tax year. Do not expand the supported period without reviewed, versioned income/sales schedules, source evidence, boundary tests, and historical-batch regression checks.
+TaxTech’s demo configuration uses FY2024–25 (Tax Year 2025), July 2024–June 2025. Tax constants can be modified for any tax year together with its applicable rules and effective dates; see [configuration instructions](tax-year-configuration.md). Official current-year reference discovery is documented separately. Discovery of a new rate card does not make the existing unversioned rule master suitable for another tax year. Do not expand the supported period without reviewed, versioned income/sales schedules, source evidence, boundary tests, and historical-batch regression checks.

@@ -1,5 +1,7 @@
 # Nebius x NVIDIA Global AI Hackathon — submission preparation
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 ## Track and project description
 
 **Best Apps and Agents.** TaxTech helps accountants turn a general ledger into a reviewed withholding-tax draft. Rule-based suggestions handle known account mappings and vendor preferences. NVIDIA Nemotron on Nebius Token Factory reviews unclear descriptions, explains the proposed category and asks for missing information. The accountant chooses income and sales-tax treatment and records approval or exclusion before the deterministic engine can calculate a batch. A contextual assistant guides users through mapping, review, vendor verification and batch generation.
@@ -25,12 +27,12 @@ Preserve actual commits and dates as evidence. The organizer determines whether 
 
 ## Video outline (target 2 minutes 40 seconds)
 
-0:00–0:20: Introduce the accountant's problem and show a synthetic ledger.
+0:00–0:20: Introduce TaxTech — AI-Assisted Withholding Tax Preparation. Explain the withholding problem and show a synthetic ledger.
 0:20–0:45: Upload, map and preview the ledger.
 0:45–1:30: Run live Nemotron review. Show an explanation, a missing-information question, a correction and a recorded human decision.
 1:30–2:05: Finish reviews, generate the draft, show deterministic calculation and vendor-status checks.
 2:05–2:30: Open Ask TaxTech on a relevant page, ask a workflow question and follow its navigation link.
-2:30–2:40: Explain the model/provider, limitations and benefit being tested.
+2:30–2:40: Explain the model/provider and human approval. State: this demo uses FY2024–25; tax constants can be modified for any tax year together with its rules and effective dates, then validated before activation.
 
 Record real application footage; do not use simulated results as live evidence. Use only assets/music you own or may publish.
 
@@ -42,6 +44,6 @@ Record actual observations about Token Factory response quality, latency, struct
 
 The live app is published at https://taxtech-zeta.vercel.app and the public MIT repository is https://github.com/muhammadabdulrafay63-sudo/taxtech. A dedicated accountant account and synthetic company now provide a completed March 2025 example and April practice. Credentials remain in a private local note and are excluded from Git. See [judge testing instructions](judge-testing.md) and [technical Devpost copy](devpost-submission-copy.md).
 
-The owner still needs to record/upload the public English YouTube video, review/paste the submission materials and private judge login into the correct Devpost fields, verify entrant/team/ownership declarations, and complete submission before the current official deadline. Provider credit balance and expiry must be checked separately to cover judging. Current inference success is not proof of future credits. The remaining-actions PDF gives the concrete sequence.
+A public English YouTube demo and a 4/5-step Devpost draft were prepared on 28 October 2026. The video now needs recreation with the revised withholding narrative and tax-year explanation; the owner requested that recreation as a separate next step. Update its link in Devpost after replacement. The owner retains final review, terms acceptance and submission. Local copy revisions are not proof that the hosted app, public repository or saved Devpost story has been updated. Provider credit balance and expiry must be checked separately to cover judging. Current inference success is not proof of future credits. The remaining-actions PDF gives the concrete sequence.
 
 Code preparation and a public deployment do not themselves complete a contest submission or guarantee eligibility or a prize.

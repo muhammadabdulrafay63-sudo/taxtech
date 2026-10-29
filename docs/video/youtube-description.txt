@@ -1,0 +1,18 @@
+TITLE
+TaxTech — AI-Assisted Withholding Tax Preparation
+
+DESCRIPTION
+TaxTech helps accountants prepare income and sales-tax withholding drafts through ledger upload, AI-assisted review with NVIDIA Nemotron on Nebius Token Factory, and invoice-based human decisions. Ask TaxTech offers contextual guidance inside the app.
+
+Live app: https://taxtech-zeta.vercel.app
+Public source code: https://github.com/muhammadabdulrafay63-sudo/taxtech
+Public testing instructions: https://github.com/muhammadabdulrafay63-sudo/taxtech/blob/main/docs/judge-testing.md
+
+This edited walkthrough uses real captures from the hosted application, actual model responses, synthetic records and English synthesized narration. No passwords or provider keys are shown. Application navigation and idle waits have been edited for clarity; this is not an uninterrupted screen recording or a performance benchmark.
+
+This demo is configured for FY2024–25 (Tax Year 2025), July 2024 through June 2025. Tax constants can be modified for any tax year together with its applicable rules, thresholds, salary bands and effective dates, then validated before activation. Other years are not enabled in this demo. Unsupported cases need specialist assessment. AI suggestions require a separate reviewer decision. TaxTech does not verify live taxpayer status, file returns or make payments. The PDF shown is an internal summary, not an official payment instrument.
+
+Prepared for the Nebius x NVIDIA Global AI Hackathon, Best Apps and Agents track.
+
+UPLOAD NOTES
+Set visibility to Public for the hackathon. The final video is shorter than three minutes. The separate SRT file supplies English captions. Never include the private judge-access note in the public video description. Copy the public YouTube watch link to Devpost after upload.

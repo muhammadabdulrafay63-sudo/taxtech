@@ -1,5 +1,7 @@
 # Vercel deployment
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 Published on October 21, 2026: [live application](https://taxtech-zeta.vercel.app) and [public source repository](https://github.com/muhammadabdulrafay63-sudo/taxtech). GitHub, Vercel and Neon ownership were confirmed as Abdul Rafay. See [hosted release verification](production-release-2026-10-21.md). The steps below document the deployment procedure for future releases.
 
 ## Account and source setup

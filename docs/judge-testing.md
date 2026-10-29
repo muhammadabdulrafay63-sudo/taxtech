@@ -1,5 +1,7 @@
 # TaxTech - judge testing instructions
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 Live application: https://taxtech-zeta.vercel.app
 
 Dedicated judge credentials are supplied in the organizer-designated testing instructions, not in this repository. They belong only to a synthetic demo company. No provider accounts, payment or invitation from the owner are required. After signing in, open **Judge testing guide** in the synthetic-workspace banner. Finish or skip the first-run tour; it can be replayed from the top bar.
@@ -39,4 +41,4 @@ The app supports specific reviewed TY2025 cases (July 2024-June 2025). Unsupport
 
 The account has the accountant role in its own company, not global administration. Please use invented data only and keep the shared login/company profile unchanged. Core tests are free; application request limits still protect provider usage. If AI temporarily returns a quota message, wait as instructed and notify the submitter if it persists. The prepared example and manual review remain available.
 
-Owner operations: keep the account, app, database and inference access usable through December 15, 2026, noon Pacific Standard Time (December 16, 1 AM Pakistan). Health monitoring checks the dedicated identity/credential fingerprint and prepared example. Credit balance and expiry need a separate provider-billing check; a successful inference today does not guarantee credits through judging.
+Owner operations: keep the account, app, database and inference access usable through December 15, 2026, noon Pacific Standard Time (December 16, 1 AM Pakistan). Monitoring tooling can check the dedicated identity/credential fingerprint and prepared example; scheduled checks are currently disabled at the owner’s request. Credit balance and expiry need a separate provider-billing check; a successful inference today does not guarantee credits through judging.

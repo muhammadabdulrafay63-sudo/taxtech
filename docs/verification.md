@@ -1,5 +1,7 @@
 # Local verification — October 20, 2026
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Latest result:** see [the final local readiness audit](final-readiness-audit-2026-10-20.md): fresh local suites passed, while deployment/account and tax-data conditions remain. This document records the earlier workflow verification.
 
 The production build passed the full synthetic workflow against the configured Neon database and live Nebius NVIDIA Nemotron API. These tests consumed provider credits. Test accounts and financial records belong to isolated synthetic companies; existing business records were not edited by the integration tests.

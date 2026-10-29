@@ -1,5 +1,7 @@
 # Developer submission handoff - 21 October 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 ## Complete
 
 - Public MIT repository and hosted app verified: https://github.com/muhammadabdulrafay63-sudo/taxtech and https://taxtech-zeta.vercel.app. GitHub identifies MIT in repository metadata.

@@ -1,5 +1,7 @@
 # Fifth audit — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Subsequent repair:** see [the fifth-audit approval fix and verification](audit-round-5-fixes-2026-10-20.md). This report records the pre-fix audit.
 
 **Verdict: one new high-priority approval concurrency defect remains.** All 80 selected existing checks passed again, including live AI and the supplied-ledger audit. Those passes do not cover the newly reproduced failure. Application behavior was not changed in this pass; the changes are an observational test and this report. Nothing was deployed or published.

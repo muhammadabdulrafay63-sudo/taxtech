@@ -1,5 +1,7 @@
 # Code hardening and handover — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Later work:** the [re-audit](re-audit-2026-10-20.md) found five additional gaps. See [their fixes and latest verification](re-audit-fixes-2026-10-20.md). This report records the preceding hardening pass.
 
 The expanded audit's failing software paths have been repaired and retested. Publishing and deployment are explicitly deferred by the owner. This report distinguishes verified local code behavior from a public production release.

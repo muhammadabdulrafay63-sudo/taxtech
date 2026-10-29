@@ -1,5 +1,7 @@
 # Exact-money repair and verification — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Later audit:** see [the seventh audit](audit-round-7-2026-10-20.md) for one newly reproduced duplicate-column ambiguity. This report records the preceding precision repair.
 
 Both precision defects from the [sixth audit](audit-round-6-2026-10-20.md) are repaired. The repair also covers related calculation, display and export paths rather than only the original examples. No publication or deployment was performed.

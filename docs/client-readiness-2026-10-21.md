@@ -1,5 +1,7 @@
 # Client readiness follow-up — 21 October 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 ## Completed and verified
 
 - Four scoped implementation/documentation commits added scheduled encrypted off-site backups, production health checks, handled API error counters, a deployment-wide AI quota and isolated Preview configuration. The sample ledger was corrected to June 2025 and now has a regression test.

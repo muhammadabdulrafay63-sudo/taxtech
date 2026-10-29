@@ -1,0 +1,71 @@
+[
+  {
+    "id": "intro",
+    "title": "AI-Assisted Withholding Tax Preparation",
+    "label": "TaxTech",
+    "frames": [
+      "02-dashboard.png"
+    ],
+    "text": "TaxTech is AI-Assisted Withholding Tax Preparation for accountants. Upload a ledger, review unclear withholding treatment with AI, approve the invoice evidence and generate income and sales tax withholding drafts. This demonstration uses invented data only."
+  },
+  {
+    "id": "upload",
+    "title": "Upload and inspect the ledger",
+    "label": "01  Import",
+    "frames": [
+      "03-upload.png",
+      "04-mapping.png",
+      "05-preview.png",
+      "06-imported.png"
+    ],
+    "text": "Start by uploading an Excel or CSV ledger. TaxTech detects the columns, and you confirm the date, description, account, debit, credit, and reference mappings. Preview the actual rows before importing. Here, three entries are imported: office supplies, an unclear professional engagement, and an internal bank transfer."
+  },
+  {
+    "id": "ai",
+    "title": "AI makes uncertainty visible",
+    "label": "02  Review with Nemotron",
+    "frames": [
+      "07-pending.png",
+      "08-ai-result.png"
+    ],
+    "text": "Now request AI review. The application calls NVIDIA Nemotron through Nebius Token Factory at runtime. The response proposes a treatment, explains its reasoning, and asks for missing information. A professional engagement could mean different services. The description alone is not proof of the correct tax treatment."
+  },
+  {
+    "id": "human",
+    "title": "The reviewer records the evidence",
+    "label": "03  Approve decisions",
+    "frames": [
+      "09-assessment.png",
+      "10-decisions.png"
+    ],
+    "text": "The accountant checks the supporting invoice. In this invented example, the engagement is a statutory audit fee. The reviewer selects the supported income and sales tax cases, enters the invoice bases, confirms eligibility, and records a note. For section one fifty three, income withholding uses the gross payment including sales tax. The own-bank transfer is excluded with a reason. AI never approves these decisions."
+  },
+  {
+    "id": "batch",
+    "title": "Configured rules calculate the draft",
+    "label": "04  Withholding tax draft",
+    "frames": [
+      "11-batch.png",
+      "12-completed.png"
+    ],
+    "text": "Once every entry has a decision, generate the income batch. The configured calculation produces sixteen thousand, two hundred and fifty rupees on two hundred and thirty-three thousand rupees of gross payments. Inspect the lines before approval. The completed example also provides an internal PDF summary. This is not an official payment slip."
+  },
+  {
+    "id": "assistant",
+    "title": "Ask for help inside the app",
+    "label": "05  Ask TaxTech",
+    "frames": [
+      "13-assistant.png"
+    ],
+    "text": "If a user gets stuck, Ask TaxTech explains the current workflow and offers relevant navigation. This is a real response from the same NVIDIA model on Nebius. It guides the user; it cannot file a return, make a payment, or approve a tax decision."
+  },
+  {
+    "id": "close",
+    "title": "AI suggests  You approve  Rules calculate",
+    "label": "FY2024–25 demo configuration",
+    "frames": [
+      "14-guide.png"
+    ],
+    "text": "This demo is configured for financial year twenty twenty-four to twenty twenty-five, Tax Year twenty twenty-five. Tax constants can be modified for any tax year, together with its applicable rules and effective dates, then validated before activation. Unsupported cases need specialist review. TaxTech: AI suggests, you approve, configured rules calculate."
+  }
+]

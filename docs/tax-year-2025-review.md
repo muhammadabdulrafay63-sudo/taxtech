@@ -1,5 +1,7 @@
 # Agreed release scope: 2024–25 (Tax Year 2025)
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Implementation follow-up:** the corrected catalog, invoice assessments, salary estimates and scoped cases are documented in [TY2025 configuration](ty2025-configuration.md). The findings below preserve the initial audit evidence; they are not a statement that the corrected catalog still contains these values. Coverage remains conditional and limited, not universal TY2025 certification.
 
 Owner decision, 21 October 2026: the release may support only 1 July 2024 through 30 June 2025. Current-year/TY2027 support is outside this release. The existing period gate already enforces this window for calculation and approval.

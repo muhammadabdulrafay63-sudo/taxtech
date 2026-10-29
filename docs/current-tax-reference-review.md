@@ -1,5 +1,7 @@
 # Current tax reference review — 21 October 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Result: the existing Finance Act 2024 rule master must not be used for current-year calculations.** The production period gate remains unchanged. No current-year tax schedule has been activated by the operations release.
 
 The FBR [rate-card index](https://www.fbr.gov.pk/withholding-taxes-rate-card/174298/174301) now lists Tax Year 2027 and its Finance Act 2026 update. The official PDF and spreadsheet were retrieved; their URLs and SHA-256 checksums are recorded in `data/current-reference-review.json`. The actual PDF header says updated through 30 June 2026. Pages 7–8 show material changes in goods, services and contracts. Page 10 also distinguishes the rent recipient, so the old broadly named rent category cannot simply be carried forward.

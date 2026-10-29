@@ -1,5 +1,7 @@
 # Third-audit fixes — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Later verification:** [the fourth audit](audit-round-4-2026-10-20.md) confirms these fixes, adds browser smoke testing and records two additional import findings.
 
 This implementation addresses both findings in [the third audit](audit-round-3-2026-10-20.md). Publishing/deployment remains deferred. No database schema migration is needed for this change.

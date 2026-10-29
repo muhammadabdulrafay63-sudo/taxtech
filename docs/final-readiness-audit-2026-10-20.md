@@ -1,5 +1,7 @@
 # Final local readiness audit — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Public production release: not ready for sign-off.** Passing local code checks does not complete the remaining deployment, account and tax-data conditions. No publication, deployment or account password change was performed in this audit.
 
 ## Release decision

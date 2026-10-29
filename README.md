@@ -1,8 +1,12 @@
-# TaxTech
+# TaxTech — AI-Assisted Withholding Tax Preparation
 
 [Open the live app](https://taxtech-zeta.vercel.app) · [Hosted release verification](docs/production-release-2026-10-21.md) · [Client readiness](docs/client-readiness-2026-10-21.md)
 
-A ledger review workspace for accountants working on Pakistan withholding-tax workflows. Upload Excel/CSV, review unclear entries with NVIDIA Nemotron, approve the tax treatment, and calculate an income or sales-tax draft batch. An in-app assistant explains the current page and next steps.
+Withholding-tax preparation software for accountants in Pakistan. AI-assisted ledger review is a step in the preparation workflow. Upload Excel/CSV, review unclear entries with NVIDIA Nemotron, approve the tax treatment, and calculate an income or sales-tax draft batch. An in-app assistant explains the current page and next steps.
+
+## Tax-year configuration
+
+This demo is configured for FY2024–25 (Tax Year 2025), July 2024–June 2025. Tax constants can be modified for any tax year, together with that year’s applicable rules, thresholds, salary bands and effective dates. A developer must update and validate the configuration before enabling that year; changing rates in the admin screen alone does not enable another year. This demo does not provide a tax-year switch or simultaneous multi-year schedules. See [configuration instructions](docs/tax-year-configuration.md).
 
 ## Start locally
 
@@ -61,7 +65,7 @@ Money in API calculation totals is returned as exact decimal strings. Imports re
 
 ## Important scope
 
-This application supports human-reviewed historical tax preparation; it is not certified filing software. The enabled cases are scoped to July 2024-June 2025 and reconciled with historical official sources, with explicit applicability checks and exclusions in [the configuration notes](docs/ty2025-configuration.md). They do not cover all possible TY2025 transactions or the current year. Salary values are estimates, not payroll true-ups. The app does not query live FBR/ATL status, submit returns or generate an official payment instrument. Accountants must verify applicability and source evidence. AI interprets descriptions; arithmetic uses stored deterministic rules. A company's data remains isolated even for its administrator.
+This application supports human-reviewed withholding-tax preparation; it is not certified filing software. The enabled cases are scoped to July 2024-June 2025 and reconciled with historical official sources, with explicit applicability checks and exclusions in [the configuration notes](docs/ty2025-configuration.md). They do not cover all possible TY2025 transactions or the current year. Salary values are estimates, not payroll true-ups. The app does not query live FBR/ATL status, submit returns or generate an official payment instrument. Accountants must verify applicability and source evidence. AI interprets descriptions; arithmetic uses stored deterministic rules. A company's data remains isolated even for its administrator.
 
 ## Hackathon
 

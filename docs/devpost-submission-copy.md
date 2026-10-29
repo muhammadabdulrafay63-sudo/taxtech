@@ -1,14 +1,16 @@
 # TaxTech - technical submission copy
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 Prepared for the owner to review and paste into Devpost. This file does not submit the entry or make entrant/ownership declarations on the owner's behalf.
 
 ## Project title
 
-TaxTech
+TaxTech — AI-Assisted Withholding Tax Preparation
 
 ## Short description
 
-An accountant's copilot that turns unclear ledger descriptions into human-reviewed withholding-tax drafts, using NVIDIA Nemotron on Nebius Token Factory.
+AI-assisted withholding-tax preparation for accountants: review ledger entries, approve invoice-based treatment and generate drafts with NVIDIA Nemotron on Nebius Token Factory.
 
 ## Track
 
@@ -32,7 +34,7 @@ A contextual assistant helps users navigate mapping, review and batch generation
 
 The app uses Next.js/React, Neon PostgreSQL and Drizzle, and is hosted on Vercel. Both ledger review and contextual assistance make real server-side runtime inference calls to Nebius Token Factory using `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B`. The application uses Token Factory; it does not claim to run on Nebius AI Cloud compute or use Tavily.
 
-The backend validates structured model responses against allowed entries and rule keys. Model advice never becomes an approval. Tax arithmetic uses reviewed configuration and exact decimal operations, with recorded input snapshots, tenant checks, write leases and stale-draft/approved-period protection. Provider keys stay server-side. Scheduled health checks and encrypted off-site backups support operation.
+The backend validates structured model responses against allowed entries and rule keys. Model advice never becomes an approval. Tax arithmetic uses reviewed configuration and exact decimal operations, with recorded input snapshots, tenant checks, write leases and stale-draft/approved-period protection. Provider keys stay server-side. Monitoring and encrypted off-site backup tooling are included; scheduled jobs are disabled at the owner’s request.
 
 ## What was significantly improved during the submission period
 
@@ -57,7 +59,7 @@ We still need application-side validation and a human decision when invoice desc
 
 The hosted workflow has been tested with synthetic data: login, upload/duplicate rejection, live model review and assistance, a separate reviewer-approval workflow, invoice validation, calculation/approval, internal PDF generation, isolation and write restrictions. The TY2025 regression checks eight sales-tax cases across all five supported authorities. The synthetic judge account's owner isolation and global-admin rejection were tested.
 
-The release covers specific historical TY2025 cases, not every tax situation or current-year law. Annual individual/AOP rent, non-resident/treaty and other unmodeled cases remain blocked for specialist treatment. Salary figures are estimates rather than payroll true-ups. The app does not query live ATL registries, file returns or make payments. We have not measured an accuracy score or percentage time saving and do not claim either. All judge sample data and tax-status assumptions are invented.
+This demo is configured for FY2024–25 (Tax Year 2025), July 2024–June 2025. Tax constants can be modified for any tax year, together with that year’s applicable rules, thresholds, salary bands and effective dates. A developer must update and validate the configuration before enabling that year; changing rates in the admin screen alone does not enable another year. This demo does not provide a tax-year switch or simultaneous multi-year schedules. The enabled demo cases do not cover every tax situation. Annual individual/AOP rent, non-resident/treaty and other unmodeled cases remain blocked for specialist treatment. Salary figures are estimates rather than payroll true-ups. The app does not query live ATL registries, file returns or make payments. We have not measured an accuracy score or percentage time saving and do not claim either. All judge sample data and tax-status assumptions are invented.
 
 ## Built with
 

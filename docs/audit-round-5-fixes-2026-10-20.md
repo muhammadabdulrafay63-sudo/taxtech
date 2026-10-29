@@ -1,5 +1,7 @@
 # Fifth-audit approval fix — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Later audit:** see [the sixth audit](audit-round-6-2026-10-20.md) for two newly reproduced import precision defects. This document records the preceding approval repair.
 
 The approval/rule-edit race found in the [fifth audit](audit-round-5-2026-10-20.md) is repaired in both income-tax and sales-tax approval. No deployment or publication was performed.

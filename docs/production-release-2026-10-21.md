@@ -1,5 +1,7 @@
 # Hosted release — October 21, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Later operational setup:** see [client readiness follow-up](client-readiness-2026-10-21.md) for scheduled encrypted backups, tested alerts, the separate Preview database and the current-year tax gap. The original verification below records the initial hosted release.
 
 TaxTech is published at **https://taxtech-zeta.vercel.app**. Source: [muhammadabdulrafay63-sudo/taxtech](https://github.com/muhammadabdulrafay63-sudo/taxtech). GitHub, Vercel and Neon account ownership was verified as Abdul Rafay before publishing.

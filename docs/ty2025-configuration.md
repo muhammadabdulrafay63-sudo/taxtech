@@ -1,5 +1,7 @@
 # TY2025 configuration correction
 
+> Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 Release scope: 1 July 2024 through 30 June 2025. Reviewed 21 October 2026. This replaces the assumption that matching the supplied workbook constitutes verification of tax law.
 
 ## Source handling

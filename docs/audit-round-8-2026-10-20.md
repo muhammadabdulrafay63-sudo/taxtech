@@ -1,5 +1,7 @@
 # Eighth audit — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 This pass rechecks the current local application after the duplicate-column repair. It makes no application changes and does not deploy or publish anything. **Verdict: no new financial-workflow or tenant-isolation defect was confirmed in this pass. The repaired business paths passed.** One quota assertion failed in the supplied-ledger suite; its focused retry passed. The initial failure is retained below, and this is not recorded as a clean full pass.
 
 ## Scope

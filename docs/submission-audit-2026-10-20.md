@@ -1,5 +1,7 @@
 # Submission audit — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 **Historical audit — see [the subsequent fixes and verification](release-hardening.md) for current code status.**
 
 **Verdict at the time of this audit: not ready for submission.** The local happy path works, but broader ledger testing found functional and AI reliability gaps. Public submission materials also remain incomplete. This audit adds tests and records findings; it does not repair the application or upgrade dependencies.

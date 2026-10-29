@@ -1,5 +1,7 @@
 # Duplicate-column repair — October 20, 2026
 
+> Historical report: findings below describe the dated run and are retained as evidence. Product: **TaxTech — AI-Assisted Withholding Tax Preparation**. The demo uses FY2024–25 (Tax Year 2025). Tax constants can be modified for any tax year together with its applicable rules and effective dates, followed by validation before activation. See [tax-year configuration](tax-year-configuration.md) for the required changes and current limits.
+
 The duplicate-heading ambiguity from the [seventh audit](audit-round-7-2026-10-20.md) is repaired in preview and direct import. Application behavior rejects the ambiguous source instead of silently choosing a column. No schema migration, account/service setup, publication or deployment is required.
 
 ## Behavior
