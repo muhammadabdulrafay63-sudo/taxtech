@@ -1,0 +1,135 @@
+1
+00:00:00,250 --> 00:00:04,198
+TaxTech is AI-Assisted Withholding Tax Preparation for accountants.
+
+2
+00:00:04,198 --> 00:00:09,797
+Upload a ledger, review unclear withholding treatment with AI, approve the
+
+3
+00:00:09,797 --> 00:00:14,663
+invoice evidence and generate income and sales tax withholding drafts.
+
+4
+00:00:14,663 --> 00:00:17,692
+This demonstration uses invented data only.
+
+5
+00:00:18,992 --> 00:00:22,572
+Start by uploading an Excel or CSV ledger.
+
+6
+00:00:22,572 --> 00:00:28,150
+TaxTech detects the columns, and you confirm the date, description, account,
+
+7
+00:00:28,150 --> 00:00:33,728
+debit, credit, and reference mappings. Preview the actual rows before importing.
+
+8
+00:00:33,728 --> 00:00:38,391
+Here, three entries are imported: office supplies, an unclear professional
+
+9
+00:00:38,391 --> 00:00:41,388
+engagement, and an internal bank transfer.
+
+10
+00:00:42,688 --> 00:00:47,391
+Now request AI review. The application calls NVIDIA Nemotron through Nebius
+
+11
+00:00:47,391 --> 00:00:52,986
+Token Factory at runtime. The response proposes a treatment, explains its reasoning,
+
+12
+00:00:52,986 --> 00:00:57,688
+and asks for missing information. A professional engagement could mean different
+
+13
+00:00:57,688 --> 00:01:03,040
+services. The description alone is not proof of the correct tax treatment.
+
+14
+00:01:04,340 --> 00:01:06,977
+The accountant checks the supporting invoice.
+
+15
+00:01:06,977 --> 00:01:11,851
+In this invented example, the engagement is a statutory audit fee.
+
+16
+00:01:11,851 --> 00:01:17,285
+The reviewer selects the supported income and sales tax cases, enters the invoice
+
+17
+00:01:17,285 --> 00:01:20,801
+bases, confirms eligibility, and records a note.
+
+18
+00:01:20,801 --> 00:01:25,835
+For section one fifty three, income withholding uses the gross payment including
+
+19
+00:01:25,835 --> 00:01:30,310
+sales tax. The own-bank transfer is excluded with a reason.
+
+20
+00:01:30,310 --> 00:01:32,548
+AI never approves these decisions.
+
+21
+00:01:33,848 --> 00:01:38,304
+Once every entry has a decision, generate the income batch.
+
+22
+00:01:38,304 --> 00:01:42,521
+The configured calculation produces sixteen thousand, two hundred and fifty
+
+23
+00:01:42,521 --> 00:01:47,135
+rupees on two hundred and thirty-three thousand rupees of gross payments.
+
+24
+00:01:47,135 --> 00:01:52,148
+Inspect the lines before approval. The completed example also provides an internal
+
+25
+00:01:52,148 --> 00:01:56,206
+PDF summary. This is not an official payment slip.
+
+26
+00:01:57,506 --> 00:02:02,285
+If a user gets stuck, Ask TaxTech explains the current workflow and offers
+
+27
+00:02:02,285 --> 00:02:07,064
+relevant navigation. This is a real response from the same NVIDIA model on
+
+28
+00:02:07,064 --> 00:02:12,967
+Nebius. It guides the user; it cannot file a return, make a payment, or approve
+
+29
+00:02:12,967 --> 00:02:14,232
+a tax decision.
+
+30
+00:02:15,532 --> 00:02:21,223
+This demo is configured for financial year twenty twenty-four to twenty twenty-five,
+
+31
+00:02:21,223 --> 00:02:27,637
+Tax Year twenty twenty-five. Tax constants can be modified for any tax year,
+
+32
+00:02:27,637 --> 00:02:32,877
+together with its applicable rules and effective dates, then validated before
+
+33
+00:02:32,877 --> 00:02:36,129
+activation. Unsupported cases need specialist review.
+
+34
+00:02:36,129 --> 00:02:40,556
+TaxTech: AI suggests, you approve, configured rules calculate.

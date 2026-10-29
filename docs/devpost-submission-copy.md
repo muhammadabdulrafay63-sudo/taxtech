@@ -21,7 +21,7 @@ Best Apps and Agents
 - Working app: https://taxtech-zeta.vercel.app
 - Public repository: https://github.com/muhammadabdulrafay63-sudo/taxtech
 - Judge instructions: https://github.com/muhammadabdulrafay63-sudo/taxtech/blob/main/docs/judge-testing.md
-- YouTube demo: add the owner's publicly visible video after recording.
+- YouTube demo: https://www.youtube.com/watch?v=vyyEi_GT1x8 (revised public English demo, 2:42, published 29 October 2026).
 - Judge credentials: copy from the private local access note into the appropriate testing field after checking its visibility. Do not put the owner password or provider keys in the submission.
 
 ## What it does

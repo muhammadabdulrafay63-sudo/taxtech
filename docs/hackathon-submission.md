@@ -47,3 +47,7 @@ The live app is published at https://taxtech-zeta.vercel.app and the public MIT 
 A public English YouTube demo and a 4/5-step Devpost draft were prepared on 28 October 2026. The video now needs recreation with the revised withholding narrative and tax-year explanation; the owner requested that recreation as a separate next step. Update its link in Devpost after replacement. The owner retains final review, terms acceptance and submission. Local copy revisions are not proof that the hosted app, public repository or saved Devpost story has been updated. Provider credit balance and expiry must be checked separately to cover judging. Current inference success is not proof of future credits. The remaining-actions PDF gives the concrete sequence.
 
 Code preparation and a public deployment do not themselves complete a contest submission or guarantee eligibility or a prize.
+
+## Submission preparation completed 29 October 2026
+
+The revised public English demo is https://www.youtube.com/watch?v=vyyEi_GT1x8 (2:42). Devpost’s title, pitch, story, thumbnail and video link are saved with the withholding-preparation narrative and FY2024–25 configurability explanation. The private judge-access note remains attached. The entry is still DRAFT at 4/5 steps; terms acceptance and final submission remain the owner’s responsibility. Earlier video-recreation instructions above record the prior preparation stage. See [publication status](submission-final-review-2026-10-29.md).

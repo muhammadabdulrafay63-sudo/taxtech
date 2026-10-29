@@ -15,3 +15,7 @@ Description: TaxTech helps accountants prepare income and sales-tax withholding 
 Keep the existing edited-walkthrough and synthesized-narration disclosure. Do not call a screenshot-based edit an uninterrupted recording. Do not put credentials in the video or public description. After owner review, publish the replacement and update the Devpost draft video link; leave final contest submission to the owner.
 
 Versioned source materials: [narration plan](video/narration-plan.json), [YouTube copy](video/youtube-description.txt), [share copy](video/share-copy.txt). The title is the product narrative; the demo period is a configuration, not the permanent product scope.
+
+## Completed replacement
+
+Published 29 October 2026: https://www.youtube.com/watch?v=vyyEi_GT1x8 (2:42). English synthesized narration, burned-in captions and uploaded English SRT. The public description discloses edited captures and actual saved model responses. Uploaded without paid promotion. Devpost now uses this link; final submission is pending owner review. The brief above is retained as production instructions, not outstanding work.

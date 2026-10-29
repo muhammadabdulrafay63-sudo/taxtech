@@ -45,3 +45,5 @@ next-env.d.ts
 # Local video renders, captures and document QA
 /brag-output/
 /tmp/
+
+/brag-output-*/
