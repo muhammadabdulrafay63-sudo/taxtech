@@ -41,7 +41,11 @@ export default async function AdminWHTRulesPage() {
       <div>
         <h1 className="text-xl font-semibold">WHT Rules Master</h1>
         <p className="text-sm text-muted-foreground">
-          Finance Act 2024. Changes affect future calculations only — approved batches are unaffected.
+          Demo configuration: FY2024–25 (Tax Year 2025), based on Finance Act 2024.
+          Tax constants can be modified for any tax year together with its rules
+          and effective dates through a validated developer update. Editing
+          rates here alone does not enable another year. Changes affect future
+          calculations only — approved batches are unaffected.
         </p>
       </div>
 

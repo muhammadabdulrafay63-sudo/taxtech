@@ -56,7 +56,7 @@ function LoginForm() {
             </div>
           </div>
           <CardTitle className="text-xl">Sign in</CardTitle>
-          <CardDescription>Enter your credentials to access your account</CardDescription>
+          <CardDescription>AI-Assisted Withholding Tax Preparation</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

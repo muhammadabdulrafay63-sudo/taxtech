@@ -33,7 +33,7 @@ export function MobileNavigation(props: {
         </SheetTrigger>
         <SheetContent side="left" className="gap-0 p-0">
           <SheetHeader>
-            <SheetTitle>TaxTech</SheetTitle>
+            <SheetTitle>TaxTech — AI-Assisted Withholding Tax Preparation</SheetTitle>
             <SheetDescription>{props.companyName}</SheetDescription>
           </SheetHeader>
           <div

@@ -1,3 +1,4 @@
+import { TAX_YEAR_CONFIGURATION_NOTICE } from "@/lib/product";
 import { AppTour } from "@/components/onboarding/AppTour";
 import { TOUR_SEEN_ACTION } from "@/lib/app-tour";
 import { MobileNavigation } from "@/components/layout/MobileNavigation";
@@ -69,9 +70,7 @@ export default async function DashboardLayout({
         />
         <main className="min-w-0 flex-1 overflow-y-auto bg-muted/30 p-4 pb-24 sm:p-6 sm:pb-24">
           <p className="mb-4 rounded-md border bg-background px-3 py-2 text-xs text-muted-foreground">
-            Reference basis: reviewed TY2025 historical cases. Calculations
-            support July 2024–June 2025 only; other periods require reviewed
-            schedules. No automatic filing or payments.
+            {TAX_YEAR_CONFIGURATION_NOTICE}
           </p>
           {companyId === judgeFixture.companyId &&
             session.user.id === judgeFixture.userId && (

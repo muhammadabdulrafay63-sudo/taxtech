@@ -32,8 +32,11 @@ export default async function JudgeGuide({
       <h1 className="text-2xl font-semibold">Judge testing guide</h1>
       <p>
         Every vendor, status and invoice here is invented. No real taxpayer
-        checks, filings or payments are performed. The demo uses reviewed TY2025
-        cases only.
+        checks, filings or payments are performed. TaxTech provides AI-Assisted
+        Withholding Tax Preparation. This demo is configured for FY2024–25
+        (Tax Year 2025). Tax constants can be modified for any tax year, along
+        with its rules and effective dates, through a validated developer
+        configuration update. Other years are not enabled in this demo.
       </p>
       <section className="space-y-2 rounded-lg border p-4">
         <h2 className="font-semibold">

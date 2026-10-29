@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PRODUCT_TITLE, PRODUCT_PURPOSE } from "@/lib/product";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TaxTech — WHT & SECP Compliance",
-  description: "Withholding tax calculation and SECP compliance management for Pakistani companies",
+  title: PRODUCT_TITLE,
+  description: PRODUCT_PURPOSE,
 };
 
 export default function RootLayout({

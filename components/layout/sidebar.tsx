@@ -111,10 +111,11 @@ export function Sidebar({ companyId, companyName, mobile = false, userRole }: Si
   return (
     <aside className={`${mobile ? "flex w-full" : "hidden w-60 md:flex"} h-full shrink-0 flex-col border-r bg-background`}>
       {/* Logo / Company */}
-      <div className="flex h-14 items-center gap-2 border-b px-4">
+      <div className="flex min-h-16 items-center gap-2 border-b px-4 py-2">
         <Building2 className="h-5 w-5 text-primary" />
         <div className="flex flex-col leading-tight">
-          <span className="text-xs font-bold tracking-wide text-primary">TaxTech</span>
+          <span className="text-xs font-bold tracking-wide text-primary" title="TaxTech — AI-Assisted Withholding Tax Preparation">TaxTech</span>
+          <span className="text-[10px] text-muted-foreground">Withholding Tax Preparation</span>
           <span className="max-w-[140px] truncate text-[11px] text-muted-foreground">
             {companyName}
           </span>

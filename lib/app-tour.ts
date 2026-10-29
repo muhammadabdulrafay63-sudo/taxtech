@@ -1,11 +1,13 @@
+import { PRODUCT_TITLE, TAX_YEAR_CONFIGURATION_NOTICE } from "./product";
+
 export const TOUR_SEEN_ACTION = "APP_TOUR_SEEN";
 export function tourSteps(viewer: boolean) {
   return [
     {
-      title: "Welcome to TaxTech",
+      title: PRODUCT_TITLE,
       eyebrow: "Your workspace, in a few steps",
       description:
-        "Follow a ledger from upload to a reviewed tax batch. This quick tour shows you where everything lives.",
+        "Prepare withholding-tax drafts with AI-assisted ledger review and human approval. This quick tour shows the steps from upload to a withholding batch.",
       points: [
         "Your dashboard shows pending reviews, batches and compliance tasks.",
         viewer
@@ -55,7 +57,8 @@ export function tourSteps(viewer: boolean) {
         "Income WHT and Sales Tax WHT have separate monthly batches. Review every entry for the month before calculating.",
       points: [
         "Check draft amounts and resolve missing supplier evidence before approval.",
-        "The supplied schedules support July 2024–June 2025. Approved batches are locked.",
+        TAX_YEAR_CONFIGURATION_NOTICE,
+        "Approved batches are locked.",
       ],
       page: "wht/monthly",
     },

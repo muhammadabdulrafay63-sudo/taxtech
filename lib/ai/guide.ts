@@ -1,10 +1,14 @@
+import { PRODUCT_TITLE, TAX_YEAR_CONFIGURATION_NOTICE } from "../product";
+
 export const guide = [
   {
     key: "dashboard",
     title: "Dashboard",
     suffix: "/dashboard",
     steps: [
-      "Check imported transactions, pending reviews and generated batches.",
+      PRODUCT_TITLE,
+      TAX_YEAR_CONFIGURATION_NOTICE,
+      "Check imported transactions, pending reviews and generated withholding batches.",
       "Start with Upload ledger, then Review ledger, then Monthly batches.",
     ],
     prompt: "What should I do next?",
@@ -51,7 +55,7 @@ export const guide = [
     title: "Income WHT",
     suffix: "/wht/monthly",
     steps: [
-      "Calculations support July 2024 through June 2025 only, matching the supplied schedules. Other periods require a reviewed source schedule.",
+      TAX_YEAR_CONFIGURATION_NOTICE,
       "Review every entry in the chosen month first.",
       "Calculate a draft batch using approved categories and configured rates.",
       "Confirm payment-date filer status and recipient type in Vendors, then recalculate. Missing recipient evidence blocks approval even when filer status is known. Company-landlord rent is a flat-rate case; individual/AOP annual rent and salary are outside vendor batches. The separate salary page provides TY2025 estimates.",
